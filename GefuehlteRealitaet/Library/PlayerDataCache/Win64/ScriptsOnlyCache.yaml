@@ -1,7 +1,11 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - HMDInfoManager
+    - HandController
     - NetworkManager
+    - NetworkPlayer
+    - NetworkPlayerSpawner
     Microsoft.MixedReality.OpenXR.dll:
     - Microsoft.MixedReality.OpenXR.HPMixedRealityControllerProfile
     - Microsoft.MixedReality.OpenXR.HandTrackingFeaturePlugin
@@ -66,20 +70,25 @@ ScriptsOnlyBuild:
     - UnityEditor.Rendering.Universal.UniversalProjectSettings
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.XR.Interaction.Toolkit.Editor.dll:
+    - UnityEditor.XR.Interaction.Toolkit.XRInteractionDebuggerWindow
     Unity.XR.Interaction.Toolkit.dll:
     - UnityEngine.XR.Interaction.Toolkit.ActionBasedController
     - UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager
+    - UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRDeviceSimulator
     - UnityEngine.XR.Interaction.Toolkit.XRInteractionManager
-    - UnityEngine.XR.Interaction.Toolkit.XRInteractorLineVisual
-    - UnityEngine.XR.Interaction.Toolkit.XRRayInteractor
     - UnityEngine.XR.Interaction.Toolkit.XRRig
     Unity.XR.Management.Editor.dll:
     - UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
     Unity.XR.Management.dll:
     - UnityEngine.XR.Management.XRGeneralSettings
     - UnityEngine.XR.Management.XRManagerSettings
+    Unity.XR.MockHMD.dll:
+    - Unity.XR.MockHMD.MockHMDBuildSettings
+    - Unity.XR.MockHMD.MockHMDLoader
     Unity.XR.OpenXR.Editor.dll:
     - UnityEditor.XR.OpenXR.OpenXRPackageSettings
+    - UnityEditor.XR.OpenXR.PackageSettingsEditor
     Unity.XR.OpenXR.Features.ConformanceAutomation.dll:
     - UnityEngine.XR.OpenXR.Features.ConformanceAutomation.ConformanceAutomationFeature
     Unity.XR.OpenXR.Features.MockDriver.dll:
@@ -99,6 +108,12 @@ ScriptsOnlyBuild:
     - UnityEngine.XR.OpenXR.OpenXRLoader
     - UnityEngine.XR.OpenXR.OpenXRLoaderNoPreInit
     - UnityEngine.XR.OpenXR.OpenXRSettings
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -162,138 +177,142 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 586}
+      Script: {instanceID: 588}
     - Class: 114
-      Script: {instanceID: 1662}
-    - Class: 114
-      Script: {instanceID: 1664}
-    - Class: 114
-      Script: {instanceID: 1666}
+      Script: {instanceID: 1668}
     - Class: 114
       Script: {instanceID: 1670}
     - Class: 114
       Script: {instanceID: 1672}
     - Class: 114
-      Script: {instanceID: 1680}
+      Script: {instanceID: 1676}
     - Class: 114
-      Script: {instanceID: 1796}
+      Script: {instanceID: 1678}
     - Class: 114
-      Script: {instanceID: 1888}
+      Script: {instanceID: 1686}
     - Class: 114
-      Script: {instanceID: 2008}
+      Script: {instanceID: 1802}
     - Class: 114
-      Script: {instanceID: 2094}
+      Script: {instanceID: 1894}
     - Class: 114
-      Script: {instanceID: 2730}
+      Script: {instanceID: 2014}
     - Class: 114
-      Script: {instanceID: 2854}
+      Script: {instanceID: 2738}
     - Class: 114
-      Script: {instanceID: 2948}
+      Script: {instanceID: 2862}
     - Class: 114
-      Script: {instanceID: 3680}
+      Script: {instanceID: 2890}
     - Class: 114
-      Script: {instanceID: 3826}
+      Script: {instanceID: 2960}
     - Class: 114
-      Script: {instanceID: 4052}
+      Script: {instanceID: 3366}
     - Class: 114
-      Script: {instanceID: 4084}
+      Script: {instanceID: 3700}
     - Class: 114
-      Script: {instanceID: 4168}
+      Script: {instanceID: 3848}
     - Class: 114
-      Script: {instanceID: 4360}
+      Script: {instanceID: 3908}
     - Class: 114
-      Script: {instanceID: 4532}
+      Script: {instanceID: 4078}
     - Class: 114
-      Script: {instanceID: 4686}
+      Script: {instanceID: 4110}
     - Class: 114
-      Script: {instanceID: 4776}
+      Script: {instanceID: 4194}
     - Class: 114
-      Script: {instanceID: 4858}
+      Script: {instanceID: 4388}
     - Class: 114
-      Script: {instanceID: 4870}
+      Script: {instanceID: 4562}
     - Class: 114
-      Script: {instanceID: 4910}
+      Script: {instanceID: 4718}
     - Class: 114
-      Script: {instanceID: 4926}
+      Script: {instanceID: 4810}
     - Class: 114
-      Script: {instanceID: 5102}
+      Script: {instanceID: 4892}
     - Class: 114
-      Script: {instanceID: 5110}
+      Script: {instanceID: 4904}
     - Class: 114
-      Script: {instanceID: 5530}
+      Script: {instanceID: 4944}
     - Class: 114
-      Script: {instanceID: 6602}
+      Script: {instanceID: 4960}
     - Class: 114
-      Script: {instanceID: 6622}
+      Script: {instanceID: 5136}
     - Class: 114
-      Script: {instanceID: 6644}
+      Script: {instanceID: 5144}
     - Class: 114
-      Script: {instanceID: 6646}
+      Script: {instanceID: 5564}
     - Class: 114
-      Script: {instanceID: 6732}
+      Script: {instanceID: 6494}
     - Class: 114
-      Script: {instanceID: 7008}
+      Script: {instanceID: 6640}
     - Class: 114
-      Script: {instanceID: 7010}
+      Script: {instanceID: 6660}
     - Class: 114
-      Script: {instanceID: 7034}
+      Script: {instanceID: 6684}
     - Class: 114
-      Script: {instanceID: 7214}
+      Script: {instanceID: 6686}
     - Class: 114
-      Script: {instanceID: 7280}
+      Script: {instanceID: 6772}
     - Class: 114
-      Script: {instanceID: 7410}
+      Script: {instanceID: 7050}
     - Class: 114
-      Script: {instanceID: 7414}
+      Script: {instanceID: 7052}
     - Class: 114
-      Script: {instanceID: 7746}
+      Script: {instanceID: 7078}
     - Class: 114
-      Script: {instanceID: 7848}
+      Script: {instanceID: 7258}
     - Class: 114
-      Script: {instanceID: 7854}
+      Script: {instanceID: 7324}
     - Class: 114
-      Script: {instanceID: 7996}
+      Script: {instanceID: 7454}
     - Class: 114
-      Script: {instanceID: 8040}
+      Script: {instanceID: 7458}
     - Class: 114
-      Script: {instanceID: 8094}
+      Script: {instanceID: 7790}
     - Class: 114
-      Script: {instanceID: 8098}
+      Script: {instanceID: 7894}
     - Class: 114
-      Script: {instanceID: 8200}
+      Script: {instanceID: 7900}
     - Class: 114
-      Script: {instanceID: 8202}
+      Script: {instanceID: 8042}
     - Class: 114
-      Script: {instanceID: 8344}
+      Script: {instanceID: 8086}
     - Class: 114
-      Script: {instanceID: 8524}
+      Script: {instanceID: 8140}
     - Class: 114
-      Script: {instanceID: 8700}
+      Script: {instanceID: 8246}
     - Class: 114
-      Script: {instanceID: 8720}
+      Script: {instanceID: 8248}
     - Class: 114
-      Script: {instanceID: 8772}
+      Script: {instanceID: 8390}
     - Class: 114
-      Script: {instanceID: 8980}
+      Script: {instanceID: 8570}
     - Class: 114
-      Script: {instanceID: 9698}
+      Script: {instanceID: 8748}
     - Class: 114
-      Script: {instanceID: 9702}
+      Script: {instanceID: 8768}
     - Class: 114
-      Script: {instanceID: 10026}
+      Script: {instanceID: 8820}
     - Class: 114
-      Script: {instanceID: 10078}
+      Script: {instanceID: 9028}
     - Class: 114
-      Script: {instanceID: 10180}
+      Script: {instanceID: 9750}
     - Class: 114
-      Script: {instanceID: 10370}
+      Script: {instanceID: 9754}
     - Class: 114
-      Script: {instanceID: 10438}
+      Script: {instanceID: 10082}
     - Class: 114
-      Script: {instanceID: 10782}
+      Script: {instanceID: 10136}
+    - Class: 114
+      Script: {instanceID: 10200}
+    - Class: 114
+      Script: {instanceID: 10238}
+    - Class: 114
+      Script: {instanceID: 10428}
+    - Class: 114
+      Script: {instanceID: 10496}
+    - Class: 114
+      Script: {instanceID: 10842}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 120
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
@@ -326,28 +345,10 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: a79f55b94530e531932993ef684dcd5e
-    assemblyName: Unity.XR.Interaction.Toolkit.dll
-    namespaceName: UnityEngine.XR.Interaction.Toolkit
-    className: ActionBasedSnapTurnProvider
-  - hash:
-      serializedVersion: 2
       Hash: 6463ac43bfd392877de1849e0b6c0d49
     assemblyName: Unity.XR.Interaction.Toolkit.dll
     namespaceName: UnityEngine.XR.Interaction.Toolkit
     className: ActionBasedController
-  - hash:
-      serializedVersion: 2
-      Hash: 5d820a4b2d2a41b143640b8af1508079
-    assemblyName: Unity.XR.Interaction.Toolkit.dll
-    namespaceName: UnityEngine.XR.Interaction.Toolkit
-    className: ActionBasedContinuousMoveProvider
-  - hash:
-      serializedVersion: 2
-      Hash: 409afa968cfe9411d1db9305ba39ee5a
-    assemblyName: Unity.XR.Interaction.Toolkit.dll
-    namespaceName: UnityEngine.XR.Interaction.Toolkit
-    className: ActionBasedContinuousTurnProvider
   - hash:
       serializedVersion: 2
       Hash: 699619b86d9359741a4f58540298c80b
@@ -884,6 +885,12 @@ ScriptsOnlyBuild:
     className: CapsLockHighlight
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NetworkPlayerSpawner
+  - hash:
+      serializedVersion: 2
       Hash: 3fdcbc807216464c7e20ef4ea44c75b6
     assemblyName: Microsoft.MixedReality.Toolkit.dll
     namespaceName: Microsoft.MixedReality.Toolkit.Utilities
@@ -1056,6 +1063,12 @@ ScriptsOnlyBuild:
     assemblyName: Microsoft.MixedReality.Toolkit.SDK.dll
     namespaceName: Microsoft.MixedReality.Toolkit.Input
     className: AnimatedCursor
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HMDInfoManager
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1244,6 +1257,12 @@ ScriptsOnlyBuild:
     className: HPMixedRealityControllerProfile
   - hash:
       serializedVersion: 2
+      Hash: a79f55b94530e531932993ef684dcd5e
+    assemblyName: Unity.XR.Interaction.Toolkit.dll
+    namespaceName: UnityEngine.XR.Interaction.Toolkit
+    className: ActionBasedSnapTurnProvider
+  - hash:
+      serializedVersion: 2
       Hash: 5905a68595be1441f5fbbfef02d20611
     assemblyName: Microsoft.MixedReality.Toolkit.SDK.dll
     namespaceName: Microsoft.MixedReality.Toolkit.UI
@@ -1308,6 +1327,12 @@ ScriptsOnlyBuild:
     assemblyName: Microsoft.MixedReality.Toolkit.SDK.dll
     namespaceName: Microsoft.MixedReality.Toolkit.UI
     className: ConstraintManager
+  - hash:
+      serializedVersion: 2
+      Hash: d9afa9117cce101d4182f25f7541a9a5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HandController
   - hash:
       serializedVersion: 2
       Hash: 2f64f48aa310fead73b32bb3060a9d11
@@ -1452,6 +1477,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: CurrentRoomPlayerCountProperty
+  - hash:
+      serializedVersion: 2
+      Hash: 74c5393822b3cc643f89480bb365271a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ImprovedHandController
   - hash:
       serializedVersion: 2
       Hash: b787e6a2c7e7e6ff79732a9055a718a4
@@ -1688,6 +1719,12 @@ ScriptsOnlyBuild:
     className: ColorAdjustments
   - hash:
       serializedVersion: 2
+      Hash: 34e57ed2d6e6ccd39b29a03223526058
+    assemblyName: Unity.XR.MockHMD.dll
+    namespaceName: Unity.XR.MockHMD
+    className: MockHMDBuildSettings
+  - hash:
+      serializedVersion: 2
       Hash: 295852e83016219fe0ab9a38fc36f74a
     assemblyName: Unity.InputSystem.dll
     namespaceName: UnityEngine.InputSystem
@@ -1710,6 +1747,12 @@ ScriptsOnlyBuild:
     assemblyName: Microsoft.MixedReality.Toolkit.SDK.dll
     namespaceName: Microsoft.MixedReality.Toolkit.UI
     className: InteractableReceiverList
+  - hash:
+      serializedVersion: 2
+      Hash: 3e34105e4d5f6b2a1d3c5ad6f1d716cb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerMovement
   - hash:
       serializedVersion: 2
       Hash: 3eec7d8b94b6e0eebcdfb0b2aace25dc
@@ -2498,6 +2541,12 @@ ScriptsOnlyBuild:
     className: BoxDisplayConfiguration
   - hash:
       serializedVersion: 2
+      Hash: 3e1710c1a3733d6865fab8bd25585e18
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NetworkPlayer
+  - hash:
+      serializedVersion: 2
       Hash: b617b4affe72256ddf15bb40984499db
     assemblyName: Microsoft.MixedReality.Toolkit.dll
     namespaceName: Microsoft.MixedReality.Toolkit.Utilities
@@ -2694,6 +2743,12 @@ ScriptsOnlyBuild:
     assemblyName: Microsoft.MixedReality.Toolkit.dll
     namespaceName: Microsoft.MixedReality.Toolkit.Rendering
     className: DepthBufferRenderer
+  - hash:
+      serializedVersion: 2
+      Hash: 409afa968cfe9411d1db9305ba39ee5a
+    assemblyName: Unity.XR.Interaction.Toolkit.dll
+    namespaceName: UnityEngine.XR.Interaction.Toolkit
+    className: ActionBasedContinuousTurnProvider
   - hash:
       serializedVersion: 2
       Hash: 0e6bbec4af7307834a01caad753e37bd
@@ -3854,6 +3909,12 @@ ScriptsOnlyBuild:
     className: CompressableButton
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HandPresence
+  - hash:
+      serializedVersion: 2
       Hash: b593922bd6a1ac505d7401734a0e13f1
     assemblyName: Microsoft.MixedReality.Toolkit.dll
     namespaceName: Microsoft.MixedReality.Toolkit.Physics
@@ -3926,6 +3987,12 @@ ScriptsOnlyBuild:
     className: DialogButton
   - hash:
       serializedVersion: 2
+      Hash: 5d820a4b2d2a41b143640b8af1508079
+    assemblyName: Unity.XR.Interaction.Toolkit.dll
+    namespaceName: UnityEngine.XR.Interaction.Toolkit
+    className: ActionBasedContinuousMoveProvider
+  - hash:
+      serializedVersion: 2
       Hash: a04f094627b2f926dd9e26348a8226d5
     assemblyName: Microsoft.MixedReality.Toolkit.SDK.dll
     namespaceName: Microsoft.MixedReality.Toolkit.Experimental.CameraSystem
@@ -3990,6 +4057,12 @@ ScriptsOnlyBuild:
     assemblyName: Microsoft.MixedReality.Toolkit.SDK.dll
     namespaceName: Microsoft.MixedReality.Toolkit.UI
     className: ToolTipBackgroundBlob
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Unity.XR.MockHMD.dll
+    namespaceName: Unity.XR.MockHMD
+    className: MockHMDLoader
   - hash:
       serializedVersion: 2
       Hash: c1bba5c0ac4e9785596c89f3517b9c52
