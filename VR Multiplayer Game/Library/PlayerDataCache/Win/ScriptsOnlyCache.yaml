@@ -1644,5 +1644,5 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/BURG/Bachelor/unity/VR Multiplayer Game/builds/VR Multiplayer Game
-    V2.exe
+  playerPath: C:/projects/Gefuehlte_Realitaet/VR Multiplayer Game/builds/VR Multiplayer
+    Game V2.exe
