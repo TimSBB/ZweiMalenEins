@@ -40,9 +40,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 690
+    y: 826
     width: 995
-    height: 257
+    height: 121
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
@@ -239,7 +239,7 @@ MonoBehaviour:
     x: 0
     y: 370
     width: 995
-    height: 320
+    height: 456
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 21}
@@ -376,9 +376,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 763
+    y: 899
     width: 994
-    height: 236
+    height: 100
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &16
 MonoBehaviour:
@@ -458,7 +458,7 @@ MonoBehaviour:
     x: 0
     y: 443
     width: 994
-    height: 299
+    height: 435
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 994, y: 278}
+  m_TargetSize: {x: 994, y: 414}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -485,8 +485,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -497
     m_HBaseRangeMax: 497
-    m_VBaseRangeMin: -139
-    m_VBaseRangeMax: 139
+    m_VBaseRangeMin: -207
+    m_VBaseRangeMax: 207
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -505,9 +505,9 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 994
-      height: 278
+      height: 414
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 497, y: 139}
+    m_Translation: {x: 497, y: 207}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -515,12 +515,12 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -497
-      y: -139
+      y: -207
       width: 994
-      height: 278
+      height: 414
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 994, y: 299}
+  m_LastWindowPixelSize: {x: 994, y: 435}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -674,7 +674,7 @@ MonoBehaviour:
     x: 0
     y: 443
     width: 994
-    height: 299
+    height: 435
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: bea133f91d2356c478d5b7169a1e6f4c
@@ -686,9 +686,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.8693887, y: 2.4208984, z: 1.3688098}
+    m_Target: {x: 1.0889843, y: 1.8430185, z: 3.4830623}
     speed: 2
-    m_Value: {x: -1.8693887, y: 2.4208984, z: 1.3688098}
+    m_Value: {x: 1.0889843, y: 1.8430185, z: 3.4830623}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -734,17 +734,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.15677206, y: -0.1723732, z: 0.027799526, w: 0.97207916}
+    m_Target: {x: -0.028290749, y: -0.9696725, z: 0.2006037, w: -0.13674867}
     speed: 2
-    m_Value: {x: 0.15381397, y: -0.17391439, z: 0.027513023, w: 0.972285}
+    m_Value: {x: -0.028290648, y: -0.96966904, z: 0.20060298, w: -0.13674818}
   m_Size:
-    m_Target: 5.527511
+    m_Target: 2.3398361
     speed: 2
-    m_Value: 5.7879696
+    m_Value: 2.3398361
   m_Ortho:
-    m_Target: 1
+    m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_CameraSettings:
     m_Speed: 1.1
     m_SpeedNormalized: 0.54773873
@@ -825,7 +825,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 52eaffffcaeaffff32edffff6afbffffd2580000
+      m_ExpandedIDs: d6e6ffff4ee7ffffbae9ffffdaebffff52ecffffb8eeffff6afbffffd2580000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -888,20 +888,20 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Models/Oculus Hands/Materials
+    - Assets/Resources
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Models/Oculus Hands/Materials
+  - Assets/Resources
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\projects\Gefuehlte_Realitaet\VR Multiplayer Game
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 905a0000
-    m_LastClickedID: 23184
-    m_ExpandedIDs: 00000000585600005a5a00005c5a0000
+    m_SelectedIDs: 9a5a0000
+    m_LastClickedID: 23194
+    m_ExpandedIDs: 00000000585600005a5a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300004a4a0000e64a0000924100000e4600001446000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
