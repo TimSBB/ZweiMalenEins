@@ -9,7 +9,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 {
 
-    private ArrayList players;
 
 // Start is called before the first frame update
 void Start()
@@ -38,6 +37,10 @@ void Start()
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a Room");
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            print("PlayerNumber:  " + player.GetPlayerNumber());
+        }
         base.OnJoinedRoom();
     }
 
@@ -46,5 +49,9 @@ void Start()
         Debug.Log("A new player joined the room");
         base.OnPlayerEnteredRoom(newPlayer);
         Debug.Log("PlayerCount " + PhotonNetwork.CurrentRoom.PlayerCount);
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            print("PlayerNumber:  " + player.GetPlayerNumber());
+        }
     }
 }

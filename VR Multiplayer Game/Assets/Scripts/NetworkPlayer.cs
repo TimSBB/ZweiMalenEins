@@ -20,6 +20,10 @@ public class NetworkPlayer : MonoBehaviour
     private Transform leftHandRig;
     private Transform rightHandRig;
 
+    public Transform[] SpawnPositions;
+    private int spawnIndex;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +43,10 @@ public class NetworkPlayer : MonoBehaviour
             }
         }
 
+        //if (spawnIndex >= SpawnPositions.Length) spawnIndex = 0;
+        //Vector3 position = SpawnPositions[spawnIndex].transform.position;
+        //spawnIndex++;
+
     }
 
     // Update is called once per frame
@@ -54,6 +62,7 @@ public class NetworkPlayer : MonoBehaviour
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
         }
+
       
     }
 
@@ -80,8 +89,6 @@ public class NetworkPlayer : MonoBehaviour
 
     void MapPosition(Transform target,Transform rigTransform)
     {
-
-
         target.position = rigTransform.position;
         target.rotation = rigTransform.rotation;
     }

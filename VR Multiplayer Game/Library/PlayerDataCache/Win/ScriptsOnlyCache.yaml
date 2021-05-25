@@ -56,6 +56,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.Universal.ForwardRendererData
     - UnityEngine.Rendering.Universal.PostProcessData
     - UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
+    - UnityEngine.Rendering.Universal.UniversalRenderPipelineEditorResources
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.ShaderGraph.Editor.dll:
@@ -1123,7 +1124,7 @@ ScriptsOnlyBuild:
     className: ChatAppIdCheckerUI
   - hash:
       serializedVersion: 2
-      Hash: 525451486ffa901845dc9910f603c7dd
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkPlayerSpawner
@@ -2053,7 +2054,7 @@ ScriptsOnlyBuild:
     className: WorldGenerator
   - hash:
       serializedVersion: 2
-      Hash: b6aa6f6992bd831de6df493dac288dba
+      Hash: 4eb1cec7ca80148bcf7e284587c7f78a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkPlayer

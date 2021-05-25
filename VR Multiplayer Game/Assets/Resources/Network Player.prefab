@@ -361,6 +361,7 @@ MonoBehaviour:
   rightHand: {fileID: 6688542128382940630}
   leftHandAnimator: {fileID: 7164900344432461581}
   rightHandAnimator: {fileID: 7021148599823170365}
+  SpawnPositions: []
 --- !u!1001 &3429796351904604537
 PrefabInstance:
   m_ObjectHideFlags: 0
