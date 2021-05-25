@@ -10,8 +10,13 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+        {
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player 2", transform.position, transform.rotation);
+        }
+        else { 
         spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", transform.position, transform.rotation);
-
+        }
     }
 
     public override void OnLeftRoom()
