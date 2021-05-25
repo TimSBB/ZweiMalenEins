@@ -31,6 +31,7 @@ public class NetworkPlayer : MonoBehaviour
         if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
         {
             rig.transform.position = SpawnPosition.position;
+            rig.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
         }
         headRig = rig.transform.Find("Camera Offset/Main Camera");
         leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
