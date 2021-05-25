@@ -20,9 +20,7 @@ public class NetworkPlayer : MonoBehaviour
     private Transform leftHandRig;
     private Transform rightHandRig;
 
-    public Transform[] SpawnPositions;
-    private int spawnIndex;
-
+    public Transform SpawnPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +28,10 @@ public class NetworkPlayer : MonoBehaviour
         photonView = GetComponent<PhotonView>();
 
         XRRig rig = FindObjectOfType<XRRig>();
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+        {
+            rig.transform.position = SpawnPosition.position;
+        }
         headRig = rig.transform.Find("Camera Offset/Main Camera");
         leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
         rightHandRig = rig.transform.Find("Camera Offset/RightHand Controller");
@@ -42,6 +44,7 @@ public class NetworkPlayer : MonoBehaviour
                 item.enabled = false;
             }
         }
+
 
         //if (spawnIndex >= SpawnPositions.Length) spawnIndex = 0;
         //Vector3 position = SpawnPositions[spawnIndex].transform.position;

@@ -39,19 +39,17 @@ void Start()
         Debug.Log("Joined a Room");
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            print("PlayerNumber:  " + player.GetPlayerNumber());
+            print("PlayerCount:  " + PhotonNetwork.CurrentRoom.PlayerCount);
+            print("PlayerID:  " + player.ActorNumber);
         }
         base.OnJoinedRoom();
     }
+
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("A new player joined the room");
         base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log("PlayerCount " + PhotonNetwork.CurrentRoom.PlayerCount);
-        foreach (Player player in PhotonNetwork.PlayerList)
-        {
-            print("PlayerNumber:  " + player.GetPlayerNumber());
-        }
+        Debug.Log("PlayerNumber " + PhotonNetwork.PlayerList);
     }
 }
