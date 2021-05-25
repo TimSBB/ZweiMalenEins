@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Pun.UtilityScripts;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
+
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private ArrayList players;
+
+// Start is called before the first frame update
+void Start()
     {
         ConnectToServer();
     }
@@ -40,5 +45,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("A new player joined the room");
         base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log("PlayerCount " + PhotonNetwork.CurrentRoom.PlayerCount);
     }
 }
