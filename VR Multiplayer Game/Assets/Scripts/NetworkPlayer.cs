@@ -31,7 +31,7 @@ public class NetworkPlayer : MonoBehaviour
         if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
         {
             rig.transform.position = SpawnPosition.position;
-            //rig.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            rig.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
         }
         headRig = rig.transform.Find("Camera Offset/Main Camera");
         leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
@@ -45,11 +45,6 @@ public class NetworkPlayer : MonoBehaviour
                 item.enabled = false;
             }
         }
-
-
-        //if (spawnIndex >= SpawnPositions.Length) spawnIndex = 0;
-        //Vector3 position = SpawnPositions[spawnIndex].transform.position;
-        //spawnIndex++;
 
     }
 

@@ -1,7 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - FeedbackController
+    - GameController
     - HandPresence
+    - LabelController
     - NetworkManager
     - NetworkPlayer
     - NetworkPlayerSpawner
@@ -16,6 +19,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -53,6 +58,7 @@ ScriptsOnlyBuild:
     Unity.RenderPipelines.Universal.Runtime.dll:
     - UnityEngine.Rendering.Universal.ForwardRendererData
     - UnityEngine.Rendering.Universal.PostProcessData
+    - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
     - UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -165,6 +171,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12044}
     - Class: 114
+      Script: {instanceID: 12384}
+    - Class: 114
       Script: {instanceID: 12430}
     - Class: 114
       Script: {instanceID: 12472}
@@ -256,6 +264,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15522}
     - Class: 114
       Script: {instanceID: 15528}
+    - Class: 114
+      Script: {instanceID: 24906}
+    - Class: 114
+      Script: {instanceID: 24954}
+    - Class: 114
+      Script: {instanceID: 25186}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2151,6 +2165,24 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
+  - hash:
+      serializedVersion: 2
+      Hash: f0bc91d3f55f40803edff82e4fae8e56
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FeedbackController
+  - hash:
+      serializedVersion: 2
+      Hash: 6e123daf600904be2f865c62600a1ef5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LabelController
   platform: 5
   scenePathNames:
   - Assets/Scenes/Basic_GameMechanics.unity
