@@ -23,7 +23,7 @@ public class LabelController : MonoBehaviour
             controllersLeftTrigger = true;
         }
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
 
         if (gameObject.tag == other.tag) {
