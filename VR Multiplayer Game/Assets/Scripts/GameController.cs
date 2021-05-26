@@ -16,13 +16,13 @@ public class GameController : MonoBehaviour
     }
 
 
-    public event Action<string, int> onObjectTriggerEnter;
+    public event Action<string, int, bool> onObjectTriggerEnter;
 
-    public void ObjectTriggerEnter(string LabelTag, int playerNumber)
+    public void ObjectTriggerEnter(string LabelTag, int playerNumber, bool ObjectStillLabeled)
     {
         if (onObjectTriggerEnter != null)
         {
-            onObjectTriggerEnter(LabelTag, playerNumber);
+            onObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled);
         }
 
     }

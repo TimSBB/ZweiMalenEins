@@ -1,11 +1,27 @@
 Base path: 'D:/Unity/2019.4.9f1/Editor/Data', plugins path 'D:/Unity/2019.4.9f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 Cmd: preprocess
-  insize=445 outsize=445 ok=1
+  insize=811 outsize=209 ok=1
 Cmd: preprocess
-  insize=66860 outsize=2776 ok=1
+  insize=811 outsize=209 ok=1
 Cmd: preprocess
-  insize=47265 outsize=2635 ok=1
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
 Cmd: preprocess
   insize=811 outsize=209 ok=1
 Cmd: preprocess
@@ -28,6 +44,584 @@ Cmd: preprocess
   insize=6222 outsize=339 ok=1
 Cmd: preprocess
   insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
+Cmd: preprocess
+  insize=4452 outsize=340 ok=1
+Cmd: preprocess
+  insize=4150 outsize=346 ok=1
+Cmd: preprocess
+  insize=6222 outsize=339 ok=1
+Cmd: preprocess
+  insize=6616 outsize=341 ok=1
+Cmd: preprocess
+  insize=71798 outsize=2761 ok=1
 Cmd: preprocess
   insize=811 outsize=209 ok=1
 Cmd: preprocess

@@ -8,7 +8,7 @@ public class LabelController : MonoBehaviour
 
     private string LabelTag;
     public int playerNumber;
-    private bool controllersLeftTrigger = false;
+    private bool ObjectStillLabeled = false;
     private Collider[] controllerColliders;
 
     private void Start()
@@ -18,22 +18,17 @@ public class LabelController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (gameObject.tag == "xrRig")
+        if (gameObject.tag == other.tag)
         {
-            controllersLeftTrigger = true;
+            ObjectStillLabeled = false;
+            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-
         if (gameObject.tag == other.tag) {
-            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber);
+            ObjectStillLabeled = true;
+            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled);
         }
-
-        //if (gameObject.tag == other.tag && controllersLeftTrigger)
-        //{
-        //    GameController.current.ObjectTriggerEnter(LabelTag, playerNumber);
-        //}
-
     }
 }
