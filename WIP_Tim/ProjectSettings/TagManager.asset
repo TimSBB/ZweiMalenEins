@@ -8,6 +8,9 @@ TagManager:
   - orange
   - yellow
   - xrRig
+  - blue
+  - green
+  - violett
   layers:
   - Default
   - TransparentFX

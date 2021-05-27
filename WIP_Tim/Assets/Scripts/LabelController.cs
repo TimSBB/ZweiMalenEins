@@ -9,6 +9,7 @@ public class LabelController : MonoBehaviour
     private string LabelTag;
     public int playerNumber;
     private bool ObjectStillLabeled = false;
+    private Transform OtherTransform;
     private Collider[] controllerColliders;
 
     private void Start()
@@ -20,15 +21,17 @@ public class LabelController : MonoBehaviour
     {
         if (gameObject.tag == other.tag)
         {
+            OtherTransform = other.transform;
             ObjectStillLabeled = false;
-            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled);
+            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled, OtherTransform);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (gameObject.tag == other.tag) {
             ObjectStillLabeled = true;
-            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled);
+            OtherTransform = other.transform;
+            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled, OtherTransform);
         }
     }
 }

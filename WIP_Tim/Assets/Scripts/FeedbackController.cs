@@ -29,7 +29,7 @@ public class FeedbackController : MonoBehaviour
 
 
 
-    private void OnRightLabel(string LabelTag, int playerNumber, bool ObjectStillLabeled)
+    private void OnRightLabel(string LabelTag, int playerNumber, bool ObjectStillLabeled, Transform OtherTransform)
     {
         //if (leftHandDevices[0].TryGetFeatureValue(CommonUsages.gripButton, out bool grip))
         //{
@@ -39,7 +39,8 @@ public class FeedbackController : MonoBehaviour
             //if (LabelTag == this.LabelTag  && playerNumber == this.playerNumber && ObjectStillLabeled && !grippressed) {
             if (LabelTag == this.LabelTag && playerNumber == this.playerNumber && ObjectStillLabeled)
             {
-                var pos = gameObject.transform.position + new Vector3(0, 1, 0);
+            //var pos = gameObject.transform.position + new Vector3(0, 1, 0);
+            var pos = OtherTransform.position;
             Instantiate(FeedbackPrefab, pos, Quaternion.identity);
         }
 
