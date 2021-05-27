@@ -31,13 +31,15 @@ public class FeedbackController : MonoBehaviour
 
     private void OnRightLabel(string LabelTag, int playerNumber, bool ObjectStillLabeled)
     {
-        if (leftHandDevices[0].TryGetFeatureValue(CommonUsages.gripButton, out bool grip))
-        {
-            grippressed = grip;
-            print("grippressed" + grippressed);
-        }
-            if (LabelTag == this.LabelTag  && playerNumber == this.playerNumber && ObjectStillLabeled && !grippressed) {
-            var pos = gameObject.transform.position + new Vector3(0, 1, 0);
+        //if (leftHandDevices[0].TryGetFeatureValue(CommonUsages.gripButton, out bool grip))
+        //{
+        //    grippressed = grip;
+        //    print("grippressed" + grippressed);
+        //}
+            //if (LabelTag == this.LabelTag  && playerNumber == this.playerNumber && ObjectStillLabeled && !grippressed) {
+            if (LabelTag == this.LabelTag && playerNumber == this.playerNumber && ObjectStillLabeled)
+            {
+                var pos = gameObject.transform.position + new Vector3(0, 1, 0);
             Instantiate(FeedbackPrefab, pos, Quaternion.identity);
         }
 
