@@ -84,11 +84,6 @@ ScriptsOnlyBuild:
     - UnityEngine.XR.Interaction.Toolkit.XRDirectInteractor
     - UnityEngine.XR.Interaction.Toolkit.XRInteractionManager
     - UnityEngine.XR.Interaction.Toolkit.XRRig
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -302,9 +297,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 17298}
     - Class: 114
-      Script: {instanceID: 26294}
+      Script: {instanceID: 25342}
     - Class: 114
-      Script: {instanceID: 26298}
+      Script: {instanceID: 25378}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2563,5 +2558,5 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/Basic_GameMechanics_twoWorlds.unity
-  playerPath: C:/Users/multimedia/Desktop/GIT/Gefuehlte_Realitaet/WIP_Tim/builds/Gefuehlte
+  playerPath: C:/Users/multimedia/Desktop/GIT/Gefuehlte_Realitaet/GefuehlteRealitaet_VR/builds/Gefuehlte
     Realitaet 1.exe
