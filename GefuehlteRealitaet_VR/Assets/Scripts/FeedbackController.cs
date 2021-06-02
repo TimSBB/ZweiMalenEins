@@ -13,6 +13,7 @@ public class FeedbackController : MonoBehaviour
     private bool grippressed;
     private List<InputDevice> leftHandDevices;
     private List<InputDevice> rightHandDevices;
+    private GameObject FeedbackAttachTransform;
 
 
     // Start is called before the first frame update
@@ -29,19 +30,21 @@ public class FeedbackController : MonoBehaviour
 
 
 
-    private void OnRightLabel(string LabelTag, int playerNumber, bool ObjectStillLabeled, Transform OtherTransform)
+    private void OnRightLabel(int playerNumber, bool ObjectStillLabeled, Transform OtherTransform)
     {
         //if (leftHandDevices[0].TryGetFeatureValue(CommonUsages.gripButton, out bool grip))
         //{
         //    grippressed = grip;
         //    print("grippressed" + grippressed);
         //}
-            //if (LabelTag == this.LabelTag  && playerNumber == this.playerNumber && ObjectStillLabeled && !grippressed) {
-            if (LabelTag == this.LabelTag && playerNumber == this.playerNumber && ObjectStillLabeled)
+            if (playerNumber == this.playerNumber && ObjectStillLabeled)
             {
             //var pos = gameObject.transform.position + new Vector3(0, 1, 0);
             var pos = OtherTransform.position;
+            var StrahlxRotation = this.transform.rotation.x;
+            FeedbackPrefab.transform.GetChild(0).gameObject.transform.Rotate(StrahlxRotation, 0.0f, 0.0f, Space.Self);
             Instantiate(FeedbackPrefab, pos, Quaternion.identity);
+
         }
 
     }

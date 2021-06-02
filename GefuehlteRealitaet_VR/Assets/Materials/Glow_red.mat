@@ -72,7 +72,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Color_75A26F66: {r: 155.74858, g: 0, b: 0, a: 0}
+    - Color_75A26F66: {r: 135.58704, g: 0, b: 0, a: 0}
     - Color_B3519E81: {r: 1, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

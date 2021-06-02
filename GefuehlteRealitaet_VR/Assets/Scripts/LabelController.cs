@@ -19,19 +19,16 @@ public class LabelController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (gameObject.tag == other.tag)
-        {
+
             OtherTransform = other.transform;
             ObjectStillLabeled = false;
-            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled, OtherTransform);
-        }
+            GameController.current.ObjectTriggerEnter(playerNumber, ObjectStillLabeled, OtherTransform);
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == other.tag) {
             ObjectStillLabeled = true;
             OtherTransform = other.transform;
-            GameController.current.ObjectTriggerEnter(LabelTag, playerNumber, ObjectStillLabeled, OtherTransform);
-        }
+            GameController.current.ObjectTriggerEnter(playerNumber, ObjectStillLabeled, OtherTransform);
     }
 }
