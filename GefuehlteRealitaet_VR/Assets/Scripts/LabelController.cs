@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class LabelController : MonoBehaviour
 {
 
-    private string LabelTag;
+    private int LabelNr = 0;
     public int playerNumber;
     private bool ObjectStillLabeled = false;
     private Transform OtherTransform;
@@ -14,7 +14,10 @@ public class LabelController : MonoBehaviour
 
     private void Start()
     {
-        LabelTag = gameObject.tag;
+        if (gameObject.tag.Contains("label_"))
+        {
+            LabelNr = int.Parse(gameObject.tag.Replace("label_", ""));
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -22,13 +25,13 @@ public class LabelController : MonoBehaviour
 
             OtherTransform = other.transform;
             ObjectStillLabeled = false;
-            GameController.current.ObjectTriggerEnter(playerNumber, ObjectStillLabeled, OtherTransform);
+            GameController.current.ObjectTriggerEnter(LabelNr, playerNumber,ObjectStillLabeled, OtherTransform);
 
     }
     private void OnTriggerEnter(Collider other)
     {
             ObjectStillLabeled = true;
             OtherTransform = other.transform;
-            GameController.current.ObjectTriggerEnter(playerNumber, ObjectStillLabeled, OtherTransform);
+            GameController.current.ObjectTriggerEnter(LabelNr, playerNumber, ObjectStillLabeled, OtherTransform);
     }
 }

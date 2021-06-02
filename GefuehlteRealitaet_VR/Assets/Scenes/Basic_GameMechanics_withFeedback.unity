@@ -6834,8 +6834,8 @@ GameObject:
   - component: {fileID: 7349188988624256}
   - component: {fileID: 7349188988624255}
   m_Layer: 0
-  m_Name: Cylinder.006
-  m_TagString: violett
+  m_Name: Cylinder.5
+  m_TagString: label_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6853,6 +6853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  labelNr: 0
 --- !u!114 &7349188988624256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6976,8 +6977,8 @@ GameObject:
   - component: {fileID: 1417362554738540363}
   - component: {fileID: 1417362554738540362}
   m_Layer: 0
-  m_Name: Cylinder.005
-  m_TagString: red
+  m_Name: cylinder.0
+  m_TagString: label_0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6995,6 +6996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  labelNr: 0
 --- !u!114 &1417362554738540363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7078,8 +7080,8 @@ GameObject:
   - component: {fileID: 1727680645916463682}
   - component: {fileID: 1727680645916463681}
   m_Layer: 0
-  m_Name: Cylinder.002
-  m_TagString: blue
+  m_Name: Cylinder.4
+  m_TagString: label_4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7097,6 +7099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  labelNr: 0
 --- !u!114 &1727680645916463682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7279,8 +7282,8 @@ GameObject:
   - component: {fileID: 4522938262143783214}
   - component: {fileID: 4522938262143783213}
   m_Layer: 0
-  m_Name: Cylinder.004
-  m_TagString: yellow
+  m_Name: Cylinder.2
+  m_TagString: label_2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7298,6 +7301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  labelNr: 0
 --- !u!114 &4522938262143783214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7360,8 +7364,8 @@ GameObject:
   - component: {fileID: 4850459723210691687}
   - component: {fileID: 4850459723210691686}
   m_Layer: 0
-  m_Name: Cylinder.001
-  m_TagString: orange
+  m_Name: Cylinder.1
+  m_TagString: label_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7379,6 +7383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  labelNr: 1
 --- !u!114 &4850459723210691687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7459,8 +7464,8 @@ GameObject:
   - component: {fileID: 5604775018880143938}
   - component: {fileID: 5604775018880143937}
   m_Layer: 0
-  m_Name: Cylinder.003
-  m_TagString: green
+  m_Name: Cylinder.3
+  m_TagString: label_3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7478,6 +7483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  labelNr: 0
 --- !u!114 &5604775018880143938
 MonoBehaviour:
   m_ObjectHideFlags: 0

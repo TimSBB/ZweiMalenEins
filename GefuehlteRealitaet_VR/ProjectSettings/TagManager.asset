@@ -11,6 +11,13 @@ TagManager:
   - blue
   - green
   - violett
+  - label_0
+  - label_1
+  - label_2
+  - label_3
+  - label_4
+  - label_5
+  - label_6
   layers:
   - Default
   - TransparentFX

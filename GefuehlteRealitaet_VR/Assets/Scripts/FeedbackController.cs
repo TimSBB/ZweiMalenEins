@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class FeedbackController : MonoBehaviour
 {
     public GameObject FeedbackPrefab;
-    private string LabelTag;
+    private int LabelNr = 0;
     public int playerNumber;
 
     private bool grippressed;
@@ -19,7 +19,9 @@ public class FeedbackController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LabelTag = gameObject.tag;
+        if (gameObject.tag.Contains( "label_")){
+            LabelNr = int.Parse(gameObject.tag.Replace("label_", ""));
+        }
         GameController.current.onObjectTriggerEnter += OnRightLabel;
 
         leftHandDevices = new List<UnityEngine.XR.InputDevice>();
@@ -30,20 +32,23 @@ public class FeedbackController : MonoBehaviour
 
 
 
-    private void OnRightLabel(int playerNumber, bool ObjectStillLabeled, Transform OtherTransform)
+    private void OnRightLabel(int labelNumber, int playerNumber, bool ObjectStillLabeled, Transform OtherTransform)
     {
         //if (leftHandDevices[0].TryGetFeatureValue(CommonUsages.gripButton, out bool grip))
         //{
         //    grippressed = grip;
         //    print("grippressed" + grippressed);
         //}
-            if (playerNumber == this.playerNumber && ObjectStillLabeled)
+            if (playerNumber == this.playerNumber && ObjectStillLabeled && labelNumber == this.LabelNr)
             {
-            //var pos = gameObject.transform.position + new Vector3(0, 1, 0);
-            var pos = OtherTransform.position;
-            var StrahlxRotation = this.transform.rotation.x;
-            FeedbackPrefab.transform.GetChild(0).gameObject.transform.Rotate(StrahlxRotation, 0.0f, 0.0f, Space.Self);
-            Instantiate(FeedbackPrefab, pos, Quaternion.identity);
+            // Project Position onto Strahl
+            var projectedPlayer = this.transform.position + Vector3.Project(OtherTransform.position - this.transform.position, this.transform.forward);
+
+
+            var strahlRotation = this.transform.eulerAngles - this.transform.parent.eulerAngles;
+            FeedbackPrefab.transform.GetChild(0).gameObject.transform.localRotation = Quaternion.Euler(strahlRotation.x, 0, 0); 
+            
+            Instantiate(FeedbackPrefab, projectedPlayer, Quaternion.identity);
 
         }
 
