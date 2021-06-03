@@ -28,7 +28,7 @@ public class LabelController : MonoBehaviour
             //if (!controller.isSelectActive)
             //{
                // word = other.GetComponent<XRGrabNetworkInteractable>();
-                GameController.current.ObjectTriggerExit(LabelNr, playerNumber);
+                GameController.current.ObjectRayExit(LabelNr, playerNumber);
             //}
         }
     }
@@ -42,7 +42,7 @@ public class LabelController : MonoBehaviour
             if (controller.isSelectActive)
             {
                 OtherTransform = other.transform;
-                GameController.current.ObjectTriggerEnter(LabelNr, playerNumber, OtherTransform);
+                GameController.current.ObjectRayEnter(LabelNr, playerNumber, OtherTransform);
             }
         }
     }

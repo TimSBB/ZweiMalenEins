@@ -16,26 +16,37 @@ public class GameController : MonoBehaviour
     }
 
 
-    public event Action<int, int, Transform> onObjectTriggerEnter;
+    public event Action<int, int, Transform> onObjectRayEnter;
 
-    public void ObjectTriggerEnter(int labelNumber, int playerNumber, Transform OtherTransform)
+    public void ObjectRayEnter(int labelNumber, int playerNumber, Transform OtherTransform)
     {
-        if (onObjectTriggerEnter != null)
+        if (onObjectRayEnter != null)
         {
-            onObjectTriggerEnter(labelNumber, playerNumber, OtherTransform);
+            onObjectRayEnter(labelNumber, playerNumber, OtherTransform);
         }
 
     }
 
-    public event Action<int, int> onObjectTriggerExit;
-    public void ObjectTriggerExit(int labelNumber, int playerNumber)
+    public event Action<int, int> onObjectRayExit;
+    public void ObjectRayExit(int labelNumber, int playerNumber)
     {
-        if (onObjectTriggerExit != null)
+        if (onObjectRayExit != null)
         {
-            onObjectTriggerExit(labelNumber, playerNumber);
+            onObjectRayExit(labelNumber, playerNumber);
         }
 
     }
+
+    public event Action<int, int> onWordLogIn;
+    public void wordLogIn(int labelNumber, int playerNumber)
+    {
+        if (onWordLogIn != null)
+        {
+            onWordLogIn(labelNumber, playerNumber);
+        }
+
+    }
+
 
 
 }

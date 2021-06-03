@@ -25,8 +25,9 @@ public class FeedbackController : MonoBehaviour
         if (gameObject.tag.Contains( "label_")){
             LabelNr = int.Parse(gameObject.tag.Replace("label_", ""));
         }
-        GameController.current.onObjectTriggerEnter += OnSnapSpawn;
-        GameController.current.onObjectTriggerExit += OnSnapDestroy;
+        GameController.current.onObjectRayEnter += OnSnapSpawn;
+        GameController.current.onObjectRayExit += OnSnapDestroy;
+        GameController.current.onWordLogIn += OnLogInFeedback;
 
     }
 
@@ -62,20 +63,29 @@ public class FeedbackController : MonoBehaviour
         if (playerNumber == this.playerNumber && labelNumber == this.LabelNr && prefabSpawned)
         {
            prefabs.AddRange(GameObject.FindGameObjectsWithTag("label_" + LabelNr));
-            for (int i = 0; i < prefabs.Count; i++)
-            {
-                if (prefabs[i].name == "FeedbackPrefab(Clone)")
+            if (prefabs != null) { 
+                for (int i = 0; i < prefabs.Count; i++)
                 {
-                    //print(prefabs[i].name);
-                    if (prefabs[i] != null)
+                    if (prefabs[i].name == "FeedbackPrefab(Clone)")
                     {
-                        Destroy(prefabs[i]);
-                        prefabs.RemoveAt(i);
+                        //print(prefabs[i].name);
+                        if (prefabs[i].GetComponent<Renderer>().enabled)
+                        {
+                            prefabs[i].GetComponent<Renderer>().enabled = false;
+                            //Destroy(prefabs[i].gameObject);
+                            //prefabs[i] = null;
+                        }
+                        prefabSpawned = false;
                     }
-                    prefabSpawned = false;
                 }
             }
         }
+
+    }
+
+    private void OnLogInFeedback(int labelNumber, int playerNumber)
+    {
+        
 
     }
 
@@ -83,7 +93,8 @@ public class FeedbackController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameController.current.onObjectTriggerEnter -= OnSnapSpawn;
-        GameController.current.onObjectTriggerExit -= OnSnapDestroy;
+        GameController.current.onObjectRayEnter -= OnSnapSpawn;
+        GameController.current.onObjectRayExit -= OnSnapDestroy;
+        GameController.current.onWordLogIn -= OnLogInFeedback;
     }
 }

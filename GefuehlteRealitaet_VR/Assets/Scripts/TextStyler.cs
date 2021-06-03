@@ -6,17 +6,25 @@ public class TextStyler : MonoBehaviour
 {
 
     private Material textMat;
+    private Color previousColor;
 
     public void TextHover(GameObject sender)
     {
+        if (!sender.GetComponent<XRGrabNetworkInteractable>().isSelected) { 
         textMat = sender.GetComponent<Renderer>().material;
+        previousColor = textMat.GetColor("Color_");
         textMat.SetColor("Color_", new Color(255f,0f, 10f));
+        }
     }
 
     public void TextHoverExit(GameObject sender)
     {
-        textMat = sender.GetComponent<Renderer>().material;
-        textMat.SetColor("Color_", new Color(255f, 255f, 255f));
+        if (!sender.GetComponent<XRGrabNetworkInteractable>().isSelected)
+        {
+            textMat = sender.GetComponent<Renderer>().material;
+            textMat.SetColor("Color_", previousColor);
+        }
+
     }
 
 }
