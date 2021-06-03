@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857154292018385596}
-  m_LocalRotation: {x: 0.12549071, y: 0, z: 0, w: 0.9920948}
+  m_LocalRotation: {x: 0.03653591, y: 0, z: 0, w: 0.99933237}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8751125964347731509}
   m_Layer: 0
   m_Name: FeedbackPrefab
-  m_TagString: Untagged
+  m_TagString: label_4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_OnSelectExit:
     m_PersistentCalls:
       m_Calls: []
-  m_ShowInteractableHoverMeshes: 1
+  m_ShowInteractableHoverMeshes: 0
   m_InteractableHoverMeshMaterial: {fileID: 0}
   m_SocketActive: 1
   m_InteractableHoverScale: 1

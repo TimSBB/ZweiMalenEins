@@ -18,6 +18,8 @@ TagManager:
   - label_4
   - label_5
   - label_6
+  - word
+  - xrRigController
   layers:
   - Default
   - TransparentFX

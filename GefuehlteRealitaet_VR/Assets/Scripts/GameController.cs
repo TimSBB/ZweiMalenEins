@@ -16,13 +16,23 @@ public class GameController : MonoBehaviour
     }
 
 
-    public event Action<int, int, bool, Transform> onObjectTriggerEnter;
+    public event Action<int, int, Transform> onObjectTriggerEnter;
 
-    public void ObjectTriggerEnter(int labelNumber, int playerNumber, bool ObjectStillLabeled, Transform OtherTransform)
+    public void ObjectTriggerEnter(int labelNumber, int playerNumber, Transform OtherTransform)
     {
         if (onObjectTriggerEnter != null)
         {
-            onObjectTriggerEnter(labelNumber, playerNumber, ObjectStillLabeled, OtherTransform);
+            onObjectTriggerEnter(labelNumber, playerNumber, OtherTransform);
+        }
+
+    }
+
+    public event Action<int, int> onObjectTriggerExit;
+    public void ObjectTriggerExit(int labelNumber, int playerNumber)
+    {
+        if (onObjectTriggerExit != null)
+        {
+            onObjectTriggerExit(labelNumber, playerNumber);
         }
 
     }

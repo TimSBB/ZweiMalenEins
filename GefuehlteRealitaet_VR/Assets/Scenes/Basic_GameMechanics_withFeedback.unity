@@ -134,9 +134,10 @@ GameObject:
   - component: {fileID: 628349}
   - component: {fileID: 628351}
   - component: {fileID: 628350}
+  - component: {fileID: 628352}
   m_Layer: 9
   m_Name: LeftHand Controller
-  m_TagString: xrRig
+  m_TagString: xrRigController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,6 +247,22 @@ MonoBehaviour:
   m_PlayHapticsOnHoverExit: 0
   m_HapticHoverExitIntensity: 0
   m_HapticHoverExitDuration: 0
+--- !u!54 &628352
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628347}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &51726761
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,10 +514,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -8393266181937214054, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: -8381915555390906191, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8381915555390906191, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: -8224729939178075218, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -527,6 +554,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -6183171323993540577, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: -6144640057464946447, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -542,15 +574,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -3939089527819311004, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: -3666228625838411127, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -3666228625838411127, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
+    - target: {fileID: -3625374727238472569, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -3625374727238472569, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
-      propertyPath: m_Layer
-      value: 8
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: -3393059317818742671, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -562,6 +609,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -3379293063825957084, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: -3343778100759479848, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -572,25 +624,50 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -2960642404427333564, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: -2796168843288719387, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2796168843288719387, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: -2380300049333900025, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -2380300049333900025, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: -2255271451145209478, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2255271451145209478, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
+    - target: {fileID: -1610170284448654570, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -1610170284448654570, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
-      propertyPath: m_Layer
-      value: 8
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: -1502430982467108743, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -621,6 +698,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260480650886408701, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: 1363238581820846567, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -657,10 +739,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3141101260113499581, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: 3559159363657190808, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559159363657190808, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: 4161677911612955616, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -672,25 +764,50 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4368114226469748882, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: 4964326091053768428, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964326091053768428, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: 5124044694847289502, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5124044694847289502, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: 5470580973013821592, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470580973013821592, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875935507045884135, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5875935507045884135, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
-      propertyPath: m_Layer
-      value: 8
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: 6170364737530096044, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -702,10 +819,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6824746026288583490, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: 6972403430118580280, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972403430118580280, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: 7563254388712504136, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -717,6 +844,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8022602954211759197, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
+      objectReference: {fileID: 0}
     - target: {fileID: 8063605360610888602, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -726,6 +858,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317971514529262251, guid: 060374e8f5974604e8d78090fe6c6bf1,
+        type: 3}
+      propertyPath: m_TagString
+      value: word
       objectReference: {fileID: 0}
     - target: {fileID: 8452119462256956446, guid: 060374e8f5974604e8d78090fe6c6bf1,
         type: 3}
@@ -5115,9 +5252,10 @@ GameObject:
   - component: {fileID: 380571832}
   - component: {fileID: 380571834}
   - component: {fileID: 380571833}
+  - component: {fileID: 380571835}
   m_Layer: 9
   m_Name: RightHand Controller
-  m_TagString: xrRig
+  m_TagString: xrRigController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5227,6 +5365,22 @@ MonoBehaviour:
   m_PlayHapticsOnHoverExit: 0
   m_HapticHoverExitIntensity: 0
   m_HapticHoverExitDuration: 0
+--- !u!54 &380571835
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380571830}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &411503353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6853,7 +7007,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  labelNr: 0
 --- !u!114 &7349188988624256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6996,7 +7149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  labelNr: 0
 --- !u!114 &1417362554738540363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7099,7 +7251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  labelNr: 0
 --- !u!114 &1727680645916463682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7301,7 +7452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  labelNr: 0
 --- !u!114 &4522938262143783214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7383,7 +7533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  labelNr: 1
 --- !u!114 &4850459723210691687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7483,7 +7632,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  labelNr: 0
 --- !u!114 &5604775018880143938
 MonoBehaviour:
   m_ObjectHideFlags: 0
