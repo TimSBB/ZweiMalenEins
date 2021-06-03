@@ -27,8 +27,6 @@ public class FeedbackController : MonoBehaviour
         }
         GameController.current.onObjectRayEnter += OnSnapSpawn;
         GameController.current.onObjectRayExit += OnSnapDestroy;
-        GameController.current.onWordLogIn += OnLogInFeedback;
-
     }
 
 
@@ -83,11 +81,7 @@ public class FeedbackController : MonoBehaviour
 
     }
 
-    private void OnLogInFeedback(int labelNumber, int playerNumber)
-    {
-        
 
-    }
 
 
 
@@ -95,6 +89,5 @@ public class FeedbackController : MonoBehaviour
     {
         GameController.current.onObjectRayEnter -= OnSnapSpawn;
         GameController.current.onObjectRayExit -= OnSnapDestroy;
-        GameController.current.onWordLogIn -= OnLogInFeedback;
     }
 }

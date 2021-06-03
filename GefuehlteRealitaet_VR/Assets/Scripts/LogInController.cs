@@ -8,6 +8,8 @@ public class LogInController : MonoBehaviour
 {
     private int LabelNr = 0;
     private int playerNumber;
+    private string word;
+    private string label;
     private GameObject selectedWord;
     private Material originalMaterial;
 
@@ -24,7 +26,8 @@ public class LogInController : MonoBehaviour
         if (_Fired)
         {
             _Percentage += Time.deltaTime / (Duration * 2000);
-            selectedWord.GetComponent<Renderer>().material.SetColor("Color_", new Color(0f, _Percentage.Remap(0, 1, 0, 255), 0f));
+            selectedWord.GetComponent<Renderer>().material.SetColor("Color_", new Color(_Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255)));
+            //selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.HSVToRGB(0.6f, _Percentage, 0.5f));
             if (_Percentage > 1)
             {
                 print("Word is logged in!!");
@@ -43,7 +46,9 @@ public class LogInController : MonoBehaviour
         _Fired = true;
         if (loggedIn)
         {
-            GameController.current.wordLogIn(LabelNr, playerNumber);
+            word = selectedWord.name;
+            label = this.tag;
+            GameController.current.wordLogIn(playerNumber, word, label);
         }
         // selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.Lerp(originalMaterial.color, new Color(255f, 0f, 10f), 1.5f));
         //selectedWord.transform.localScale *= 2;
@@ -55,11 +60,13 @@ public class LogInController : MonoBehaviour
         _Percentage = 0;
         _Fired = false;
         loggedIn = false;
-        selectedWord.GetComponent<Renderer>().material.SetColor("Color_", originalMaterial.color);
+        selectedWord.GetComponent<Renderer>().material.SetColor("Color_", new Color(255, 255, 255));
         //selectedWord.transform.localScale *= 0.5f;
         if (!loggedIn)
         {
-            GameController.current.wordLogIn(LabelNr, playerNumber);
+            word = selectedWord.name;
+            label = this.tag;
+            GameController.current.wordLogIn(playerNumber, word, label);
         }
     }
 

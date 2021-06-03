@@ -37,12 +37,12 @@ public class GameController : MonoBehaviour
 
     }
 
-    public event Action<int, int> onWordLogIn;
-    public void wordLogIn(int labelNumber, int playerNumber)
+    public event Action<int, string, string> onWordLogIn;
+    public void wordLogIn(int playerNumber, string word, string label)
     {
         if (onWordLogIn != null)
         {
-            onWordLogIn(labelNumber, playerNumber);
+            onWordLogIn(playerNumber, word, label);
         }
 
     }

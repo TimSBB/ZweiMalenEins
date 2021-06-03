@@ -91,4 +91,6 @@ public class NetworkPlayer : MonoBehaviour
         target.position = rigTransform.position;
         target.rotation = rigTransform.rotation;
     }
+
+
 }
