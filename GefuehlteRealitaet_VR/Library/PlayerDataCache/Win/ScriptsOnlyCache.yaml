@@ -13,7 +13,6 @@ ScriptsOnlyBuild:
     - NetworkPlayerSpawner
     - PickedWordsController
     - TextStyler
-    - XRGrabNetworkInteractable
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -91,6 +90,7 @@ ScriptsOnlyBuild:
     Unity.XR.Interaction.Toolkit.dll:
     - UnityEngine.XR.Interaction.Toolkit.XRController
     - UnityEngine.XR.Interaction.Toolkit.XRDirectInteractor
+    - UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable
     - UnityEngine.XR.Interaction.Toolkit.XRInteractionManager
     - UnityEngine.XR.Interaction.Toolkit.XRRig
     UnityEditor.TestRunner.dll:
@@ -222,8 +222,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13894}
     - Class: 114
-      Script: {instanceID: 13954}
-    - Class: 114
       Script: {instanceID: 13980}
     - Class: 114
       Script: {instanceID: 14124}
@@ -261,6 +259,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15174}
     - Class: 114
       Script: {instanceID: 15200}
+    - Class: 114
+      Script: {instanceID: 15348}
     - Class: 114
       Script: {instanceID: 15394}
     - Class: 114

@@ -52,7 +52,10 @@ public class PickedWordsController : MonoBehaviour
         {
             print("Both Words were logged in at the same label!!!");
             print("scale now!!!");
-            wordObject.transform.localScale *= 4f;
+            foreach (var gameObj in allLabeled)
+            {
+                gameObj.transform.localScale *= 4f;
+            }
         }
     }
 
