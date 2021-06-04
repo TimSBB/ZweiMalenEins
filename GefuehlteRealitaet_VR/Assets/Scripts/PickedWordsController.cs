@@ -24,9 +24,11 @@ public class PickedWordsController : MonoBehaviour
 
     private void OnLogInFeedback(int playerNumber, string word, string label)
     {
-            if (PV.IsMine && word == this.gameObject.name) { 
-                PV.RPC("RPC_SetLoggedWord", RpcTarget.AllBufferedViaServer, word, label, playerNumber);
-            }
+        // if (PV.IsMine && word == this.gameObject.name) { 
+        if (word == this.gameObject.name)
+        {
+            PV.RPC("RPC_SetLoggedWord", RpcTarget.AllBufferedViaServer, word, label, playerNumber);
+        }
     }
 
     [PunRPC]
@@ -52,10 +54,8 @@ public class PickedWordsController : MonoBehaviour
         {
             print("Both Words were logged in at the same label!!!");
             print("scale now!!!");
-            foreach (var gameObj in allLabeled)
-            {
-                gameObj.transform.localScale *= 4f;
-            }
+            wordObject.transform.localScale *= 4f;
+
         }
     }
 
