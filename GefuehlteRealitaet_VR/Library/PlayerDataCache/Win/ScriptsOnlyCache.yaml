@@ -276,45 +276,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15648}
     - Class: 114
-      Script: {instanceID: 15866}
+      Script: {instanceID: 15756}
     - Class: 114
-      Script: {instanceID: 15914}
+      Script: {instanceID: 15868}
     - Class: 114
-      Script: {instanceID: 16002}
+      Script: {instanceID: 15916}
     - Class: 114
-      Script: {instanceID: 16106}
+      Script: {instanceID: 16004}
     - Class: 114
-      Script: {instanceID: 16114}
+      Script: {instanceID: 16108}
     - Class: 114
-      Script: {instanceID: 16390}
+      Script: {instanceID: 16116}
     - Class: 114
-      Script: {instanceID: 16616}
+      Script: {instanceID: 16392}
     - Class: 114
-      Script: {instanceID: 16694}
+      Script: {instanceID: 16618}
     - Class: 114
-      Script: {instanceID: 16876}
+      Script: {instanceID: 16696}
     - Class: 114
-      Script: {instanceID: 17028}
+      Script: {instanceID: 16878}
     - Class: 114
-      Script: {instanceID: 17032}
+      Script: {instanceID: 17030}
     - Class: 114
-      Script: {instanceID: 17040}
+      Script: {instanceID: 17034}
     - Class: 114
-      Script: {instanceID: 17084}
+      Script: {instanceID: 17042}
     - Class: 114
-      Script: {instanceID: 17112}
+      Script: {instanceID: 17086}
     - Class: 114
-      Script: {instanceID: 17140}
+      Script: {instanceID: 17114}
     - Class: 114
-      Script: {instanceID: 17156}
+      Script: {instanceID: 17142}
     - Class: 114
-      Script: {instanceID: 17200}
+      Script: {instanceID: 17158}
     - Class: 114
-      Script: {instanceID: 17304}
+      Script: {instanceID: 17202}
     - Class: 114
-      Script: {instanceID: 17310}
+      Script: {instanceID: 17306}
     - Class: 114
-      Script: {instanceID: 63572}
+      Script: {instanceID: 17312}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1952,6 +1952,12 @@ ScriptsOnlyBuild:
     className: LoaderAnime
   - hash:
       serializedVersion: 2
+      Hash: b741e8293770d15a53cf5e8c28770090
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BubbleID
+  - hash:
+      serializedVersion: 2
       Hash: 6939772cb3ce775a8e8d99f332534491
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -2598,12 +2604,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualEffectGraph.Runtime.dll
     namespaceName: UnityEngine.VFX.Utility
     className: VFXUISliderBinder
-  - hash:
-      serializedVersion: 2
-      Hash: b741e8293770d15a53cf5e8c28770090
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BubbleID
   platform: 5
   scenePathNames:
   - Assets/Scenes/Basic_GameMechanics_withFeedback.unity

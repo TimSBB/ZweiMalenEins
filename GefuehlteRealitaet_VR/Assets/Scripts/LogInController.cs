@@ -39,6 +39,7 @@ public class LogInController : MonoBehaviour
                 loggedIn = true;
                 _Percentage = 0;
                 _Fired = false;
+
                 if (loggedIn)
                 {
                     word = selectedWord.name;
@@ -57,6 +58,7 @@ public class LogInController : MonoBehaviour
         originalMaterial = selectedWord.GetComponent<Renderer>().material;
         _Percentage = 0;
         _Fired = true;
+
         
         // selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.Lerp(originalMaterial.color, new Color(255f, 0f, 10f), 1.5f));
         //selectedWord.transform.localScale *= 2;

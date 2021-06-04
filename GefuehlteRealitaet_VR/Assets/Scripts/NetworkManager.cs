@@ -10,8 +10,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private object[] loggedWordInfo;
-
-    private bool wordLogged = false;
     private object[] datas;
 
 // Start is called before the first frame update
