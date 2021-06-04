@@ -10,11 +10,13 @@ public class PickedWordsController : MonoBehaviour
     private PhotonView PV;
     private int playerNr;
     private bool rpcTriggered;
+    private List<GameObject> allLabeled;
     // Start is called before the first frame update
     void Start()
     {
         PV = GetComponent<PhotonView>();
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+        allLabeled = new List<GameObject>();
         GameController.current.onWordLogIn += OnLogInFeedback;
     }
 
@@ -38,15 +40,15 @@ public class PickedWordsController : MonoBehaviour
         {
             if (gameObj.tag == label)
             {
-                wordsLabeled.Add(gameObj);
-                print("count of labelled words " + wordsLabeled.Count);
+                allLabeled.Add(gameObj);
+                print("count of labelled words " + allLabeled.Count);
             }
         }
 
 
 
 
-        if (wordObject.tag == label  && wordsLabeled.Count ==2)
+        if (wordObject.tag == label  && allLabeled.Count ==2)
         {
             print("Both Words were logged in at the same label!!!");
             print("scale now!!!");
