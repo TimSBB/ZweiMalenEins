@@ -5,16 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Basic_Multiplayer.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/MultiplayerInteractions.unity
-    guid: 9b5cbe34540d8b848bc869d4a0e67e62
-  - enabled: 0
-    path: Assets/Scenes/Basic_GameMechanics.unity
-    guid: 8ef59ea9a08a58c428ce2d6d4c9e0429
   - enabled: 1
-    path: Assets/Scenes/Basic_GameMechanics_twoWorlds.unity
-    guid: b23d41e9a43a9fc45ad321b2fb90ce0a
+    path: Assets/Scenes/Basic_GameMechanics_withFeedback.unity
+    guid: 217d47e1db82c2547bd10e226bc5546e
   m_configObjects: {}

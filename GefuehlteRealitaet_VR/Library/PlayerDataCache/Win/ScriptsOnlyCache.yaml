@@ -1,13 +1,18 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BubbleID
     - FeedbackController
     - GameController
     - HandPresence
     - LabelController
+    - LogInController
+    - MyXRSocketInteractor
     - NetworkManager
     - NetworkPlayer
     - NetworkPlayerSpawner
+    - PickedWordsController
+    - TextStyler
     - XRGrabNetworkInteractable
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
@@ -79,6 +84,10 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.HighDefinition.VisualEnvironment
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.ShaderGraph.Editor.dll:
+    - UnityEditor.ShaderGraph.Drawing.MaterialGraphEditWindow
+    Unity.XR.Interaction.Toolkit.Editor.dll:
+    - UnityEngine.XR.Interaction.Toolkit.XRInteractionDebuggerWindow
     Unity.XR.Interaction.Toolkit.dll:
     - UnityEngine.XR.Interaction.Toolkit.XRController
     - UnityEngine.XR.Interaction.Toolkit.XRDirectInteractor
@@ -107,7 +116,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
-    Assets/Scenes/Basic_GameMechanics_twoWorlds.unity:
+    Assets/Scenes/Basic_GameMechanics_withFeedback.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -147,8 +156,6 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11472}
-    - Class: 114
       Script: {instanceID: 11474}
     - Class: 114
       Script: {instanceID: 11476}
@@ -167,144 +174,150 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11490}
     - Class: 114
-      Script: {instanceID: 11630}
+      Script: {instanceID: 11492}
     - Class: 114
-      Script: {instanceID: 11642}
+      Script: {instanceID: 11632}
     - Class: 114
-      Script: {instanceID: 11726}
+      Script: {instanceID: 11644}
     - Class: 114
-      Script: {instanceID: 11886}
+      Script: {instanceID: 11728}
     - Class: 114
-      Script: {instanceID: 11922}
+      Script: {instanceID: 11888}
     - Class: 114
-      Script: {instanceID: 11932}
+      Script: {instanceID: 11924}
     - Class: 114
-      Script: {instanceID: 11974}
+      Script: {instanceID: 11934}
     - Class: 114
-      Script: {instanceID: 12176}
+      Script: {instanceID: 11976}
     - Class: 114
-      Script: {instanceID: 12246}
+      Script: {instanceID: 12178}
     - Class: 114
-      Script: {instanceID: 12524}
+      Script: {instanceID: 12248}
     - Class: 114
-      Script: {instanceID: 12888}
+      Script: {instanceID: 12396}
     - Class: 114
-      Script: {instanceID: 13036}
+      Script: {instanceID: 12456}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 12530}
     - Class: 114
-      Script: {instanceID: 13110}
+      Script: {instanceID: 12896}
     - Class: 114
-      Script: {instanceID: 13152}
+      Script: {instanceID: 13044}
     - Class: 114
-      Script: {instanceID: 13268}
+      Script: {instanceID: 13058}
     - Class: 114
-      Script: {instanceID: 13520}
+      Script: {instanceID: 13118}
+    - Class: 114
+      Script: {instanceID: 13160}
+    - Class: 114
+      Script: {instanceID: 13276}
     - Class: 114
       Script: {instanceID: 13528}
     - Class: 114
-      Script: {instanceID: 13618}
+      Script: {instanceID: 13536}
     - Class: 114
-      Script: {instanceID: 13824}
+      Script: {instanceID: 13626}
     - Class: 114
-      Script: {instanceID: 13886}
+      Script: {instanceID: 13832}
     - Class: 114
-      Script: {instanceID: 13946}
+      Script: {instanceID: 13894}
     - Class: 114
-      Script: {instanceID: 13972}
+      Script: {instanceID: 13954}
     - Class: 114
-      Script: {instanceID: 14116}
+      Script: {instanceID: 13980}
     - Class: 114
       Script: {instanceID: 14124}
     - Class: 114
       Script: {instanceID: 14132}
     - Class: 114
-      Script: {instanceID: 14166}
+      Script: {instanceID: 14140}
     - Class: 114
-      Script: {instanceID: 14286}
+      Script: {instanceID: 14174}
     - Class: 114
-      Script: {instanceID: 14540}
+      Script: {instanceID: 14294}
     - Class: 114
-      Script: {instanceID: 14614}
+      Script: {instanceID: 14414}
     - Class: 114
-      Script: {instanceID: 14660}
+      Script: {instanceID: 14550}
     - Class: 114
-      Script: {instanceID: 14688}
+      Script: {instanceID: 14624}
     - Class: 114
-      Script: {instanceID: 14746}
+      Script: {instanceID: 14670}
     - Class: 114
-      Script: {instanceID: 14752}
+      Script: {instanceID: 14698}
     - Class: 114
-      Script: {instanceID: 14858}
+      Script: {instanceID: 14756}
     - Class: 114
-      Script: {instanceID: 15020}
+      Script: {instanceID: 14762}
     - Class: 114
-      Script: {instanceID: 15066}
+      Script: {instanceID: 14868}
     - Class: 114
-      Script: {instanceID: 15068}
+      Script: {instanceID: 15030}
     - Class: 114
-      Script: {instanceID: 15164}
+      Script: {instanceID: 15076}
     - Class: 114
-      Script: {instanceID: 15190}
+      Script: {instanceID: 15078}
     - Class: 114
-      Script: {instanceID: 15384}
+      Script: {instanceID: 15174}
     - Class: 114
-      Script: {instanceID: 15440}
+      Script: {instanceID: 15200}
+    - Class: 114
+      Script: {instanceID: 15394}
     - Class: 114
       Script: {instanceID: 15450}
     - Class: 114
-      Script: {instanceID: 15552}
+      Script: {instanceID: 15460}
     - Class: 114
-      Script: {instanceID: 15566}
+      Script: {instanceID: 15562}
     - Class: 114
-      Script: {instanceID: 15604}
+      Script: {instanceID: 15576}
     - Class: 114
-      Script: {instanceID: 15638}
+      Script: {instanceID: 15614}
     - Class: 114
-      Script: {instanceID: 15902}
+      Script: {instanceID: 15648}
     - Class: 114
-      Script: {instanceID: 15990}
+      Script: {instanceID: 15866}
     - Class: 114
-      Script: {instanceID: 16094}
+      Script: {instanceID: 15914}
     - Class: 114
-      Script: {instanceID: 16102}
+      Script: {instanceID: 16002}
     - Class: 114
-      Script: {instanceID: 16378}
+      Script: {instanceID: 16106}
     - Class: 114
-      Script: {instanceID: 16604}
+      Script: {instanceID: 16114}
     - Class: 114
-      Script: {instanceID: 16682}
+      Script: {instanceID: 16390}
     - Class: 114
-      Script: {instanceID: 16864}
+      Script: {instanceID: 16616}
     - Class: 114
-      Script: {instanceID: 17016}
+      Script: {instanceID: 16694}
     - Class: 114
-      Script: {instanceID: 17020}
+      Script: {instanceID: 16876}
     - Class: 114
       Script: {instanceID: 17028}
     - Class: 114
-      Script: {instanceID: 17072}
+      Script: {instanceID: 17032}
     - Class: 114
-      Script: {instanceID: 17100}
+      Script: {instanceID: 17040}
     - Class: 114
-      Script: {instanceID: 17128}
+      Script: {instanceID: 17084}
     - Class: 114
-      Script: {instanceID: 17144}
+      Script: {instanceID: 17112}
     - Class: 114
-      Script: {instanceID: 17188}
+      Script: {instanceID: 17140}
     - Class: 114
-      Script: {instanceID: 17292}
+      Script: {instanceID: 17156}
     - Class: 114
-      Script: {instanceID: 17298}
+      Script: {instanceID: 17200}
     - Class: 114
-      Script: {instanceID: 25342}
+      Script: {instanceID: 17304}
     - Class: 114
-      Script: {instanceID: 25378}
+      Script: {instanceID: 17310}
+    - Class: 114
+      Script: {instanceID: 63572}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -751,10 +764,22 @@ ScriptsOnlyBuild:
     className: ConnectAndJoinRandomLb
   - hash:
       serializedVersion: 2
+      Hash: b3f3b97ba299dbc30e4d8ca17159c3ec
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MyXRSocketInteractor
+  - hash:
+      serializedVersion: 2
       Hash: c2c69f9b9053f8291b360c082a9bc2ac
     assemblyName: Unity.XR.Interaction.Toolkit.dll
     namespaceName: UnityEngine.XR.Interaction.Toolkit
     className: XRInteractorReticleVisual
+  - hash:
+      serializedVersion: 2
+      Hash: 82fa046aa9efa49c6a613713c447cc65
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LogInController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -869,6 +894,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualEffectGraph.Runtime.dll
     namespaceName: UnityEngine.VFX.Utility
     className: VFXRaycastBinder
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NetworkEvents
   - hash:
       serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
@@ -1045,7 +1076,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: f0bc91d3f55f40803edff82e4fae8e56
+      Hash: 064de4e4239d0fd067ee2db54d4afcef
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FeedbackController
@@ -1439,6 +1470,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PickedWordsController
   - hash:
       serializedVersion: 2
       Hash: a8a4fba96bef6fccf7bb4be2f06c16b6
@@ -1931,6 +1968,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.SlotRacer
     className: SlotLanes
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TextStyler
   - hash:
       serializedVersion: 2
       Hash: a8a4fba96bef6fccf7bb4be2f06c16b6
@@ -2555,8 +2598,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualEffectGraph.Runtime.dll
     namespaceName: UnityEngine.VFX.Utility
     className: VFXUISliderBinder
+  - hash:
+      serializedVersion: 2
+      Hash: b741e8293770d15a53cf5e8c28770090
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BubbleID
   platform: 5
   scenePathNames:
-  - Assets/Scenes/Basic_GameMechanics_twoWorlds.unity
-  playerPath: C:/Users/multimedia/Desktop/GIT/Gefuehlte_Realitaet/GefuehlteRealitaet_VR/builds/Gefuehlte
+  - Assets/Scenes/Basic_GameMechanics_withFeedback.unity
+  playerPath: C:/projects/Gefuehlte_Realitaet/GefuehlteRealitaet_VR/builds/Gefuehlte
     Realitaet 1.exe

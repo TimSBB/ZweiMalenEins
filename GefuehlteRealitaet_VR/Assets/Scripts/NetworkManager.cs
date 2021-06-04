@@ -6,13 +6,23 @@ using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
-
 {
+
+    [SerializeField]
+    private object[] loggedWordInfo;
+
+    private bool wordLogged = false;
+    private object[] datas;
 
 // Start is called before the first frame update
 void Start()
     {
         ConnectToServer();
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
     }
 
     void ConnectToServer()
@@ -52,6 +62,4 @@ void Start()
         Debug.Log("PlayerNumber " + PhotonNetwork.PlayerList);
     }
 
-
- 
 }

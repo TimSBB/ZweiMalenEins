@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
 public class LogInController : MonoBehaviour
 {
-    private int LabelNr = 0;
-    private int playerNumber;
+    private int playerNr;
     private string word;
     private string label;
     private GameObject selectedWord;
@@ -20,20 +20,33 @@ public class LogInController : MonoBehaviour
 
 
     // Start is called before the first frame update
+    private void Start()
+    {
+        playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+    }
 
     void Update()
     {
         if (_Fired)
         {
-            _Percentage += Time.deltaTime / (Duration * 2000);
+            _Percentage += Time.deltaTime / Duration;
             selectedWord.GetComponent<Renderer>().material.SetColor("Color_", new Color(_Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255)));
             //selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.HSVToRGB(0.6f, _Percentage, 0.5f));
+            print("Percentage: " + _Percentage);
             if (_Percentage > 1)
             {
                 print("Word is logged in!!");
                 loggedIn = true;
                 _Percentage = 0;
                 _Fired = false;
+                if (loggedIn)
+                {
+                    word = selectedWord.name;
+                    label = this.tag;
+                    print("Label is: " + label);
+                    selectedWord.gameObject.tag = label;
+                    GameController.current.wordLogIn(playerNr, word, label);
+                }
             }
         }
     }
@@ -44,12 +57,7 @@ public class LogInController : MonoBehaviour
         originalMaterial = selectedWord.GetComponent<Renderer>().material;
         _Percentage = 0;
         _Fired = true;
-        if (loggedIn)
-        {
-            word = selectedWord.name;
-            label = this.tag;
-            GameController.current.wordLogIn(playerNumber, word, label);
-        }
+        
         // selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.Lerp(originalMaterial.color, new Color(255f, 0f, 10f), 1.5f));
         //selectedWord.transform.localScale *= 2;
         //GameController.current.wordLogIn(LabelNr, playerNumber);
@@ -66,7 +74,8 @@ public class LogInController : MonoBehaviour
         {
             word = selectedWord.name;
             label = this.tag;
-            GameController.current.wordLogIn(playerNumber, word, label);
+            selectedWord.gameObject.tag = "word";
+            GameController.current.wordLogIn(playerNr, word, label);
         }
     }
 
