@@ -51,16 +51,16 @@ public class NetworkPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(photonView.IsMine)
-        {
+        //if(photonView.IsMine)
+        //{
 
-            MapPosition(head, headRig);
-            MapPosition(leftHand, leftHandRig);
-            MapPosition(rightHand, rightHandRig);
+        //    MapPosition(head, headRig);
+        //    MapPosition(leftHand, leftHandRig);
+        //    MapPosition(rightHand, rightHandRig);
 
-            UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
-            UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
-        }
+        //    UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
+        //    UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
+        //}
 
       
     }

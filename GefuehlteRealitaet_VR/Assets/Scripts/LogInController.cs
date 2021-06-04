@@ -32,7 +32,7 @@ public class LogInController : MonoBehaviour
             _Percentage += Time.deltaTime / Duration;
             selectedWord.GetComponent<Renderer>().material.SetColor("Color_", new Color(_Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255)));
             //selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.HSVToRGB(0.6f, _Percentage, 0.5f));
-            print("Percentage: " + _Percentage);
+            //print("Percentage: " + _Percentage);
             if (_Percentage > 1)
             {
                 print("Word is logged in!!");
