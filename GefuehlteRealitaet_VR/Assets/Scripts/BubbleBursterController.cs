@@ -7,7 +7,8 @@ using Photon.Realtime;
 public class BubbleBursterController : MonoBehaviourPun
 {
     private List<string> BlockedRays;
-    public int raycount;
+    public int raycount = 6;
+    public bool burstToggle;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,7 @@ public class BubbleBursterController : MonoBehaviourPun
 
             if (BlockedRays.Count == raycount)
             {
+                burstToggle = true;
                 print("let the bubble burst!!!");
                 GameObject.Find("Floor").GetComponent<Renderer>().material.SetColor("Color_", new Color(255f, 255f, 255f));
             }

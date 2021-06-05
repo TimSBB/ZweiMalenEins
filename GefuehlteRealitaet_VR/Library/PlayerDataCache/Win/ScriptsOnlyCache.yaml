@@ -1247,7 +1247,7 @@ ScriptsOnlyBuild:
     className: VFXUIDropdownBinder
   - hash:
       serializedVersion: 2
-      Hash: 16078b0a5d44c1932887292ea718a3b1
+      Hash: b9939d8a2d8c420cc32ae4d641f1b20d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BubbleBursterController
