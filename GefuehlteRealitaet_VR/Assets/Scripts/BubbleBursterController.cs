@@ -25,7 +25,7 @@ public class BubbleBursterController : MonoBehaviourPun
 
     private void OnSameWords(string BlockedRay, bool plus)
     {
-        if (base.photonView.IsMine) {
+        //if (base.photonView.IsMine) {
             if (plus) {
                 BlockedRays.Add(BlockedRay);
             } else
@@ -41,7 +41,7 @@ public class BubbleBursterController : MonoBehaviourPun
                 print("let the bubble burst!!!");
                 GameObject.Find("Floor").GetComponent<Renderer>().material.SetColor("Color_", new Color(255f, 255f, 255f));
             }
-        }
+        //}
     }
 
 
