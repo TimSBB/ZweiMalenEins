@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857154292018385596}
-  m_LocalRotation: {x: 0.044201665, y: 0, z: 0, w: -0.99902266}
+  m_LocalRotation: {x: 0.13530625, y: 0, z: 0, w: -0.99080384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5176461970174564110}
   m_Layer: 0
   m_Name: FeedbackPrefab
-  m_TagString: label_3
+  m_TagString: label_2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -92,13 +92,9 @@ public class PickedWordsController : MonoBehaviour
             GameObject.Find(word).transform.localScale *= 4f;
             var labeledObject = allLabeled[0];
             var BlockedRay = (string)labeledObject[1];
-            BlockedRays.Add(BlockedRay);
-            if (BlockedRays.Count == raycount)
-            {
-                print("let the bubble burst!!!");
-                GameObject.Find("Floor").GetComponent<Renderer>().material.SetColor("Color_", new Color(255f, 255f, 255f));
-            }
             wordsLogged = true;
+            GameController.current.SameWordsLogged(BlockedRay, wordsLogged);
+
         }
     }
 
@@ -130,6 +126,7 @@ public class PickedWordsController : MonoBehaviour
                 {
                 GameObject.Find(word).transform.localScale *= 0.25f;
                     wordsLogged = false;
+                GameController.current.SameWordsLogged((string)item[1], wordsLogged);
                 }
                 allLabeled.Remove(item);
                 BlockedRays.Remove((string)item[1]);

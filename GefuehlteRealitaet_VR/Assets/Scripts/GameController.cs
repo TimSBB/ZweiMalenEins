@@ -57,6 +57,15 @@ public class GameController : MonoBehaviour
 
     }
 
+    public event Action<string, bool> onSameWordsLogged;
+    public void SameWordsLogged(string BlockedRay, bool plus)
+    {
+        if (onSameWordsLogged != null)
+        {
+            onSameWordsLogged(BlockedRay, plus);
+        }
+
+    }
 
 
 }
