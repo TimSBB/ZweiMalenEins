@@ -46,7 +46,7 @@ public class NetworkPlayer : MonoBehaviour
             }
         }
 
-        bubbleBurst = GameObject.Find("BubbleBurster").GetComponent<BubbleBursterController>().burstToggle;
+        
 
 
     }
@@ -54,6 +54,7 @@ public class NetworkPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bubbleBurst = GameObject.Find("BubbleBurster").GetComponent<BubbleBursterController>().burstToggle;
         if (photonView.IsMine && bubbleBurst)
         {
             MapPosition(head, headRig);
