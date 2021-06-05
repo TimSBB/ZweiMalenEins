@@ -18,6 +18,7 @@ public class PickedWordsController : MonoBehaviour
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
         allLabeled = new List<object[]>();
         GameController.current.onWordLogIn += OnLogInFeedback;
+        GameController.current.onWordLogOut += OnLogOutFeedback;
     }
 
 
@@ -33,14 +34,11 @@ public class PickedWordsController : MonoBehaviour
     [PunRPC]
     void RPC_SetLoggedWord(string word, string label, int playerNumber)
     {   
-        print("RPC Function got triggered");
-        var wordsLabeled = new List<object>();
+        print("RPC LogInFunction got triggered");
+
         var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == word);
         var gameObj = GameObject.Find(word);
-        //foreach (var gameObj in objects)
-        //{
 
-        //if (gameObj.tag == label && allLabeled.Count == 1)
         if (allLabeled.Count == 1)
             {
                 var checkObject = allLabeled[0];
@@ -91,8 +89,52 @@ public class PickedWordsController : MonoBehaviour
         }
     }
 
+
+
+
+
+
+    private void OnLogOutFeedback(int playerNumber, string word, string label)
+    {
+        //if (PV.IsMine && word == this.gameObject.name) { 
+        if (word == this.gameObject.name)
+        {
+            PV.RPC("RPC_SetLoggedWordOut", RpcTarget.AllBufferedViaServer, word, label, playerNumber);
+        }
+    }
+
+    [PunRPC]
+    void RPC_SetLoggedWordOut(string word, string label, int playerNumber)
+    {
+        print("RPC LogOutFunction got triggered");
+
+        foreach (var item in allLabeled)
+        {
+            if ((int)item[2] == playerNumber)
+            {
+                GameObject.Find(word).transform.localScale *= 0.25f;
+                allLabeled.Remove(item);
+            }
+
+        }
+        
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     private void OnDestroy()
     {
         GameController.current.onWordLogIn -= OnLogInFeedback;
+        GameController.current.onWordLogOut -= OnLogOutFeedback;
     }
 }

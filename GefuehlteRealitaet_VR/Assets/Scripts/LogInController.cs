@@ -77,7 +77,7 @@ public class LogInController : MonoBehaviour
             word = selectedWord.name;
             label = this.tag;
             selectedWord.gameObject.tag = "word";
-            //GameController.current.wordLogIn(playerNr, word, label);
+            GameController.current.wordLogOut(playerNr, word, label);
         }
     }
 
