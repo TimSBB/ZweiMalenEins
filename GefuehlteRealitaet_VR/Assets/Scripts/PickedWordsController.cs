@@ -122,7 +122,6 @@ public class PickedWordsController : MonoBehaviour
                 }
                 allLabeled.Remove(item);
             }
-
         }
         
 
