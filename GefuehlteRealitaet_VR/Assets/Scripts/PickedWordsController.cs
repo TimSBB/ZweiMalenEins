@@ -24,9 +24,8 @@ public class PickedWordsController : MonoBehaviour
 
     private void OnLogInFeedback(int playerNumber, string word, string label)
     {
-        // if (PV.IsMine && word == this.gameObject.name) { 
-        if (word == this.gameObject.name)
-        {
+        //if (PV.IsMine && word == this.gameObject.name) { 
+        if (word == this.gameObject.name){
             PV.RPC("RPC_SetLoggedWord", RpcTarget.AllBufferedViaServer, word, label, playerNumber);
         }
     }
@@ -37,20 +36,21 @@ public class PickedWordsController : MonoBehaviour
         print("RPC Function got triggered");
         var wordsLabeled = new List<object>();
         var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == word);
-        foreach (var gameObj in objects)
-        {
+        var gameObj = GameObject.Find(word);
+        //foreach (var gameObj in objects)
+        //{
 
-            //if (gameObj.tag == label && allLabeled.Count == 1)
-            if (allLabeled.Count == 1)
+        //if (gameObj.tag == label && allLabeled.Count == 1)
+        if (allLabeled.Count == 1)
             {
                 var checkObject = allLabeled[0];
-                if ((int)checkObject[2] != playerNr)
+                if ((int)checkObject[2] != playerNumber)
                 {
                     var labeledObject = new object[]
                     {
                         gameObj,
                         label,
-                        playerNr
+                        playerNumber
                     };
                     allLabeled.Add(labeledObject);
                     print("count of "+ label + "-labelled words " + allLabeled.Count);
@@ -61,7 +61,7 @@ public class PickedWordsController : MonoBehaviour
                     {
                         gameObj,
                         label,
-                        playerNr
+                        playerNumber
                     };
                     print("count of " + label + "-labelled words " + allLabeled.Count);
                 } else print("already labeled by that player!");
@@ -73,14 +73,14 @@ public class PickedWordsController : MonoBehaviour
                 {
                     gameObj,
                     label,
-                    playerNr
+                    playerNumber
                 };
                 allLabeled.Add(labeledObject);
                 print("count of " + label + "-labelled words " + allLabeled.Count);
             }
             
 
-        }
+       // }
 
        if (allLabeled.Count ==2)
         {
