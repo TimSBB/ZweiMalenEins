@@ -9,7 +9,7 @@ public class PickedWordsController : MonoBehaviour
     public int raycount = 6;
     private PhotonView PV;
     private int playerNr;
-    private bool rpcTriggered;
+    private bool wordsLogged;
     private List<object[]> allLabeled;
     private List<string> BlockedRays;
     // Start is called before the first frame update
@@ -18,6 +18,7 @@ public class PickedWordsController : MonoBehaviour
         PV = GetComponent<PhotonView>();
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
         allLabeled = new List<object[]>();
+        BlockedRays = new List<string>();
         GameController.current.onWordLogIn += OnLogInFeedback;
         GameController.current.onWordLogOut += OnLogOutFeedback;
     }
@@ -84,7 +85,7 @@ public class PickedWordsController : MonoBehaviour
 
        // }
 
-       if (allLabeled.Count ==2)
+       if (allLabeled.Count ==2 && !wordsLogged)
         {
             print("Both Words were logged in at the same label!!!");
             print("scale now!!!");
@@ -97,6 +98,7 @@ public class PickedWordsController : MonoBehaviour
                 print("let the bubble burst!!!");
                 GameObject.Find("Floor").GetComponent<Renderer>().material.SetColor("Color_", new Color(255f, 255f, 255f));
             }
+            wordsLogged = true;
         }
     }
 
@@ -127,6 +129,7 @@ public class PickedWordsController : MonoBehaviour
                 if (allLabeled.Count == 2)
                 {
                 GameObject.Find(word).transform.localScale *= 0.25f;
+                    wordsLogged = false;
                 }
                 allLabeled.Remove(item);
                 BlockedRays.Remove((string)item[1]);
