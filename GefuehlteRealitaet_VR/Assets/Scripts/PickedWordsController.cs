@@ -10,13 +10,13 @@ public class PickedWordsController : MonoBehaviour
     private PhotonView PV;
     private int playerNr;
     private bool rpcTriggered;
-    private List<GameObject> allLabeled;
+    private List<object[]> allLabeled;
     // Start is called before the first frame update
     void Start()
     {
         PV = GetComponent<PhotonView>();
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        allLabeled = new List<GameObject>();
+        allLabeled = new List<object[]>();
         GameController.current.onWordLogIn += OnLogInFeedback;
     }
 
@@ -35,26 +35,58 @@ public class PickedWordsController : MonoBehaviour
     void RPC_SetLoggedWord(string word, string label, int playerNumber)
     {   
         print("RPC Function got triggered");
-        var wordObject = GameObject.Find(word);
-        var wordsLabeled = new List<GameObject>();
+        var wordsLabeled = new List<object>();
         var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == word);
         foreach (var gameObj in objects)
         {
-            if (gameObj.tag == label)
+
+            //if (gameObj.tag == label && allLabeled.Count == 1)
+            if (allLabeled.Count == 1)
             {
-                allLabeled.Add(gameObj);
-                print("count of labelled words " + allLabeled.Count);
+                var checkObject = allLabeled[0];
+                if ((int)checkObject[2] != playerNr)
+                {
+                    var labeledObject = new object[]
+                    {
+                        gameObj,
+                        label,
+                        playerNr
+                    };
+                    allLabeled.Add(labeledObject);
+                    print("count of "+ label + "-labelled words " + allLabeled.Count);
+                }
+                else if((string)checkObject[1] != label)
+                {
+                    allLabeled[0] = new object[]
+                    {
+                        gameObj,
+                        label,
+                        playerNr
+                    };
+                    print("count of " + label + "-labelled words " + allLabeled.Count);
+                } else print("already labeled by that player!");
             }
+
+            if (allLabeled.Count < 1)
+            {
+                var labeledObject = new object[]
+                {
+                    gameObj,
+                    label,
+                    playerNr
+                };
+                allLabeled.Add(labeledObject);
+                print("count of " + label + "-labelled words " + allLabeled.Count);
+            }
+            
+
         }
 
-
-
-
-        if (wordObject.tag == label  && allLabeled.Count ==2)
+       if (allLabeled.Count ==2)
         {
             print("Both Words were logged in at the same label!!!");
             print("scale now!!!");
-            wordObject.transform.localScale *= 4f;
+            GameObject.Find(word).transform.localScale *= 4f;
 
         }
     }
