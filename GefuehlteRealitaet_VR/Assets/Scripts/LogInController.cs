@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
+using System.Linq;
 
 public class LogInController : MonoBehaviour
 {
@@ -81,6 +82,18 @@ public class LogInController : MonoBehaviour
         }
     }
 
+
+    public void OnSnapDestroyOtherSnapZones()
+    {
+        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == this.gameObject.name);
+        foreach (var prefab in objects)
+        {
+            if (gameObject != this.gameObject)
+            {
+
+            }
+        }
+    }
 }
 public static class ExtensionMethods
 {

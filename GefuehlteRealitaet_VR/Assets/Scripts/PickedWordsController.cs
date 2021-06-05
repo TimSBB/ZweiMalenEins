@@ -6,11 +6,12 @@ using System.Linq;
 
 public class PickedWordsController : MonoBehaviour
 {
-
+    public int raycount = 6;
     private PhotonView PV;
     private int playerNr;
     private bool rpcTriggered;
     private List<object[]> allLabeled;
+    private List<string> BlockedRays;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,7 +89,14 @@ public class PickedWordsController : MonoBehaviour
             print("Both Words were logged in at the same label!!!");
             print("scale now!!!");
             GameObject.Find(word).transform.localScale *= 4f;
-
+            var labeledObject = allLabeled[0];
+            var BlockedRay = (string)labeledObject[1];
+            BlockedRays.Add(BlockedRay);
+            if (BlockedRays.Count == raycount)
+            {
+                print("let the bubble burst!!!");
+                GameObject.Find("Floor").GetComponent<Renderer>().material.SetColor("Color_", new Color(255f, 255f, 255f));
+            }
         }
     }
 
@@ -121,6 +129,7 @@ public class PickedWordsController : MonoBehaviour
                 GameObject.Find(word).transform.localScale *= 0.25f;
                 }
                 allLabeled.Remove(item);
+                BlockedRays.Remove((string)item[1]);
             }
         }
         
