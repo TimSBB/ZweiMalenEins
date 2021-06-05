@@ -40,30 +40,33 @@ public class PickedWordsController : MonoBehaviour
         var gameObj = GameObject.Find(word);
 
         if (allLabeled.Count == 1)
-            {
-                var checkObject = allLabeled[0];
+        {
+            var checkObject = allLabeled[0];
+            if ((string)checkObject[1] == label) { 
                 if ((int)checkObject[2] != playerNumber)
                 {
                     var labeledObject = new object[]
                     {
-                        gameObj,
-                        label,
-                        playerNumber
+                            gameObj,
+                            label,
+                            playerNumber
                     };
                     allLabeled.Add(labeledObject);
-                    print("count of "+ label + "-labelled words " + allLabeled.Count);
-                }
-                else if((string)checkObject[1] != label)
-                {
-                    allLabeled[0] = new object[]
-                    {
-                        gameObj,
-                        label,
-                        playerNumber
-                    };
                     print("count of " + label + "-labelled words " + allLabeled.Count);
-                } else print("already labeled by that player!");
+                }
+                else print("already labeled by that player!");
             }
+            else
+            {
+                allLabeled[0] = new object[]
+                   {
+                            gameObj,
+                            label,
+                            playerNumber
+                   };
+                print("count of " + label + "-labelled words " + allLabeled.Count);
+            }
+        }
 
             if (allLabeled.Count < 1)
             {
@@ -108,11 +111,15 @@ public class PickedWordsController : MonoBehaviour
     {
         print("RPC LogOutFunction got triggered");
 
-        foreach (var item in allLabeled)
+        for (int i = 0; i< allLabeled.Count;  i++) 
         {
+            var item = allLabeled[i];
             if ((int)item[2] == playerNumber)
             {
+                if (allLabeled.Count == 2)
+                {
                 GameObject.Find(word).transform.localScale *= 0.25f;
+                }
                 allLabeled.Remove(item);
             }
 
