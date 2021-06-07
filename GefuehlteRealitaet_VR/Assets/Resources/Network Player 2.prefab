@@ -362,7 +362,7 @@ MonoBehaviour:
   rightHand: {fileID: 6688542128382940630}
   leftHandAnimator: {fileID: 7164900344432461581}
   rightHandAnimator: {fileID: 7021148599823170365}
-  SpawnPosition: {fileID: 4671495355249208789, guid: 1e32b13cffc35fc4590a2e96bce9198f,
+  SpawnPosition: {fileID: 4671495355249208789, guid: fe227b3407091e34fa1bf4b79e6a3595,
     type: 3}
 --- !u!1001 &3429796351904604537
 PrefabInstance:

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class TextStyler : MonoBehaviour
 {
@@ -10,7 +12,9 @@ public class TextStyler : MonoBehaviour
 
     public void TextHover(GameObject sender)
     {
-        if (!sender.GetComponent<XRGrabNetworkInteractable>().isSelected) { 
+        // if (!sender.GetComponent<XRGrabNetworkInteractable>().isSelected) {     /// use this for network grab interactble
+        if (!sender.GetComponent<XRGrabInteractable>().isSelected)
+        {
         textMat = sender.GetComponent<Renderer>().material;
         previousColor = textMat.GetColor("Color_");
         textMat.SetColor("Color_", new Color(255f,0f, 10f));
@@ -19,12 +23,12 @@ public class TextStyler : MonoBehaviour
 
     public void TextHoverExit(GameObject sender)
     {
-        if (!sender.GetComponent<XRGrabNetworkInteractable>().isSelected)
+        if (!sender.GetComponent<XRGrabInteractable>().isSelected)
         {
             textMat = sender.GetComponent<Renderer>().material;
             textMat.SetColor("Color_", previousColor);
         }
 
     }
-
+    
 }

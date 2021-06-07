@@ -6,55 +6,150 @@ using System.Linq;
 
 public class PickedWordsController : MonoBehaviour
 {
-
+    public int raycount = 6;
     private PhotonView PV;
     private int playerNr;
+    private bool wordsLogged;
+    private List<object[]> allLabeled;
+    private List<string> BlockedRays;
     // Start is called before the first frame update
     void Start()
     {
         PV = GetComponent<PhotonView>();
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+        allLabeled = new List<object[]>();
+        BlockedRays = new List<string>();
         GameController.current.onWordLogIn += OnLogInFeedback;
+        GameController.current.onWordLogOut += OnLogOutFeedback;
     }
 
 
 
     private void OnLogInFeedback(int playerNumber, string word, string label)
     {
-        if (PV.IsMine) { 
-            PV.RPC("RPC_SetLoggedWord", RpcTarget.AllBufferedViaServer, word, label);
+        //if (PV.IsMine && word == this.gameObject.name) { 
+        if (word == this.gameObject.name){
+            PV.RPC("RPC_SetLoggedWord", RpcTarget.AllBufferedViaServer, word, label, playerNumber);
         }
     }
 
     [PunRPC]
-    void RPC_SetLoggedWord(string word, string label)
-    {
+    void RPC_SetLoggedWord(string word, string label, int playerNumber)
+    {   
+        print("RPC LogInFunction got triggered");
+
         var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == word);
-        var wordsLabeled = new List<GameObject>();
-        foreach (var gameObj in objects)
+        var gameObj = GameObject.Find(word);
+
+        if (allLabeled.Count == 1)
         {
-            if (gameObj.tag == label)
+            var checkObject = allLabeled[0];
+            if ((string)checkObject[1] == label) { 
+                if ((int)checkObject[2] != playerNumber)
+                {
+                    var labeledObject = new object[]
+                    {
+                            gameObj,
+                            label,
+                            playerNumber
+                    };
+                    allLabeled.Add(labeledObject);
+                    print("count of " + label + "-labelled words " + allLabeled.Count);
+                }
+                else print("already labeled by that player!");
+            }
+            else
             {
-                wordsLabeled.Add(gameObj);
+                allLabeled[0] = new object[]
+                   {
+                            gameObj,
+                            label,
+                            playerNumber
+                   };
+                print("count of " + label + "-labelled words " + allLabeled.Count);
             }
         }
-        if (wordsLabeled.Count == 2)
+
+            if (allLabeled.Count < 1)
+            {
+                var labeledObject = new object[]
+                {
+                    gameObj,
+                    label,
+                    playerNumber
+                };
+                allLabeled.Add(labeledObject);
+                print("count of " + label + "-labelled words " + allLabeled.Count);
+            }
+            
+
+       // }
+
+       if (allLabeled.Count ==2 && !wordsLogged)
         {
             print("Both Words were logged in at the same label!!!");
-            foreach (var gameObj in wordsLabeled)
-            {
-                if(gameObj.GetComponent<BubbleID>().BubbleId == playerNr)
-                {
-                    print("scale now!!!");
-                    gameObj.transform.localScale *= 4f;
-                }
+            print("scale now!!!");
+            GameObject.Find(word).transform.localScale *= 4f;
+            var labeledObject = allLabeled[0];
+            var BlockedRay = (string)labeledObject[1];
+            wordsLogged = true;
+            GameController.current.SameWordsLogged(BlockedRay, wordsLogged);
 
-            }
         }
     }
+
+
+
+
+
+
+    private void OnLogOutFeedback(int playerNumber, string word, string label)
+    {
+        //if (PV.IsMine && word == this.gameObject.name) { 
+        if (word == this.gameObject.name)
+        {
+            PV.RPC("RPC_SetLoggedWordOut", RpcTarget.AllBufferedViaServer, word, label, playerNumber);
+        }
+    }
+
+    [PunRPC]
+    void RPC_SetLoggedWordOut(string word, string label, int playerNumber)
+    {
+        print("RPC LogOutFunction got triggered");
+
+        for (int i = 0; i< allLabeled.Count;  i++) 
+        {
+            var item = allLabeled[i];
+            if ((int)item[2] == playerNumber)
+            {
+                if (allLabeled.Count == 2)
+                {
+                GameObject.Find(word).transform.localScale *= 0.25f;
+                    wordsLogged = false;
+                GameController.current.SameWordsLogged((string)item[1], wordsLogged);
+                }
+                allLabeled.Remove(item);
+                BlockedRays.Remove((string)item[1]);
+            }
+        }
+        
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     private void OnDestroy()
     {
         GameController.current.onWordLogIn -= OnLogInFeedback;
+        GameController.current.onWordLogOut -= OnLogOutFeedback;
     }
 }

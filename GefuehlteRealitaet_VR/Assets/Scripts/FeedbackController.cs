@@ -61,23 +61,28 @@ public class FeedbackController : MonoBehaviour
         if (playerNumber == this.playerNumber && labelNumber == this.LabelNr && prefabSpawned)
         {
            prefabs.AddRange(GameObject.FindGameObjectsWithTag("label_" + LabelNr));
-            if (prefabs != null) { 
+            if (prefabs != null) {
                 for (int i = 0; i < prefabs.Count; i++)
                 {
-                    if (prefabs[i].name == "FeedbackPrefab(Clone)")
-                    {
-                        //print(prefabs[i].name);
-                        if (prefabs[i].GetComponent<Renderer>().enabled)
+                    if (prefabs[i] != null) {
+                        //var selectedTarget = prefabs[i].GetComponent<MyXRSocketInteractor>().selectTarget;
+                        //if (selectedTarget == null && prefabs[i].name == "FeedbackPrefab(Clone)")
+                        if (prefabs[i].name == "FeedbackPrefab(Clone)")
                         {
-                            prefabs[i].GetComponent<Renderer>().enabled = false;
-                            //Destroy(prefabs[i].gameObject);
-                            //prefabs[i] = null;
+                            if (prefabs[i].GetComponent<Renderer>().enabled)
+                            {
+                                prefabs[i].GetComponent<Renderer>().enabled = false;
+                                prefabs[i].GetComponent<MyXRSocketInteractor>().enabled = false;
+                                //Destroy(prefabs[i].gameObject);
+                                //prefabs.Remove(prefabs[i]);
+                            }
+                            prefabSpawned = false;
                         }
-                        prefabSpawned = false;
                     }
                 }
             }
         }
+        
 
     }
 

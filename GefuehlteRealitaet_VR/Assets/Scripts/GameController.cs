@@ -47,6 +47,25 @@ public class GameController : MonoBehaviour
 
     }
 
+    public event Action<int, string, string> onWordLogOut;
+    public void wordLogOut(int playerNumber, string word, string label)
+    {
+        if (onWordLogOut != null)
+        {
+            onWordLogOut(playerNumber, word, label);
+        }
+
+    }
+
+    public event Action<string, bool> onSameWordsLogged;
+    public void SameWordsLogged(string BlockedRay, bool plus)
+    {
+        if (onSameWordsLogged != null)
+        {
+            onSameWordsLogged(BlockedRay, plus);
+        }
+
+    }
 
 
 }

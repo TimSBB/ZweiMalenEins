@@ -7,11 +7,14 @@ using Photon.Realtime;
 public class NetworkEvents : MonoBehaviourPun
 {
     private const byte WORD_LOGGED_IN_EVENT = 0;
+    private List<string> BlockedRays;
+    public int raycount;
     // Start is called before the first frame update
     void Start()
     {
-        GameController.current.onWordLogIn += OnLogInFeedback;
+        //GameController.current.onSameWordsLogged += OnSameWords;
         PhotonNetwork.NetworkingClient.EventReceived += WordLogIn_EventReceived;
+        BlockedRays = new List<string>();
     }
 
     private void WordLogIn_EventReceived(ExitGames.Client.Photon.EventData obj)
@@ -31,30 +34,27 @@ public class NetworkEvents : MonoBehaviourPun
     {
         
     }
+ 
 
-    void SendLoggedObject(int playerNumber, string word, string label)
-    {
-        object[] datas = new object[]
-        {
-            playerNumber,
-            word,
-            label
-        };
-
-        PhotonNetwork.RaiseEvent(WORD_LOGGED_IN_EVENT, datas,RaiseEventOptions.Default,ExitGames.Client.Photon.SendOptions.SendUnreliable);
-    }
-
-    private void OnLogInFeedback(int playerNumber, string word, string label)
-    {
-        if (base.photonView.IsMine) { 
-        SendLoggedObject(playerNumber, word, label);
-        }
-    }
+    //private void OnSameWords(string BlockedRay)
+    //{
+    //    if (base.photonView.IsMine) { 
+    //        BlockedRays.Add(BlockedRay);
+    //        var blockedcount = BlockedRays.Count;
+    //        print(" BlockedRays.Count:  " +blockedcount);
+    //        if (BlockedRays.Count == raycount)
+    //        {
+    //            print("let the bubble burst!!!");
+    //            GameObject.Find("Floor").GetComponent<Renderer>().material.SetColor("Color_", new Color(255f, 255f, 255f));
+    //        }
+    //       // PhotonNetwork.RaiseEvent(WORD_LOGGED_IN_EVENT, blockedcount, RaiseEventOptions.Default, ExitGames.Client.Photon.SendOptions.SendUnreliable);
+    //    }
+    //}
 
 
     private void OnDestroy()
     {
-        GameController.current.onWordLogIn -= OnLogInFeedback;
+        //GameController.current.onSameWordsLogged -= OnSameWords;
         PhotonNetwork.NetworkingClient.EventReceived -= WordLogIn_EventReceived;
     }
 }

@@ -41,6 +41,7 @@ MonoBehaviour:
   - RPC_ChangeWOrdLogged
   - RPC_ChangeWordLogged
   - RPC_SetLoggedWord
+  - RPC_SetLoggedWordOut
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
+using System.Linq;
 
 public class LogInController : MonoBehaviour
 {
@@ -32,13 +33,14 @@ public class LogInController : MonoBehaviour
             _Percentage += Time.deltaTime / Duration;
             selectedWord.GetComponent<Renderer>().material.SetColor("Color_", new Color(_Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255), _Percentage.Remap(0, 1, 0, 255)));
             //selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.HSVToRGB(0.6f, _Percentage, 0.5f));
-            print("Percentage: " + _Percentage);
+            //print("Percentage: " + _Percentage);
             if (_Percentage > 1)
             {
                 print("Word is logged in!!");
                 loggedIn = true;
                 _Percentage = 0;
                 _Fired = false;
+
                 if (loggedIn)
                 {
                     word = selectedWord.name;
@@ -57,6 +59,7 @@ public class LogInController : MonoBehaviour
         originalMaterial = selectedWord.GetComponent<Renderer>().material;
         _Percentage = 0;
         _Fired = true;
+
         
         // selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.Lerp(originalMaterial.color, new Color(255f, 0f, 10f), 1.5f));
         //selectedWord.transform.localScale *= 2;
@@ -75,10 +78,22 @@ public class LogInController : MonoBehaviour
             word = selectedWord.name;
             label = this.tag;
             selectedWord.gameObject.tag = "word";
-            GameController.current.wordLogIn(playerNr, word, label);
+            GameController.current.wordLogOut(playerNr, word, label);
         }
     }
 
+
+    public void OnSnapDestroyOtherSnapZones()
+    {
+        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == this.gameObject.name);
+        foreach (var prefab in objects)
+        {
+            if (gameObject != this.gameObject)
+            {
+
+            }
+        }
+    }
 }
 public static class ExtensionMethods
 {
