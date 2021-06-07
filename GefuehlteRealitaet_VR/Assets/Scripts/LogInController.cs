@@ -19,7 +19,6 @@ public class LogInController : MonoBehaviour
     private bool _Fired = false;
     private bool loggedIn = false;
 
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -56,6 +55,13 @@ public class LogInController : MonoBehaviour
     public void OnLogInFeedback()
     {
         selectedWord = this.GetComponent<XRBaseInteractor>().selectTarget.gameObject;
+        //var otherWords = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name.Contains("Text"));
+        //this.GetComponent<XRBaseInteractor>().allowSelect = false;
+        //foreach (GameObject obj in otherWords)
+        //{
+        //    obj.GetComponent<XRBaseInteractable>().IsSelectableBy(this.GetComponent<XRBaseInteractor>()) = false ;
+        //}
+
         originalMaterial = selectedWord.GetComponent<Renderer>().material;
         _Percentage = 0;
         _Fired = true;
@@ -71,6 +77,7 @@ public class LogInController : MonoBehaviour
         _Percentage = 0;
         _Fired = false;
         loggedIn = false;
+        print("Revert Log in got triggered");
         selectedWord.GetComponent<Renderer>().material.SetColor("Color_", new Color(255, 255, 255));
         //selectedWord.transform.localScale *= 0.5f;
         if (!loggedIn)

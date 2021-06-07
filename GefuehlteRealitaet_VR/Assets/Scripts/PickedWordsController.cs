@@ -89,7 +89,7 @@ public class PickedWordsController : MonoBehaviour
         {
             print("Both Words were logged in at the same label!!!");
             print("scale now!!!");
-            GameObject.Find(word).transform.localScale *= 4f;
+            GameObject.Find(word).transform.localScale *= 2f;
             var labeledObject = allLabeled[0];
             var BlockedRay = (string)labeledObject[1];
             wordsLogged = true;
@@ -124,7 +124,7 @@ public class PickedWordsController : MonoBehaviour
             {
                 if (allLabeled.Count == 2)
                 {
-                GameObject.Find(word).transform.localScale *= 0.25f;
+                GameObject.Find(word).transform.localScale *= 0.5f;
                     wordsLogged = false;
                 GameController.current.SameWordsLogged((string)item[1], wordsLogged);
                 }

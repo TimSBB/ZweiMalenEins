@@ -71,8 +71,10 @@ public class FeedbackController : MonoBehaviour
                         {
                             if (prefabs[i].GetComponent<Renderer>().enabled)
                             {
+                                //prefabs[i].SetActive(false);
                                 prefabs[i].GetComponent<Renderer>().enabled = false;
-                                prefabs[i].GetComponent<MyXRSocketInteractor>().enabled = false;
+                                prefabs[i].GetComponent<MyXRSocketInteractor>().allowSelect = false;
+                                //prefabs[i].GetComponent<MyXRSocketInteractor>().enabled = false;
                                 //Destroy(prefabs[i].gameObject);
                                 //prefabs.Remove(prefabs[i]);
                             }

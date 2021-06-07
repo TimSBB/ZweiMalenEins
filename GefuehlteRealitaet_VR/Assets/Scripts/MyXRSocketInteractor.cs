@@ -21,4 +21,13 @@ public class MyXRSocketInteractor : XRSocketInteractor
     {
         
     }
+
+    public void disableActive()
+    {
+        if (this.GetComponent<MyXRSocketInteractor>().selectTarget != null)
+        {
+            this.GetComponent<MyXRSocketInteractor>().allowSelect = false;
+        }
+
+    }
 }
