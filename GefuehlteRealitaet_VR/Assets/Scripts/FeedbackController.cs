@@ -65,15 +65,13 @@ public class FeedbackController : MonoBehaviour
                 for (int i = 0; i < prefabs.Count; i++)
                 {
                     if (prefabs[i] != null) {
-                        //var selectedTarget = prefabs[i].GetComponent<MyXRSocketInteractor>().selectTarget;
-                        //if (selectedTarget == null && prefabs[i].name == "FeedbackPrefab(Clone)")
                         if (prefabs[i].name == "FeedbackPrefab(Clone)")
                         {
                             if (prefabs[i].GetComponent<Renderer>().enabled)
                             {
                                 //prefabs[i].SetActive(false);
                                 prefabs[i].GetComponent<Renderer>().enabled = false;
-                                prefabs[i].GetComponent<MyXRSocketInteractor>().allowSelect = false;
+                                //prefabs[i].GetComponent<MyXRSocketInteractor>().allowSelect = false;
                                 //prefabs[i].GetComponent<MyXRSocketInteractor>().enabled = false;
                                 //Destroy(prefabs[i].gameObject);
                                 //prefabs.Remove(prefabs[i]);

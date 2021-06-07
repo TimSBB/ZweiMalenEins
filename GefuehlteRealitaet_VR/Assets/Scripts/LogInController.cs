@@ -19,6 +19,10 @@ public class LogInController : MonoBehaviour
     private bool _Fired = false;
     private bool loggedIn = false;
 
+    private bool drawMesh = false;
+    private Mesh mesh;
+    public Material material;
+    private Vector3 SnapPos;
     // Start is called before the first frame update
     private void Start()
     {
@@ -50,18 +54,14 @@ public class LogInController : MonoBehaviour
                 }
             }
         }
+
+        //if (drawMesh) { HoverDrawMesh(); }
+        
     }
 
     public void OnLogInFeedback()
     {
         selectedWord = this.GetComponent<XRBaseInteractor>().selectTarget.gameObject;
-        //var otherWords = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name.Contains("Text"));
-        //this.GetComponent<XRBaseInteractor>().allowSelect = false;
-        //foreach (GameObject obj in otherWords)
-        //{
-        //    obj.GetComponent<XRBaseInteractable>().IsSelectableBy(this.GetComponent<XRBaseInteractor>()) = false ;
-        //}
-
         originalMaterial = selectedWord.GetComponent<Renderer>().material;
         _Percentage = 0;
         _Fired = true;
@@ -86,21 +86,31 @@ public class LogInController : MonoBehaviour
             label = this.tag;
             selectedWord.gameObject.tag = "word";
             GameController.current.wordLogOut(playerNr, word, label);
+            this.GetComponent<XRBaseInteractor>().allowSelect = false;
         }
     }
 
+    //public void HoverExitDisable()
+    //{
+    //    drawMesh = false;
+    //    if (this.GetComponent<XRBaseInteractor>().selectTarget.gameObject == null) { 
+    //    this.GetComponent<XRBaseInteractor>().allowSelect = false;
+    //    }
+    //}
 
-    public void OnSnapDestroyOtherSnapZones()
-    {
-        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == this.gameObject.name);
-        foreach (var prefab in objects)
-        {
-            if (gameObject != this.gameObject)
-            {
+    //public void OnHoverSnap()
+    //{
+    //    drawMesh = true;
+    //    SnapPos = this.gameObject.transform.position;
+    //    mesh = this.GetComponent<Mesh>();
+    //}
 
-            }
-        }
-    }
+    //public void HoverDrawMesh()
+    //{
+    //    // will make the mesh appear in the Scene at origin position
+    //    Graphics.DrawMesh(mesh, SnapPos, Quaternion.identity, material, 0);
+    //}
+
 }
 public static class ExtensionMethods
 {
