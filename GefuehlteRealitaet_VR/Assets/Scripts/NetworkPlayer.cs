@@ -55,7 +55,7 @@ public class NetworkPlayer : MonoBehaviour
     void Update()
     {
         //bubbleBurst = GameObject.Find("BubbleBurster").GetComponent<BubbleBursterController>().burstToggle;
-        if (photonView.IsMine && bubbleBurst)
+        if (photonView.IsMine)
         {
             MapPosition(head, headRig);
             MapPosition(leftHand, leftHandRig);

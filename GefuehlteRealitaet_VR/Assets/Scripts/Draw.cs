@@ -11,6 +11,8 @@ public class Draw : MonoBehaviour
     public Transform drawPositionSource;
     public float lineWidth = 0.03f;
     public Material lineMaterial;
+    public Material Player1_lineMaterial;
+    public Material Player2_lineMaterial;
     public float distanceThreshold = 0.05f;
 
     private List<Vector3> currentLinePositions = new List<Vector3>();
@@ -79,8 +81,17 @@ public class Draw : MonoBehaviour
         currentLine.SetPositions(currentLinePositions.ToArray());
 
         //update line visual
-        currentLine.material = lineMaterial;
+        //currentLine.material = lineMaterial;
         currentLine.startWidth = lineWidth;
+        if (playerNr == 1)
+        {
+            currentLine.material = Player1_lineMaterial;
+        }
+        if (playerNr == 2)
+        {
+            currentLine.material = Player2_lineMaterial;
+        }
+
     }
 
     void StopDrawing()
@@ -107,15 +118,16 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource)
     {
-        print("playerNumber = "+ playerNumber);
-        print("playerNr = " + playerNr);
+        //print("playerNumber = "+ playerNumber);
+        //print("playerNr = " + playerNr);
 
         if (playerNumber != playerNr) { 
         OtherisDrawing = true;
         //create line
         GameObject lineGameObject = new GameObject("Line");
         currentLineOther = lineGameObject.AddComponent<LineRenderer>();
-            print("Remote Start Drawing got triggered");
+            //currentLineOther.material.SetColor("Color_", new Color(255f, 0f, 0f));
+            //print("Remote Start Drawing got triggered");
 
             PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
         }
@@ -126,9 +138,9 @@ public class Draw : MonoBehaviour
     {
         if (playerNumber != playerNr)
         {
-            print("playerNumber = " + playerNumber);
-            print("playerNr = " + playerNr);
-            print("Remote Update Line got triggered");
+            //print("playerNumber = " + playerNumber);
+            //print("playerNr = " + playerNr);
+            //print("Remote Update Line got triggered");
             //update line
             //update line position
             currentLinePositionsOther.Add(OtherDrawPositionSource);
@@ -136,7 +148,16 @@ public class Draw : MonoBehaviour
             currentLineOther.SetPositions(currentLinePositionsOther.ToArray());
 
             //update line visual
-            currentLineOther.material = lineMaterial;
+            if (playerNr == 1)
+            {
+                currentLineOther.material = Player2_lineMaterial;
+            }
+            if (playerNr == 2)
+            {
+                currentLineOther.material = Player1_lineMaterial;
+            }
+            //currentLineOther.material = lineMaterial;
+            //currentLineOther.material.SetColor("Color_", new Color(255f, 0f, 0f));
             currentLineOther.startWidth = lineWidth;
         }
     }
@@ -158,7 +179,7 @@ public class Draw : MonoBehaviour
     {
        if (playerNumber != playerNr)
         {
-            print("Remote Update Drawing got triggered");
+            //print("Remote Update Drawing got triggered");
             //check if we have a line
             if (!currentLineOther || currentLinePositionsOther.Count == 0)
                 return;
