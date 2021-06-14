@@ -14,9 +14,12 @@ public class Draw : MonoBehaviour
     public float distanceThreshold = 0.05f;
 
     private List<Vector3> currentLinePositions = new List<Vector3>();
+    private List<Vector3> currentLinePositionsOther = new List<Vector3>();
     private XRController controller;
     private bool isDrawing = false;
+    private bool OtherisDrawing = false;
     private LineRenderer currentLine;
+    private LineRenderer currentLineOther;
 
     private PhotonView PV;
     private int playerNumber;
@@ -37,15 +40,18 @@ public class Draw : MonoBehaviour
 
         if(!isDrawing && isPressed)
         {
-            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNumber);
+            StartDrawing();
+            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNumber, drawPositionSource.position);
         }
         else if(isDrawing && !isPressed)
         {
+            StopDrawing();
             PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNumber);
         }
         else if(isDrawing && isPressed)
         {
-            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNumber);
+            UpdateDrawing();
+            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNumber, drawPositionSource.position);
         }
     }
 
@@ -54,19 +60,17 @@ public class Draw : MonoBehaviour
         lineMaterial = newMat;
     }
 
-    [PunRPC]
-    void RPC_StartDrawing(int playerNumber)
+    void StartDrawing()
     {
         isDrawing = true;
         //create line
         GameObject lineGameObject = new GameObject("Line");
         currentLine = lineGameObject.AddComponent<LineRenderer>();
 
-        PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber);
+        UpdateLine();
     }
 
-    [PunRPC]
-    void RPC_UpdateLine(int playerNumber)
+    void UpdateLine()
     {
         //update line
         //update line position
@@ -79,17 +83,14 @@ public class Draw : MonoBehaviour
         currentLine.startWidth = lineWidth;
     }
 
-    [PunRPC]
-    void RPC_StopDrawing(int playerNumber)
+    void StopDrawing()
     {
         isDrawing = false;
         currentLinePositions.Clear();
         currentLine = null;
     }
 
-
-    [PunRPC]
-    void RPC_UpdateDrawing(int playerNumber)
+    void UpdateDrawing()
     {
         //check if we have a line
         if (!currentLine || currentLinePositions.Count == 0)
@@ -98,7 +99,67 @@ public class Draw : MonoBehaviour
         Vector3 lastSetPosition = currentLinePositions[currentLinePositions.Count - 1];
         if (Vector3.Distance(lastSetPosition, drawPositionSource.position) > distanceThreshold)
         {
-            PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber);
+            UpdateLine();
+        }
+    }
+
+
+    [PunRPC]
+    void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource)
+    {
+        if (playerNumber != this.playerNumber) { 
+        OtherisDrawing = true;
+        //create line
+        GameObject lineGameObject = new GameObject("Line");
+        currentLineOther = lineGameObject.AddComponent<LineRenderer>();
+
+        PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
+        }
+    }
+
+    [PunRPC]
+    void RPC_UpdateLine(int playerNumber, Vector3 OtherDrawPositionSource)
+    {
+        if (playerNumber != this.playerNumber)
+        {
+            //update line
+            //update line position
+            currentLinePositionsOther.Add(OtherDrawPositionSource);
+            currentLineOther.positionCount = currentLinePositionsOther.Count;
+            currentLineOther.SetPositions(currentLinePositionsOther.ToArray());
+
+            //update line visual
+            currentLineOther.material = lineMaterial;
+            currentLineOther.startWidth = lineWidth;
+        }
+    }
+
+    [PunRPC]
+    void RPC_StopDrawing(int playerNumber)
+    {
+        if (playerNumber != this.playerNumber)
+        {
+            OtherisDrawing = false;
+            currentLinePositionsOther.Clear();
+            currentLineOther = null;
+        }
+    }
+
+
+    [PunRPC]
+    void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource)
+    {
+        if (playerNumber != this.playerNumber)
+        {
+            //check if we have a line
+            if (!currentLineOther || currentLinePositionsOther.Count == 0)
+                return;
+
+            Vector3 lastSetPosition = currentLinePositionsOther[currentLinePositionsOther.Count - 1];
+            if (Vector3.Distance(lastSetPosition, OtherDrawPositionSource) > distanceThreshold)
+            {
+                PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
+            }
         }
     }
 
