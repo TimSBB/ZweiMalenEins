@@ -22,36 +22,36 @@ public class Draw : MonoBehaviour
     private LineRenderer currentLineOther;
 
     private PhotonView PV;
-    private int playerNumber;
+    private int playerNr;
 
     // Start is called before the first frame update
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
         controller = GetComponent<XRController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
-
-        if(!isDrawing && isPressed)
+        playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+        if (!isDrawing && isPressed)
         {
             StartDrawing();
-            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNumber, drawPositionSource.position);
+            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position);
         }
         else if(isDrawing && !isPressed)
         {
             StopDrawing();
-            PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNumber);
+            PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
         }
         else if(isDrawing && isPressed)
         {
             UpdateDrawing();
-            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNumber, drawPositionSource.position);
+            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position);
         }
     }
 
@@ -107,21 +107,28 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource)
     {
-        if (playerNumber != this.playerNumber) { 
+        print("playerNumber = "+ playerNumber);
+        print("playerNr = " + playerNr);
+
+        if (playerNumber != playerNr) { 
         OtherisDrawing = true;
         //create line
         GameObject lineGameObject = new GameObject("Line");
         currentLineOther = lineGameObject.AddComponent<LineRenderer>();
+            print("Remote Start Drawing got triggered");
 
-        PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
+            PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
         }
     }
 
     [PunRPC]
     void RPC_UpdateLine(int playerNumber, Vector3 OtherDrawPositionSource)
     {
-        if (playerNumber != this.playerNumber)
+        if (playerNumber != playerNr)
         {
+            print("playerNumber = " + playerNumber);
+            print("playerNr = " + playerNr);
+            print("Remote Update Line got triggered");
             //update line
             //update line position
             currentLinePositionsOther.Add(OtherDrawPositionSource);
@@ -137,7 +144,7 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_StopDrawing(int playerNumber)
     {
-        if (playerNumber != this.playerNumber)
+        if (playerNumber != playerNr)
         {
             OtherisDrawing = false;
             currentLinePositionsOther.Clear();
@@ -149,8 +156,9 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource)
     {
-        if (playerNumber != this.playerNumber)
+       if (playerNumber != playerNr)
         {
+            print("Remote Update Drawing got triggered");
             //check if we have a line
             if (!currentLineOther || currentLinePositionsOther.Count == 0)
                 return;
