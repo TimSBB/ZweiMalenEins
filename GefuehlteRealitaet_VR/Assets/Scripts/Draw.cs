@@ -1,0 +1,105 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
+
+
+public class Draw : MonoBehaviour
+{
+    public InputHelpers.Button drawInput;
+    public Transform drawPositionSource;
+    public float lineWidth = 0.03f;
+    public Material lineMaterial;
+    public float distanceThreshold = 0.05f;
+
+    private List<Vector3> currentLinePositions = new List<Vector3>();
+    private XRController controller;
+    private bool isDrawing = false;
+    private LineRenderer currentLine;
+
+    private PhotonView PV;
+    private int playerNumber;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        PV = GetComponent<PhotonView>();
+        playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        controller = GetComponent<XRController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Check if input down
+        InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
+
+        if(!isDrawing && isPressed)
+        {
+            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNumber);
+        }
+        else if(isDrawing && !isPressed)
+        {
+            PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNumber);
+        }
+        else if(isDrawing && isPressed)
+        {
+            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNumber);
+        }
+    }
+
+    public void SetLineMaterial(Material newMat)
+    {
+        lineMaterial = newMat;
+    }
+
+    [PunRPC]
+    void RPC_StartDrawing(int playerNumber)
+    {
+        isDrawing = true;
+        //create line
+        GameObject lineGameObject = new GameObject("Line");
+        currentLine = lineGameObject.AddComponent<LineRenderer>();
+
+        PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber);
+    }
+
+    [PunRPC]
+    void RPC_UpdateLine(int playerNumber)
+    {
+        //update line
+        //update line position
+        currentLinePositions.Add(drawPositionSource.position);
+        currentLine.positionCount = currentLinePositions.Count;
+        currentLine.SetPositions(currentLinePositions.ToArray());
+
+        //update line visual
+        currentLine.material = lineMaterial;
+        currentLine.startWidth = lineWidth;
+    }
+
+    [PunRPC]
+    void RPC_StopDrawing(int playerNumber)
+    {
+        isDrawing = false;
+        currentLinePositions.Clear();
+        currentLine = null;
+    }
+
+
+    [PunRPC]
+    void RPC_UpdateDrawing(int playerNumber)
+    {
+        //check if we have a line
+        if (!currentLine || currentLinePositions.Count == 0)
+            return;
+
+        Vector3 lastSetPosition = currentLinePositions[currentLinePositions.Count - 1];
+        if (Vector3.Distance(lastSetPosition, drawPositionSource.position) > distanceThreshold)
+        {
+            PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber);
+        }
+    }
+
+}

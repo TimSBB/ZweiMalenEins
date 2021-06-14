@@ -42,6 +42,10 @@ MonoBehaviour:
   - RPC_ChangeWordLogged
   - RPC_SetLoggedWord
   - RPC_SetLoggedWordOut
+  - RPC_StartDrawing
+  - RPC_StopDrawing
+  - RPC_UpdateDrawing
+  - RPC_UpdateLine
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
