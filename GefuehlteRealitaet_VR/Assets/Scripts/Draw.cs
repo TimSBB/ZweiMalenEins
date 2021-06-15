@@ -65,7 +65,7 @@ public class Draw : MonoBehaviour
             StartDrawing();
             PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position);
         }
-        else if(isDrawing && !isPressed || !allowDraw)
+        else if(isDrawing && !isPressed)
         {
             StopDrawing();
             PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
