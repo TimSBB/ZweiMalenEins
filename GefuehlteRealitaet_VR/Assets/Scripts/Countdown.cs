@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
+using System.Linq;
 
 public class Countdown : MonoBehaviour
 {
@@ -94,7 +95,11 @@ public class Countdown : MonoBehaviour
             var currentWord = randomWordScript.words[index];
 
             PV.RPC("RPC_RandomWord", RpcTarget.AllBufferedViaServer, currentWord);
-
+            var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
+            foreach (var gameObj in objects)
+            {
+                Destroy(gameObj);
+            }
         }
     }
 
