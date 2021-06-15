@@ -46,6 +46,8 @@ MonoBehaviour:
   - RPC_StopDrawing
   - RPC_UpdateDrawing
   - RPC_UpdateLine
+  - RPC_RandomWord
+  - RPC_Reset
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

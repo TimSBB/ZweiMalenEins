@@ -56,23 +56,6 @@ public class Draw : MonoBehaviour
             allowDraw = false;
         }
 
-      
-
-        //RaycastHit hit;
-        //Ray ray = new Ray(transform.position, transform.forward);
-        //if (Physics.Raycast(ray, out hit))
-        //{
-        //    if (hit.collider.isTrigger && hit.collider.gameObject.name == "UI")
-        //    {
-        //        print("hit UI!");
-        //        Vector3 endPosition = hit.point;
-        //        allowDraw = false;
-        //    }
-        //}
-        //if (hit.collider != null)
-        //{
-        //    allowDraw = true;
-        //}
 
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);

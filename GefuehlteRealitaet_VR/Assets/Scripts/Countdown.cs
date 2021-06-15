@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
 public class Countdown : MonoBehaviour
 {
@@ -14,16 +15,24 @@ public class Countdown : MonoBehaviour
     
     public GameObject timeText;
     public Draw drawScript;
+    public RandomWord randomWordScript;
+
+    private PhotonView PV;
+    private int playerNr;
+
+    private int index;
+    public GameObject wordText;
 
     private void Start()
     {
-        // Starts the timer automatically
+        PV = GetComponent<PhotonView>();
         timerIsRunning = false;
         initalRemaining = timeRemaining;
     }
 
     void Update()
     {
+        playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
         if (reset)
         {
             timeRemaining = initalRemaining;
@@ -72,6 +81,29 @@ public class Countdown : MonoBehaviour
 
     public void ResetTimer()
     {
-        reset = true;
+        PV.RPC("RPC_Reset", RpcTarget.AllBufferedViaServer);
     }
+
+    [PunRPC]
+    void RPC_Reset()
+    {
+        reset = true;
+        if (playerNr == 1)
+        {
+            index = Random.Range(0, randomWordScript.words.Length);
+            var currentWord = randomWordScript.words[index];
+
+            PV.RPC("RPC_RandomWord", RpcTarget.AllBufferedViaServer, currentWord);
+
+        }
+    }
+
+    [PunRPC]
+    void RPC_RandomWord(string word)
+    {
+        TextMeshProUGUI textmeshPro = wordText.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText(word);
+    }
+
+
 }
