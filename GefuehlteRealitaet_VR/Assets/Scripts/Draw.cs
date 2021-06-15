@@ -18,13 +18,17 @@ public class Draw : MonoBehaviour
     private List<Vector3> currentLinePositions = new List<Vector3>();
     private List<Vector3> currentLinePositionsOther = new List<Vector3>();
     private XRController controller;
-    private bool isDrawing = false;
-    private bool OtherisDrawing = false;
+    public bool isDrawing = false;
+    public bool OtherisDrawing = false;
+    public bool allowDraw = false;
     private LineRenderer currentLine;
     private LineRenderer currentLineOther;
 
     private PhotonView PV;
     private int playerNr;
+    public XRRayInteractor leftInteractorRay;
+    public XRRayInteractor rightInteractorRay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,15 +41,48 @@ public class Draw : MonoBehaviour
     void Update()
     {
 
+        Vector3 pos = new Vector3();
+        Vector3 norm = new Vector3();
+        int index = 0;
+        bool validTarget = false;
+
+        bool isLeftRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
+        bool isRightRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
+
+        allowDraw = true;
+
+        if (isRightRayInteractorHovering)
+        {
+            allowDraw = false;
+        }
+
+      
+
+        //RaycastHit hit;
+        //Ray ray = new Ray(transform.position, transform.forward);
+        //if (Physics.Raycast(ray, out hit))
+        //{
+        //    if (hit.collider.isTrigger && hit.collider.gameObject.name == "UI")
+        //    {
+        //        print("hit UI!");
+        //        Vector3 endPosition = hit.point;
+        //        allowDraw = false;
+        //    }
+        //}
+        //if (hit.collider != null)
+        //{
+        //    allowDraw = true;
+        //}
+
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (!isDrawing && isPressed)
+        if (!isDrawing && isPressed && allowDraw)
         {
             StartDrawing();
             PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position);
         }
-        else if(isDrawing && !isPressed)
+        else if(isDrawing && !isPressed || !allowDraw)
         {
             StopDrawing();
             PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
