@@ -89,17 +89,18 @@ public class Countdown : MonoBehaviour
     void RPC_Reset()
     {
         reset = true;
+        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
+        foreach (var gameObj in objects)
+        {
+            Destroy(gameObj);
+        }
         if (playerNr == 1)
         {
             index = Random.Range(0, randomWordScript.words.Length);
             var currentWord = randomWordScript.words[index];
 
             PV.RPC("RPC_RandomWord", RpcTarget.AllBufferedViaServer, currentWord);
-            var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
-            foreach (var gameObj in objects)
-            {
-                Destroy(gameObj);
-            }
+            
         }
     }
 
