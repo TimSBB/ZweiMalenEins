@@ -86,8 +86,10 @@ public class Draw : MonoBehaviour
     {
         isDrawing = true;
         //create line
+        
         GameObject lineGameObject = new GameObject("Line");
         currentLine = lineGameObject.AddComponent<LineRenderer>();
+
 
         UpdateLine();
     }
@@ -96,10 +98,10 @@ public class Draw : MonoBehaviour
     {
         //update line
         //update line position
+
         currentLinePositions.Add(drawPositionSource.position);
         currentLine.positionCount = currentLinePositions.Count;
         currentLine.SetPositions(currentLinePositions.ToArray());
-
         //update line visual
         //currentLine.material = lineMaterial;
         currentLine.startWidth = lineWidth;
@@ -131,6 +133,7 @@ public class Draw : MonoBehaviour
         if (Vector3.Distance(lastSetPosition, drawPositionSource.position) > distanceThreshold)
         {
             UpdateLine();
+            
         }
     }
 
