@@ -6,6 +6,11 @@ public class ChangeColor : MonoBehaviour
 {
     public Material newMaterial;
 
+    private void Start()
+    {
+        newMaterial = this.GetComponent<Renderer>().material;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //change brush tip

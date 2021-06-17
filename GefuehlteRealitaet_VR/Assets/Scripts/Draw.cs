@@ -29,6 +29,8 @@ public class Draw : MonoBehaviour
     public XRRayInteractor leftInteractorRay;
     public XRRayInteractor rightInteractorRay;
 
+    private Vector3 lineColor;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +65,9 @@ public class Draw : MonoBehaviour
         if (!isDrawing && isPressed && allowDraw)
         {
             StartDrawing();
-            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position);
+            var color = lineMaterial.GetColor("Color_DCFC887F");
+            lineColor =  new Vector3(color.r, color.g, color.b);
+            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, lineColor);
         }
         else if(isDrawing && !isPressed)
         {
@@ -72,6 +76,7 @@ public class Draw : MonoBehaviour
         }
         else if(isDrawing && isPressed)
         {
+            //lineColor = lineMaterial.GetColor("Color_DCFC887F");
             UpdateDrawing();
             PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position);
         }
@@ -103,16 +108,16 @@ public class Draw : MonoBehaviour
         currentLine.positionCount = currentLinePositions.Count;
         currentLine.SetPositions(currentLinePositions.ToArray());
         //update line visual
-        //currentLine.material = lineMaterial;
+        currentLine.material = lineMaterial;
         currentLine.startWidth = lineWidth;
-        if (playerNr == 1)
-        {
-            currentLine.material = Player1_lineMaterial;
-        }
-        if (playerNr == 2)
-        {
-            currentLine.material = Player2_lineMaterial;
-        }
+        //if (playerNr == 1)
+        //{
+        //    currentLine.material = Player1_lineMaterial;
+        //}
+        //if (playerNr == 2)
+        //{
+        //    currentLine.material = Player2_lineMaterial;
+        //}
 
     }
 
@@ -139,7 +144,7 @@ public class Draw : MonoBehaviour
 
 
     [PunRPC]
-    void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource)
+    void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, Vector3 ColorOfLine)
     {
         //print("playerNumber = "+ playerNumber);
         //print("playerNr = " + playerNr);
@@ -149,7 +154,8 @@ public class Draw : MonoBehaviour
         //create line
         GameObject lineGameObject = new GameObject("Line");
         currentLineOther = lineGameObject.AddComponent<LineRenderer>();
-            //currentLineOther.material.SetColor("Color_", new Color(255f, 0f, 0f));
+            var color = new Color(ColorOfLine.x, ColorOfLine.y, ColorOfLine.z, 1.0f);
+        currentLineOther.material.SetColor("Color_", color);
             //print("Remote Start Drawing got triggered");
 
             PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
@@ -171,14 +177,14 @@ public class Draw : MonoBehaviour
             currentLineOther.SetPositions(currentLinePositionsOther.ToArray());
 
             //update line visual
-            if (playerNr == 1)
-            {
-                currentLineOther.material = Player2_lineMaterial;
-            }
-            if (playerNr == 2)
-            {
-                currentLineOther.material = Player1_lineMaterial;
-            }
+            //if (playerNr == 1)
+            //{
+            //    currentLineOther.material = Player2_lineMaterial;
+            //}
+            //if (playerNr == 2)
+            //{
+            //    currentLineOther.material = Player1_lineMaterial;
+            //}
             //currentLineOther.material = lineMaterial;
             //currentLineOther.material.SetColor("Color_", new Color(255f, 0f, 0f));
             currentLineOther.startWidth = lineWidth;
