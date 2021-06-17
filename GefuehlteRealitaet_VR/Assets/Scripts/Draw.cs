@@ -109,6 +109,7 @@ public class Draw : MonoBehaviour
         currentLinePositions.Add(drawPositionSource.position);
         currentLine.positionCount = currentLinePositions.Count;
         currentLine.SetPositions(currentLinePositions.ToArray());
+
         //update line visual
         currentLine.material = lineMaterial;
         Debug.Log("LineMaterialName: " + lineMaterial.name.Replace(" (Instance)",""));
@@ -149,8 +150,6 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine)
     {
-        //print("playerNumber = "+ playerNumber);
-        //print("playerNr = " + playerNr);
 
         if (playerNumber != playerNr) { 
         OtherisDrawing = true;
@@ -159,8 +158,10 @@ public class Draw : MonoBehaviour
         currentLineOther = lineGameObject.AddComponent<LineRenderer>();
             //var color = new Color(ColorOfLine.x, ColorOfLine.y, ColorOfLine.z, 1.0f);
             //currentLineOther.material.SetColor("Color_", color);
-            currentLineOther.material = Resources.Load("Materials/ColorPicker/"+ColorOfLine+".mat", typeof(Material)) as Material;
-            //print("Remote Start Drawing got triggered");
+            //currentLineOther.material = lineMaterial;
+            currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
+            print("material: " + currentLineOther.material);
+
 
             PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine);
         }
@@ -171,9 +172,6 @@ public class Draw : MonoBehaviour
     {
         if (playerNumber != playerNr)
         {
-            //print("playerNumber = " + playerNumber);
-            //print("playerNr = " + playerNr);
-            //print("Remote Update Line got triggered");
             //update line
             //update line position
             currentLinePositionsOther.Add(OtherDrawPositionSource);
@@ -190,7 +188,8 @@ public class Draw : MonoBehaviour
             //    currentLineOther.material = Player1_lineMaterial;
             //}
             //currentLineOther.material = lineMaterial;
-            currentLineOther.material = Resources.Load("Materials/ColorPicker/" + ColorOfLine + ".mat", typeof(Material)) as Material;
+            currentLineOther.material = Resources.Load<Material>("Materials/"+ ColorOfLine);
+            print("material: "+ currentLineOther.material);
             //currentLineOther.material.SetColor("Color_", new Color(255f, 0f, 0f));
             currentLineOther.startWidth = lineWidth;
         }
