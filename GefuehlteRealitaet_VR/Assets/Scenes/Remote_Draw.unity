@@ -640,7 +640,7 @@ MonoBehaviour:
   drawPositionSource: {fileID: 1319760406}
   lineWidth: 0.03
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  Player1_lineMaterial: {fileID: 2100000, guid: 9fa908f725866dd479279ed07e145e99,
+  Player1_lineMaterial: {fileID: 2100000, guid: e0abc47f6bb11d94a932eed056ec8b60,
     type: 2}
   Player2_lineMaterial: {fileID: 2100000, guid: f997a88360d00674fbb0a2764115007f,
     type: 2}
