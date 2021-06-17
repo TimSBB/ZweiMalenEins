@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 392}
   m_MaxSize: {x: 22006, y: 14042}
   vertical: 0
-  controlID: 15
+  controlID: 102
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 635, y: 392}
   m_MaxSize: {x: 18005, y: 14042}
   vertical: 1
-  controlID: 16
+  controlID: 103
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_MinSize: {x: 635, y: 271}
   m_MaxSize: {x: 18005, y: 10021}
   vertical: 0
-  controlID: 17
+  controlID: 104
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -475,19 +475,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources
+  - Assets/Scripts
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\projects\Gefuehlte_Realitaet\GefuehlteRealitaet_VR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fc670000
-    m_LastClickedID: 26620
+    m_SelectedIDs: 18680000
+    m_LastClickedID: 26648
     m_ExpandedIDs: 00000000e4670000e6670000e8670000ea670000ec670000ee670000f0670000f2670000f4670000f6670000f8670000fa670000fc67000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000d2490000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 88c7ffffd6c8ffffb6cbffff6afbffff
+      m_ExpandedIDs: 60a1ffffaea2ffff8ea5ffff5efbffff52620000be620000a4630000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -701,9 +701,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.878693, y: -1.7749791, z: -8.409883}
+    m_Target: {x: -0.17516609, y: 1.8237838, z: -1.22702}
     speed: 2
-    m_Value: {x: 3.878693, y: -1.7749791, z: -8.409883}
+    m_Value: {x: -0.17516609, y: 1.8237838, z: -1.22702}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -749,13 +749,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.05006298, y: -0.948866, z: 0.1960095, w: -0.24249166}
+    m_Target: {x: 0.07956347, y: -0.90827405, z: 0.20185478, w: 0.3578286}
     speed: 2
-    m_Value: {x: -0.050061107, y: -0.9488305, z: 0.19600217, w: -0.24248259}
+    m_Value: {x: 0.07956034, y: -0.90823835, z: 0.20184684, w: 0.35781452}
   m_Size:
-    m_Target: 7.4349823
+    m_Target: 0.3121857
     speed: 2
-    m_Value: 7.4349823
+    m_Value: 0.012185693
   m_Ortho:
     m_Target: 0
     speed: 2
