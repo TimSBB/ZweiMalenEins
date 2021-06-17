@@ -43,26 +43,26 @@ public class Draw : MonoBehaviour
     void Update()
     {
 
-        Vector3 pos = new Vector3();
-        Vector3 norm = new Vector3();
-        int index = 0;
-        bool validTarget = false;
+        //Vector3 pos = new Vector3();
+        //Vector3 norm = new Vector3();
+        //int index = 0;
+        //bool validTarget = false;
 
-        bool isLeftRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
-        bool isRightRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
+        //bool isLeftRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
+        //bool isRightRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
 
-        allowDraw = true;
+        //allowDraw = true;
 
-        if (isRightRayInteractorHovering)
-        {
-            allowDraw = false;
-        }
+        //if (isRightRayInteractorHovering)
+        //{
+        //    allowDraw = false;
+        //}
 
 
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (!isDrawing && isPressed && allowDraw)
+        if (!isDrawing && isPressed)
         {
             StartDrawing();
             //var color = lineMaterial.GetColor("Color_DCFC887F");
@@ -152,16 +152,13 @@ public class Draw : MonoBehaviour
     {
 
         if (playerNumber != playerNr) { 
-        OtherisDrawing = true;
-        //create line
-        GameObject lineGameObject = new GameObject("Line");
-        currentLineOther = lineGameObject.AddComponent<LineRenderer>();
-            //var color = new Color(ColorOfLine.x, ColorOfLine.y, ColorOfLine.z, 1.0f);
-            //currentLineOther.material.SetColor("Color_", color);
-            //currentLineOther.material = lineMaterial;
-            currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
-            print("material: " + currentLineOther.material);
 
+            OtherisDrawing = true;
+            //create line
+            GameObject lineGameObject = new GameObject("Line");
+            currentLineOther = lineGameObject.AddComponent<LineRenderer>();
+            //currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
+            //print("material: " + currentLineOther.material);
 
             PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine);
         }
@@ -174,24 +171,16 @@ public class Draw : MonoBehaviour
         {
             //update line
             //update line position
+            if (OtherisDrawing) { 
             currentLinePositionsOther.Add(OtherDrawPositionSource);
             currentLineOther.positionCount = currentLinePositionsOther.Count;
             currentLineOther.SetPositions(currentLinePositionsOther.ToArray());
 
             //update line visual
-            //if (playerNr == 1)
-            //{
-            //    currentLineOther.material = Player2_lineMaterial;
-            //}
-            //if (playerNr == 2)
-            //{
-            //    currentLineOther.material = Player1_lineMaterial;
-            //}
-            //currentLineOther.material = lineMaterial;
             currentLineOther.material = Resources.Load<Material>("Materials/"+ ColorOfLine);
-            print("material: "+ currentLineOther.material);
-            //currentLineOther.material.SetColor("Color_", new Color(255f, 0f, 0f));
             currentLineOther.startWidth = lineWidth;
+            }
+
         }
     }
 
@@ -212,7 +201,6 @@ public class Draw : MonoBehaviour
     {
        if (playerNumber != playerNr)
         {
-            //print("Remote Update Drawing got triggered");
             //check if we have a line
             if (!currentLineOther || currentLinePositionsOther.Count == 0)
                 return;
