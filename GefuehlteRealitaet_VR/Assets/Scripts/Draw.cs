@@ -67,7 +67,8 @@ public class Draw : MonoBehaviour
             StartDrawing();
             //var color = lineMaterial.GetColor("Color_DCFC887F");
             //lineColor =  new Vector3(color.r, color.g, color.b);
-            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, lineMaterial.name.Replace(" (Instance)", ""));
+            var mat = lineMaterial.name.Replace(" (Instance)", "");
+            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat);
         }
         else if(isDrawing && !isPressed)
         {
@@ -78,7 +79,8 @@ public class Draw : MonoBehaviour
         {
             //lineColor = lineMaterial.GetColor("Color_DCFC887F");
             UpdateDrawing();
-            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position);
+            var mat = lineMaterial.name.Replace(" (Instance)", "");
+            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat);
         }
     }
 
@@ -207,7 +209,7 @@ public class Draw : MonoBehaviour
 
 
     [PunRPC]
-    void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource)
+    void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine)
     {
        if (playerNumber != playerNr)
         {
@@ -219,7 +221,7 @@ public class Draw : MonoBehaviour
             Vector3 lastSetPosition = currentLinePositionsOther[currentLinePositionsOther.Count - 1];
             if (Vector3.Distance(lastSetPosition, OtherDrawPositionSource) > distanceThreshold)
             {
-                PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
+                PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine);
             }
         }
     }
