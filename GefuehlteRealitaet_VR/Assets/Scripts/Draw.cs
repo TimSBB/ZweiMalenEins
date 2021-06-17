@@ -65,9 +65,9 @@ public class Draw : MonoBehaviour
         if (!isDrawing && isPressed && allowDraw)
         {
             StartDrawing();
-            var color = lineMaterial.GetColor("Color_DCFC887F");
-            lineColor =  new Vector3(color.r, color.g, color.b);
-            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, lineColor);
+            //var color = lineMaterial.GetColor("Color_DCFC887F");
+            //lineColor =  new Vector3(color.r, color.g, color.b);
+            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, lineMaterial.name.Replace(" (Instance)", ""));
         }
         else if(isDrawing && !isPressed)
         {
@@ -109,6 +109,7 @@ public class Draw : MonoBehaviour
         currentLine.SetPositions(currentLinePositions.ToArray());
         //update line visual
         currentLine.material = lineMaterial;
+        Debug.Log("LineMaterialName: " + lineMaterial.name.Replace(" (Instance)",""));
         currentLine.startWidth = lineWidth;
         //if (playerNr == 1)
         //{
@@ -144,7 +145,7 @@ public class Draw : MonoBehaviour
 
 
     [PunRPC]
-    void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, Vector3 ColorOfLine)
+    void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine)
     {
         //print("playerNumber = "+ playerNumber);
         //print("playerNr = " + playerNr);
@@ -154,16 +155,17 @@ public class Draw : MonoBehaviour
         //create line
         GameObject lineGameObject = new GameObject("Line");
         currentLineOther = lineGameObject.AddComponent<LineRenderer>();
-            var color = new Color(ColorOfLine.x, ColorOfLine.y, ColorOfLine.z, 1.0f);
-        currentLineOther.material.SetColor("Color_", color);
+            //var color = new Color(ColorOfLine.x, ColorOfLine.y, ColorOfLine.z, 1.0f);
+            //currentLineOther.material.SetColor("Color_", color);
+            currentLineOther.material = Resources.Load("Materials/ColorPicker/"+ColorOfLine+".mat", typeof(Material)) as Material;
             //print("Remote Start Drawing got triggered");
 
-            PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource);
+            PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine);
         }
     }
 
     [PunRPC]
-    void RPC_UpdateLine(int playerNumber, Vector3 OtherDrawPositionSource)
+    void RPC_UpdateLine(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine)
     {
         if (playerNumber != playerNr)
         {
@@ -186,6 +188,7 @@ public class Draw : MonoBehaviour
             //    currentLineOther.material = Player1_lineMaterial;
             //}
             //currentLineOther.material = lineMaterial;
+            currentLineOther.material = Resources.Load("Materials/ColorPicker/" + ColorOfLine + ".mat", typeof(Material)) as Material;
             //currentLineOther.material.SetColor("Color_", new Color(255f, 0f, 0f));
             currentLineOther.startWidth = lineWidth;
         }
