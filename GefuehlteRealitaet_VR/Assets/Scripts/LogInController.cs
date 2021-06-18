@@ -19,7 +19,6 @@ public class LogInController : MonoBehaviour
     private bool _Fired = false;
     private bool loggedIn = false;
 
-    private bool drawMesh = false;
     private Mesh mesh;
     public Material material;
     private Vector3 SnapPos;
@@ -66,10 +65,6 @@ public class LogInController : MonoBehaviour
         _Percentage = 0;
         _Fired = true;
 
-        
-        // selectedWord.GetComponent<Renderer>().material.SetColor("Color_", Color.Lerp(originalMaterial.color, new Color(255f, 0f, 10f), 1.5f));
-        //selectedWord.transform.localScale *= 2;
-        //GameController.current.wordLogIn(LabelNr, playerNumber);
     }
 
     public void RevertLogInFeedback()
@@ -90,26 +85,7 @@ public class LogInController : MonoBehaviour
         }
     }
 
-    //public void HoverExitDisable()
-    //{
-    //    drawMesh = false;
-    //    if (this.GetComponent<XRBaseInteractor>().selectTarget.gameObject == null) { 
-    //    this.GetComponent<XRBaseInteractor>().allowSelect = false;
-    //    }
-    //}
 
-    //public void OnHoverSnap()
-    //{
-    //    drawMesh = true;
-    //    SnapPos = this.gameObject.transform.position;
-    //    mesh = this.GetComponent<Mesh>();
-    //}
-
-    //public void HoverDrawMesh()
-    //{
-    //    // will make the mesh appear in the Scene at origin position
-    //    Graphics.DrawMesh(mesh, SnapPos, Quaternion.identity, material, 0);
-    //}
 
 }
 public static class ExtensionMethods

@@ -8,7 +8,7 @@ public class RandomWord : MonoBehaviour
 {
     public string[] words = new string[] { "Montag","Krieg","Natur","Himmel","Kälte","Freundschaft","Geruch","Heimat","Angst","Baum","Auto","Zelt","Frühstück","Liebe","Stuhl","Trocken","Geborgenheit","Lippenstift"};
     private int index;
-    private string currentWord;
+    public string currentWord;
     private string newWordString;
     public GameObject wordText;
     private int playerNr;

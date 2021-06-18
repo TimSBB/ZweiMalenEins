@@ -118,7 +118,7 @@ public class Draw : MonoBehaviour
 
         //update line visual
         currentLine.material = lineMaterial;
-        Debug.Log("LineMaterialName: " + lineMaterial.name.Replace(" (Instance)",""));
+        //Debug.Log("LineMaterialName: " + lineMaterial.name.Replace(" (Instance)",""));
         currentLine.startWidth = lineWidth;
         //if (playerNr == 1)
         //{
