@@ -1,2 +1,78 @@
-Base path: 'D:/Unity/2019.4.9f1/Editor/Data', plugins path 'D:/Unity/2019.4.9f1/Editor/Data/PlaybackEngines'
+Base path: 'C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=136017 outsize=6391 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=3230 outsize=333 ok=1
+Cmd: preprocess
+  insize=34572 outsize=4212 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=4142 outsize=338 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=4422 outsize=333 ok=1
+Cmd: preprocess
+  insize=4855 outsize=333 ok=1
+Cmd: preprocess
+  insize=36481 outsize=4212 ok=1
+Cmd: preprocess
+  insize=350160 outsize=13586 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=4356 outsize=333 ok=1
+Cmd: preprocess
+  insize=5074 outsize=333 ok=1
+Cmd: preprocess
+  insize=36812 outsize=4212 ok=1
+Cmd: preprocess
+  insize=352477 outsize=13586 ok=1
+Cmd: preprocess
+  insize=352484 outsize=13586 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=811 outsize=209 ok=1
+Cmd: preprocess
+  insize=3230 outsize=333 ok=1
+Cmd: preprocess
+  insize=36812 outsize=4212 ok=1
+Cmd: preprocess
+  insize=4142 outsize=338 ok=1
+Cmd: preprocess
+  insize=5074 outsize=333 ok=1
+Cmd: preprocess
+  insize=4356 outsize=333 ok=1
+Cmd: preprocess
+  insize=3230 outsize=333 ok=1
+Cmd: preprocess
+  insize=5074 outsize=333 ok=1
+Cmd: preprocess
+  insize=36812 outsize=4212 ok=1
+Cmd: preprocess
+  insize=34009 outsize=4212 ok=1
+Cmd: preprocess
+  insize=34572 outsize=4212 ok=1
+Cmd: preprocess
+  insize=337623 outsize=13586 ok=1
