@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Basic_GameMechanics_withFeedback.unity
-    guid: 217d47e1db82c2547bd10e226bc5546e
+  - enabled: 1
+    path: Assets/Scenes/Kopf_Schminken.unity
+    guid: 60ba3500c1a805345a15c8119ef8ce84
   - enabled: 1
     path: Assets/Scenes/Remote_Draw.unity
     guid: d4f3e4e80ca63654eb151e9b1747f939

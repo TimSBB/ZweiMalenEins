@@ -101,8 +101,9 @@ public class Draw : MonoBehaviour
         //create line
         
         GameObject lineGameObject = new GameObject("Line");
+        lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
         currentLine = lineGameObject.AddComponent<LineRenderer>();
-
+        currentLine.useWorldSpace = false;
 
         UpdateLine();
     }
@@ -162,7 +163,9 @@ public class Draw : MonoBehaviour
             OtherisDrawing = true;
             //create line
             GameObject lineGameObject = new GameObject("Line");
+            lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
             currentLineOther = lineGameObject.AddComponent<LineRenderer>();
+            currentLineOther.useWorldSpace = false;
             //currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
             //print("material: " + currentLineOther.material);
 

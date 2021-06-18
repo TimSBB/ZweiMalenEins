@@ -48,6 +48,8 @@ MonoBehaviour:
   - RPC_UpdateLine
   - RPC_RandomWord
   - RPC_Reset
+  - RPC_RPC_SendOwnHead
+  - RPC_SendOwnHead
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

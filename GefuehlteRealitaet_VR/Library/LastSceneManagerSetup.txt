@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Kopf_Schminken.unity
+- path: Assets/Scenes/Remote_Draw.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

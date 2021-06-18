@@ -34,7 +34,7 @@ public class ToTxtWriter : MonoBehaviour
     {
         var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
         JSONObject lines = new JSONObject();
-        Debug.Log("LineCount: " + objects.Count());
+        //Debug.Log("LineCount: " + objects.Count());
         lines.Add("LineCount",objects.Count());
         int j = 0;
         foreach (var gameobj in objects)
@@ -43,7 +43,7 @@ public class ToTxtWriter : MonoBehaviour
             var count = gameobj.GetComponent<LineRenderer>().positionCount;
             LinePositions = new Vector3[count];
             gameobj.GetComponent<LineRenderer>().GetPositions(LinePositions);
-            Debug.Log("Positions: " + LinePositions);
+            //Debug.Log("Positions: " + LinePositions);
 
             JSONObject lineJson = new JSONObject();
 
@@ -63,7 +63,7 @@ public class ToTxtWriter : MonoBehaviour
                 position.Add(LinePositions[i].z);
                 lineJson.Add("Position" + i.ToString(), position);
             }
-            Debug.Log(lineJson.ToString());
+          //  Debug.Log(lineJson.ToString());
             lines.Add("lineJson"+j.ToString(), lineJson);
             j++;
         }
@@ -81,7 +81,7 @@ public class ToTxtWriter : MonoBehaviour
         string jsonString = File.ReadAllText(path);
         JSONObject lines = (JSONObject)JSON.Parse(jsonString);
         int LineCount = lines["LineCount"];
-        Debug.Log("linecount to load: " + LineCount);
+        //Debug.Log("linecount to load: " + LineCount);
         for (int i = 0; i < LineCount; i++)
         {
             
@@ -95,19 +95,21 @@ public class ToTxtWriter : MonoBehaviour
             LinePositions = new Vector3[positionCount];
             for (int j = 0; j < positionCount; j++)
             {
-                Debug.Log("iteration"+j);
+                //Debug.Log("iteration"+j);
                 LinePositions[j] = new Vector3(LineJson["Position" + j.ToString()].AsArray[0], LineJson["Position" + j.ToString()].AsArray[1], LineJson["Position" + j.ToString()].AsArray[2]);
-                Debug.Log("Position"+j+"  " +LinePositions[j]);
+               // Debug.Log("Position"+j+"  " +LinePositions[j]);
             }
 
             GameObject lineGameObject = new GameObject("Line");
+            lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
             var currentLine = lineGameObject.AddComponent<LineRenderer>();
+            currentLine.useWorldSpace = false;
             currentLine.positionCount = positionCount;
             currentLine.SetPositions(LinePositions);
             currentLine.material = Resources.Load<Material>("Materials/" + ColorNr);
             currentLine.startWidth = 0.03f;
 
-            Debug.Log(LineJson.ToString());
+           // Debug.Log(LineJson.ToString());
 
         }
 
