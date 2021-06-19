@@ -130,13 +130,13 @@ public class HeadToTxtWriter : MonoBehaviour
             {
                 lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos;
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player 2(Clone)").transform.Find("Head"));
-                GameObject.Find("Network Player 2(Clone)").transform.Rotate(0, 180, 0, Space.Self);
+                
             }
             if (playerNr == 2)
             {
                 lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos;
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player(Clone)").transform.Find("Head"));
-                GameObject.Find("Network Player(Clone)").transform.Rotate(0, 180, 0, Space.Self);
+               
             }
            
             var currentLine = lineGameObject.AddComponent<LineRenderer>();
@@ -148,7 +148,9 @@ public class HeadToTxtWriter : MonoBehaviour
 
            // Debug.Log(LineJson.ToString());
 
-        } 
+        }
+        GameObject.Find("Network Player 2(Clone)").transform.Rotate(0, 180, 0, Space.Self);
+        GameObject.Find("Network Player(Clone)").transform.Rotate(0, 180, 0, Space.Self);
     }
 
     // Start is called before the first frame update
