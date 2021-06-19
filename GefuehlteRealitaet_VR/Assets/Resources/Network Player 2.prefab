@@ -361,6 +361,8 @@ MonoBehaviour:
   rightHand: {fileID: 6688542128382940630}
   leftHandAnimator: {fileID: 7164900344432461581}
   rightHandAnimator: {fileID: 7021148599823170365}
+  showOtherPlayer: 0
+  spawnedHeadDrawing: 0
   SpawnPosition: {fileID: 4671495355249208789, guid: 1e32b13cffc35fc4590a2e96bce9198f,
     type: 3}
 --- !u!1001 &3429796351904604537

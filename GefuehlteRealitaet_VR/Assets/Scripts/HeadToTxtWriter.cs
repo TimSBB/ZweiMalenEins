@@ -128,11 +128,11 @@ public class HeadToTxtWriter : MonoBehaviour
             GameObject lineGameObject = new GameObject("Line");
             if (playerNr == 1)
             {
-                lineGameObject.transform.SetParent(GameObject.Find("Network Player 2").transform.Find("Head"));
+                lineGameObject.transform.SetParent(GameObject.Find("Network Player 2(Clone)").transform.Find("Head"));
             }
             if (playerNr == 2)
             {
-                lineGameObject.transform.SetParent(GameObject.Find("Network Player").transform.Find("Head"));
+                lineGameObject.transform.SetParent(GameObject.Find("Network Player(Clone)").transform.Find("Head"));
             }
            
             var currentLine = lineGameObject.AddComponent<LineRenderer>();
