@@ -17,7 +17,7 @@ public class HeadToTxtWriter : MonoBehaviour
     private string path;
     private bool wroteOwnHead;
     private bool wroteOtherHead;
-
+    private Vector3 headRohlingPos;
     private PhotonView PV;
 
     //void CreateText()
@@ -128,10 +128,12 @@ public class HeadToTxtWriter : MonoBehaviour
             GameObject lineGameObject = new GameObject("Line");
             if (playerNr == 1)
             {
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos;
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player 2(Clone)").transform.Find("Head"));
             }
             if (playerNr == 2)
             {
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos;
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player(Clone)").transform.Find("Head"));
             }
            
@@ -152,6 +154,7 @@ public class HeadToTxtWriter : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
         // CreateText();
+        headRohlingPos = GameObject.Find("CharacterEditor_Scene").transform.Find("Head").transform.position;
     }
 
     // Update is called once per frame
