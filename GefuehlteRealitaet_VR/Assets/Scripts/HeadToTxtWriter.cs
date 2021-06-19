@@ -149,8 +149,8 @@ public class HeadToTxtWriter : MonoBehaviour
            // Debug.Log(LineJson.ToString());
 
         }
-        GameObject.Find("Network Player 2(Clone)").transform.Rotate(0, 180, 0, Space.Self);
-        GameObject.Find("Network Player(Clone)").transform.Rotate(0, 180, 0, Space.Self);
+        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Rotate(0, 180, 0, Space.Self);
+        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Rotate(0, 180, 0, Space.Self);
     }
 
     // Start is called before the first frame update
