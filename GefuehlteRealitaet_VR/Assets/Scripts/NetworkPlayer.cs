@@ -19,8 +19,10 @@ public class NetworkPlayer : MonoBehaviour
     private Transform headRig;
     private Transform leftHandRig;
     private Transform rightHandRig;
-    private bool bubbleBurst;
+    public bool showOtherPlayer = false;
+    public bool spawnedHeadDrawing = false;
     public Transform SpawnPosition;
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +56,8 @@ public class NetworkPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //bubbleBurst = GameObject.Find("BubbleBurster").GetComponent<BubbleBursterController>().burstToggle;
-        if (photonView.IsMine)
+       
+        if (photonView.IsMine && showOtherPlayer)
         {
             MapPosition(head, headRig);
             MapPosition(leftHand, leftHandRig);
@@ -65,6 +67,14 @@ public class NetworkPlayer : MonoBehaviour
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
         }
 
+        if (photonView.IsMine && spawnedHeadDrawing)
+        {
+            foreach (var item in GetComponentsInChildren<Renderer>())
+            {
+                item.enabled = false;
+            }
+            spawnedHeadDrawing = false;
+        }
 
     }
 

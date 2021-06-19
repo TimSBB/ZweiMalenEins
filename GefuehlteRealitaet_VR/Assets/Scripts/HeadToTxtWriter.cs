@@ -15,6 +15,8 @@ public class HeadToTxtWriter : MonoBehaviour
     private int PositionCount;
     private int playerNr;
     private string path;
+    private bool wroteOwnHead;
+    private bool wroteOtherHead;
 
     private PhotonView PV;
 
@@ -96,11 +98,11 @@ public class HeadToTxtWriter : MonoBehaviour
         //Load Values
         if (playerNr == 1)
         {
-            path = Application.persistentDataPath + "/Head_1_LineSave.json";
+            path = Application.persistentDataPath + "/Head_2_LineSave.json";
         }
         if (playerNr == 2)
         {
-            path = Application.persistentDataPath + "/Head_2_LineSave.json";
+            path = Application.persistentDataPath + "/Head_1_LineSave.json";
         }
         string jsonString = File.ReadAllText(path);
         JSONObject lines = (JSONObject)JSON.Parse(jsonString);
@@ -124,7 +126,15 @@ public class HeadToTxtWriter : MonoBehaviour
             }
 
             GameObject lineGameObject = new GameObject("Line");
-            lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
+            if (playerNr == 1)
+            {
+                lineGameObject.transform.SetParent(GameObject.Find("Network Player 2").transform.Find("Head"));
+            }
+            if (playerNr == 2)
+            {
+                lineGameObject.transform.SetParent(GameObject.Find("Network Player").transform.Find("Head"));
+            }
+           
             var currentLine = lineGameObject.AddComponent<LineRenderer>();
             currentLine.useWorldSpace = false;
             currentLine.positionCount = positionCount;
@@ -169,7 +179,31 @@ public class HeadToTxtWriter : MonoBehaviour
                 path = Application.persistentDataPath + "/Head_1_LineSave.json";
             }
             File.WriteAllText(path, headJson.ToString());
+            wroteOtherHead = true;
+
+        } else
+        {
+            if (playerNr == 1)
+            {
+                path = Application.persistentDataPath + "/Head_1_LineSave.json";
+            }
+            if (playerNr == 2)
+            {
+                path = Application.persistentDataPath + "/Head_2_LineSave.json";
+            }
+            File.WriteAllText(path, headJson.ToString());
+            wroteOwnHead = true;
         }
-        SceneManager.LoadScene("Remote_Draw");
+        if (wroteOwnHead && wroteOtherHead)
+        {
+            NetworkPlayer[] networkplayers = (NetworkPlayer[])GameObject.FindObjectsOfType(typeof(NetworkPlayer));
+            foreach (NetworkPlayer networkplayerScript in networkplayers)
+            {
+                networkplayerScript.GetComponent<NetworkPlayer>().showOtherPlayer = true;
+            }
+            Load();
+
+        }
+
     }
 }

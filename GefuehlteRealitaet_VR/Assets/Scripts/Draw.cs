@@ -30,6 +30,7 @@ public class Draw : MonoBehaviour
     public XRRayInteractor rightInteractorRay;
 
     private Vector3 lineColor;
+    public bool DoNetworkDraw = false;
 
 
     // Start is called before the first frame update
@@ -65,29 +66,44 @@ public class Draw : MonoBehaviour
         if (!isDrawing && isPressed)
         {
             StartDrawing();
-            //var color = lineMaterial.GetColor("Color_DCFC887F");
-            //lineColor =  new Vector3(color.r, color.g, color.b);
-            var mat = lineMaterial.name.Replace(" (Instance)", "");
-            PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+            if (DoNetworkDraw) { 
+                var mat = lineMaterial.name.Replace(" (Instance)", "");
+                PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+            }
         }
         else if(isDrawing && !isPressed)
         {
             StopDrawing();
-            PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
+            if (DoNetworkDraw)
+            {
+
+                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
+            }
         }
         else if(isDrawing && isPressed)
         {
             //lineColor = lineMaterial.GetColor("Color_DCFC887F");
             UpdateDrawing();
-            var mat = lineMaterial.name.Replace(" (Instance)", "");
-            PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+            if (DoNetworkDraw)
+            {
+
+                var mat = lineMaterial.name.Replace(" (Instance)", "");
+                PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+            }
         }
+    }
+
+
+    public void SetNetworkDrawing()
+    {
+        DoNetworkDraw = true;
     }
 
     public void SetLineMaterial(Material newMat)
     {
         lineMaterial = newMat;
     }
+
 
     public void SetLineWidth(float width)
     {
