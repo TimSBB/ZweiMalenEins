@@ -90,7 +90,8 @@ public class HeadToTxtWriter : MonoBehaviour
             path = Application.persistentDataPath + "/Head_2_LineSave.json";
         }
         string jsonString = File.ReadAllText(path);
-        PV.RPC("RPC_SendOwnHead", RpcTarget.AllBufferedViaServer, playerNr, jsonString);
+        var bytes = System.Text.Encoding.UTF8.GetBytes(jsonString);
+        PV.RPC("RPC_SendOwnHead", RpcTarget.AllBufferedViaServer, playerNr, bytes);
     }
 
     public void Load()
@@ -173,7 +174,7 @@ public class HeadToTxtWriter : MonoBehaviour
 
 
     [PunRPC]
-    void RPC_SendOwnHead(int playerNumber, string headJson)
+    void RPC_SendOwnHead(int playerNumber, byte[] headJson)
     {
         if (playerNumber != playerNr)
         {
@@ -185,7 +186,7 @@ public class HeadToTxtWriter : MonoBehaviour
             {
                 path = Application.persistentDataPath + "/Head_1_LineSave.json";
             }
-            File.WriteAllText(path, headJson.ToString());
+            File.WriteAllText(path, System.Text.Encoding.UTF8.GetString(headJson));
             wroteOtherHead = true;
 
         } else
@@ -198,7 +199,7 @@ public class HeadToTxtWriter : MonoBehaviour
             {
                 path = Application.persistentDataPath + "/Head_2_LineSave.json";
             }
-            File.WriteAllText(path, headJson.ToString());
+            File.WriteAllText(path, System.Text.Encoding.UTF8.GetString(headJson));
             wroteOwnHead = true;
         }
         if (wroteOwnHead && wroteOtherHead)
