@@ -50,8 +50,15 @@ public class ToTxtWriter : MonoBehaviour
 
             //Word = randomWordScript.currentWord;
             //lineJson.Add("Word", Word);
-
-            ColorNr = int.Parse(gameobj.GetComponent<LineRenderer>().material.name.Replace(" (Instance)", ""));
+            var colorname = gameobj.GetComponent<LineRenderer>().material.name;
+            if (colorname.Contains(" (Instance)"))
+            {
+                ColorNr = int.Parse(colorname.Replace(" (Instance)", ""));
+            } else
+            {
+                ColorNr = int.Parse(colorname);
+            }
+           
             lineJson.Add("ColorNr", ColorNr);
             widthOfLine = gameobj.GetComponent<LineRenderer>().startWidth;
             lineJson.Add("lineWidth", widthOfLine);
@@ -74,7 +81,9 @@ public class ToTxtWriter : MonoBehaviour
         string path = Application.persistentDataPath + "/LineSave.json";
         //Debug.Log(lines.ToString());
         File.WriteAllText(path, lines.ToString());
-        //Debug.Log("path: " + path);
+        Debug.Log("saved json to file!!");
+        Debug.Log("path: " + path);
+
     }
 
     void Load()
@@ -95,7 +104,7 @@ public class ToTxtWriter : MonoBehaviour
             ColorNr = LineJson["ColorNr"];
             var width = LineJson["lineWidth"];
             var positionCount = LineJson["PositionCount"];
-            Debug.Log("PositionCount"+i+":" + positionCount);
+            //Debug.Log("PositionCount"+i+":" + positionCount);
             LinePositions = new Vector3[positionCount];
             for (int j = 0; j < positionCount; j++)
             {
@@ -124,7 +133,9 @@ public class ToTxtWriter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // CreateText();
+        // CreateText();
+        string path = Application.persistentDataPath + "/LineSave.json";
+        Debug.Log("path: " + path);
     }
 
     // Update is called once per frame
