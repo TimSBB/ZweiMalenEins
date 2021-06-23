@@ -166,9 +166,6 @@ public class HeadToTxtWriter : MonoBehaviour
     void Update()
     {
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (Input.GetKeyDown(KeyCode.S)) Save();
-        if (Input.GetKeyDown(KeyCode.L)) Load();
-
     }
 
 

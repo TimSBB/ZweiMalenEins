@@ -8,11 +8,12 @@ using System.Linq;
 
 public class ToTxtWriter : MonoBehaviour
 {
-    public string Word;
-    public RandomWord randomWordScript;
-    public int ColorNr;
-    public Vector3[] LinePositions;
+    private string Word;
+    //public RandomWord randomWordScript;
+    private int ColorNr;
+    private Vector3[] LinePositions;
     private int PositionCount;
+    private float widthOfLine;
 
     //void CreateText()
     //{
@@ -47,11 +48,13 @@ public class ToTxtWriter : MonoBehaviour
 
             JSONObject lineJson = new JSONObject();
 
-            Word = randomWordScript.currentWord;
-            lineJson.Add("Word", Word);
+            //Word = randomWordScript.currentWord;
+            //lineJson.Add("Word", Word);
 
             ColorNr = int.Parse(gameobj.GetComponent<LineRenderer>().material.name.Replace(" (Instance)", ""));
             lineJson.Add("ColorNr", ColorNr);
+            widthOfLine = gameobj.GetComponent<LineRenderer>().startWidth;
+            lineJson.Add("lineWidth", widthOfLine);
 
             lineJson.Add("PositionCount", LinePositions.Length);
 
@@ -88,8 +91,9 @@ public class ToTxtWriter : MonoBehaviour
 
             var LineJson = lines["lineJson" + i.ToString()];
             //Set Values
-            Word = LineJson["Word"];
+           // Word = LineJson["Word"];
             ColorNr = LineJson["ColorNr"];
+            var width = LineJson["lineWidth"];
             var positionCount = LineJson["PositionCount"];
             Debug.Log("PositionCount"+i+":" + positionCount);
             LinePositions = new Vector3[positionCount];
@@ -107,7 +111,7 @@ public class ToTxtWriter : MonoBehaviour
             currentLine.positionCount = positionCount;
             currentLine.SetPositions(LinePositions);
             currentLine.material = Resources.Load<Material>("Materials/" + ColorNr);
-            currentLine.startWidth = 0.03f;
+            currentLine.startWidth = width;
 
            // Debug.Log(LineJson.ToString());
 
