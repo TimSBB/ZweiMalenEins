@@ -1349,7 +1349,7 @@ PrefabInstance:
         type: 3}
       propertyPath: handModelPrefab
       value: 
-      objectReference: {fileID: 8806138737000312669, guid: 8cafe014f3f17cf46891e314e6770d42,
+      objectReference: {fileID: 3265889281151617175, guid: b5c76e63ed4a52840a875c6ead72a8f1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddc38db09f9124241b4b4e9b2b9831eb, type: 3}
