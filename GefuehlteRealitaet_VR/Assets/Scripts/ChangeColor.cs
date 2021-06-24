@@ -11,19 +11,25 @@ public class ChangeColor : MonoBehaviour
 
     private void Start()
     {
+
+        
         newMaterial = this.GetComponent<Renderer>().material;
 
-        gross = GameObject.Find("Gross");
-        mittel = GameObject.Find("Mittel");
-        klein = GameObject.Find("klein");
+ 
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "PaintCapsule") { 
-        //change brush tip
-        other.GetComponent<Renderer>().material = newMaterial;
-        gross.GetComponent<Renderer>().material = newMaterial;
+        if (other.gameObject.name == "PaintCapsule") {
+
+            gross = GameObject.Find("Gross");
+            mittel = GameObject.Find("Mittel");
+            klein = GameObject.Find("klein");
+            //change brush tip
+            //other.GetComponent<Renderer>().material = newMaterial;
+
+            gross.GetComponent<Renderer>().material = newMaterial;
         mittel.GetComponent<Renderer>().material = newMaterial;
         klein.GetComponent<Renderer>().material = newMaterial;
             //Debug.Log("NewMaterial " + newMaterial);

@@ -10,6 +10,7 @@ public class ChangeWidth : MonoBehaviour
     private GameObject gross;
     private GameObject mittel;
     private GameObject klein;
+    private GameObject radier;
 
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +18,7 @@ public class ChangeWidth : MonoBehaviour
         gross = GameObject.Find("Gross");
         mittel = GameObject.Find("Mittel");
         klein = GameObject.Find("klein");
+        radier = GameObject.Find("Radierer");
 
 
         if (other.gameObject.name == "PaintCapsule") {
@@ -26,18 +28,28 @@ public class ChangeWidth : MonoBehaviour
                 gross.GetComponent<MeshRenderer>().enabled = true;
                 mittel.GetComponent<MeshRenderer>().enabled = false;
                 klein.GetComponent<MeshRenderer>().enabled = false;
+                radier.GetComponent<MeshRenderer>().enabled = false;
             }
             if (this.gameObject.name == "Mittel_Auswahl")
             {
                 gross.GetComponent<MeshRenderer>().enabled = false;
                 mittel.GetComponent<MeshRenderer>().enabled = true;
                 klein.GetComponent<MeshRenderer>().enabled = false;
+                radier.GetComponent<MeshRenderer>().enabled = false;
             }
             if (this.gameObject.name == "klein_Auswahl") 
             {
                 gross.GetComponent<MeshRenderer>().enabled = false;
                 mittel.GetComponent<MeshRenderer>().enabled = false;
                 klein.GetComponent<MeshRenderer>().enabled = true;
+                radier.GetComponent<MeshRenderer>().enabled = false;
+            }
+            if (this.gameObject.name == "Radierer_Auswahl")
+            {
+                gross.GetComponent<MeshRenderer>().enabled = false;
+                mittel.GetComponent<MeshRenderer>().enabled = false;
+                klein.GetComponent<MeshRenderer>().enabled = false;
+                radier.GetComponent<MeshRenderer>().enabled = true;
             }
             //change line material
             other.SendMessageUpwards("SetLineWidth", width, SendMessageOptions.DontRequireReceiver);
