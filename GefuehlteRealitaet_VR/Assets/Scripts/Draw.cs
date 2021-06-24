@@ -108,7 +108,7 @@ public class Draw : MonoBehaviour
     public void SetLineWidth(float width)
     {
         lineWidth = width;
-        Debug.Log("width: " + width);
+        //Debug.Log("width: " + width);
     }
 
     void StartDrawing()
