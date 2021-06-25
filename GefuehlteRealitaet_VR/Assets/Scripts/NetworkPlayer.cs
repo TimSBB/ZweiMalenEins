@@ -66,6 +66,13 @@ public class NetworkPlayer : MonoBehaviour
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
         }
+        if (photonView.IsMine )
+        {
+            foreach (var item in GetComponentsInChildren<Renderer>())
+            {
+                item.enabled = false;
+            }
+        }
 
         if (photonView.IsMine && spawnedHeadDrawing)
         {

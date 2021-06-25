@@ -101,7 +101,7 @@ public class HeadToTxtWriter : MonoBehaviour
             //Set Values
             ColorNr = LineJson["ColorNr"];
             var positionCount = LineJson["PositionCount"];
-            Debug.Log("PositionCount"+i+":" + positionCount);
+           // Debug.Log("PositionCount"+i+":" + positionCount);
             LinePositions = new Vector3[positionCount];
             for (int j = 0; j < positionCount; j++)
             {

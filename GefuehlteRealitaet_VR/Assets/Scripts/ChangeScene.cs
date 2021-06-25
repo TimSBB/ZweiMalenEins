@@ -26,15 +26,19 @@ public void changeSceneElems()
         var scene = GameObject.Find("CharacterEditor_Scene");
         Destroy(scene);
 
-        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
-        foreach (var obj in objects)
+        var transform = GameObject.Find("Drawing").transform;
+        if (transform.childCount > 0)
         {
-            Destroy(obj);
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
-        //NetworkPlayer[] networkplayers = (NetworkPlayer[])GameObject.FindObjectsOfType(typeof(NetworkPlayer));
-        //foreach (NetworkPlayer networkplayerScript in networkplayers)
+
+        //var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
+        //foreach (var obj in objects)
         //{
-        //    networkplayerScript.GetComponent<NetworkPlayer>().showOtherPlayer = true;
+        //    Destroy(obj);
         //}
     }
 }
