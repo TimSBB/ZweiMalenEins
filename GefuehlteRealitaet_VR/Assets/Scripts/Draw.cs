@@ -49,14 +49,6 @@ public class Draw : MonoBehaviour
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
-        if (!foundNetworkPlayer && playerNr == 1)
-        {
-            foundNetworkPlayer = true;
-        }
-        else if (!foundNetworkPlayer && playerNr == 2)
-        {
-            foundNetworkPlayer = true;
-        }
 
 
         if (!isDrawing && isPressed)

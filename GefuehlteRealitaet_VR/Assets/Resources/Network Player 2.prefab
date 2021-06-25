@@ -343,7 +343,7 @@ MonoBehaviour:
   - {fileID: 5948517525795978604}
   - {fileID: 4354848238338781622}
   - {fileID: 8927646603654438734}
-  - {fileID: 0}
+  - {fileID: 2938054772208240815}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
   rightHandAnimator: {fileID: 0}
   showOtherPlayer: 0
   spawnedHeadDrawing: 0
-  SpawnPosition: {fileID: 4671495355249208789, guid: 1e32b13cffc35fc4590a2e96bce9198f,
+  SpawnPosition: {fileID: 4671495355249208789, guid: fe227b3407091e34fa1bf4b79e6a3595,
     type: 3}
 --- !u!1001 &6727605176641911644
 PrefabInstance:

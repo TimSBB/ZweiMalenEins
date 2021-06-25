@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ChangeColor : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ChangeColor : MonoBehaviour
     private GameObject gross;
     private GameObject mittel;
     private GameObject klein;
+    private int playerNr;
 
     private void Start()
     {
@@ -30,8 +32,13 @@ public class ChangeColor : MonoBehaviour
             klein.GetComponent<Renderer>().material = newMaterial;
 
             //change line material
-            other.SendMessageUpwards("SetLineMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
-            other.SendMessageUpwards("SetTipMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
+            playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+            if (playerNr == 1 || playerNr == 2)
+            {
+                other.SendMessageUpwards("SetLineMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
+                other.SendMessageUpwards("SetTipMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
+            }
         }
     }
+    
 }
