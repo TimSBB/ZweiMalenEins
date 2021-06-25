@@ -6,16 +6,16 @@ using System.Linq;
 
 public class ChangeScene : MonoBehaviour
 {
-    private Draw SetNetworkDraw;
     private HeadToTxtWriter WriteHead;
 
-
+    //will be called when ready button is pressed >> see onClick Event on button Game Object
 public void changeSceneElems()
     {
+        //Write the drawing to your local file and in the end trigger RPC event to send via Network
         WriteHead = GameObject.Find("Head_TextWriter").GetComponent<HeadToTxtWriter>();
         WriteHead.Save();
-        SetNetworkDraw = GameObject.Find("RightHand Controller").GetComponent<Draw>();
-        SetNetworkDraw.SetNetworkDrawing();
+
+
         GameObject.Find("CharacterEditor_Button_Canvas").SetActive(false);
         GameObject.Find("Text_Character-Editor").SetActive(false);
         GameObject.Find("Button_Canvas").GetComponent<Canvas>().enabled = true;

@@ -18,8 +18,10 @@ public class HeadToTxtWriter : MonoBehaviour
     private bool wroteOwnHead;
     private bool wroteOtherHead;
     private Vector3 headRohlingPos;
-    private PhotonView PV;
+
     private List<GameObject> myLines;
+    private PhotonView PV;
+    private Draw SetNetworkDraw;
 
     public void Save()
     {
@@ -191,8 +193,21 @@ public class HeadToTxtWriter : MonoBehaviour
             {
                 networkplayerScript.GetComponent<NetworkPlayer>().showOtherPlayer = true;
             }
+            // load headDrawings to Head of Networkplayer Prefab
             Load();
 
+            //delete what has been drawing while waiting for the other player
+            var transform = GameObject.Find("Drawing").transform;
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+            //allow to draw the lines of the other network player
+            SetNetworkDraw = GameObject.Find("RightHand Controller").GetComponent<Draw>();
+            SetNetworkDraw.SetNetworkDrawing();
         }
 
     }
