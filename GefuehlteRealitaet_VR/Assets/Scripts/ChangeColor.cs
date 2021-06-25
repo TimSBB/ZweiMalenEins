@@ -33,11 +33,8 @@ public class ChangeColor : MonoBehaviour
 
             //change line material
             playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-            if (playerNr == 1 || playerNr == 2)
-            {
-                other.SendMessageUpwards("SetLineMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
-                other.SendMessageUpwards("SetTipMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
-            }
+            other.SendMessageUpwards("SetLineMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("SetTipMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
         }
     }
     

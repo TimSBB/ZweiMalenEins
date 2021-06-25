@@ -30,7 +30,8 @@ public class Draw : MonoBehaviour
     public XRRayInteractor rightInteractorRay;
 
     private Vector3 lineColor;
-    private bool DoNetworkDraw = false;
+    public bool DoNetworkDraw = false;
+
 
 
     // Start is called before the first frame update
@@ -44,36 +45,19 @@ public class Draw : MonoBehaviour
     void Update()
     {
 
-        //Vector3 pos = new Vector3();
-        //Vector3 norm = new Vector3();
-        //int index = 0;
-        //bool validTarget = false;
-
-        //bool isLeftRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
-        //bool isRightRayInteractorHovering = leftInteractorRay.TryGetHitInfo(ref pos, ref norm, ref index, ref validTarget);
-
-        //allowDraw = true;
-
-        //if (isRightRayInteractorHovering)
-        //{
-        //    allowDraw = false;
-        //}
-
-
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
         if (!isDrawing && isPressed)
         {
             StartDrawing();
-            //Debug.Log("StartDrawing");
-            if (DoNetworkDraw) { 
+            if (DoNetworkDraw)
+            {
                 var mat = lineMaterial.name.Replace(" (Instance)", "");
                 PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
-                
             }
         }
-        else if(isDrawing && !isPressed)
+        else if (isDrawing && !isPressed)
         {
             StopDrawing();
             if (DoNetworkDraw)
@@ -82,43 +66,59 @@ public class Draw : MonoBehaviour
                 PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
             }
         }
-        else if(isDrawing && isPressed)
+        else if (isDrawing && isPressed)
         {
-            //lineColor = lineMaterial.GetColor("Color_DCFC887F");
             UpdateDrawing();
             if (DoNetworkDraw)
             {
-
                 var mat = lineMaterial.name.Replace(" (Instance)", "");
                 PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
             }
         }
     }
 
-
+    // will be set in ChangeScene
     public void SetNetworkDrawing()
     {
         DoNetworkDraw = true;
-        Debug.Log("set network drawing");
     }
 
+    // is called on interface item when trigger enters interface item
     public void SetLineMaterial(Material newMat)
     {
         lineMaterial = newMat;
     }
 
-
+    // is called on interface item when trigger enters interface item
     public void SetLineWidth(float width)
     {
         lineWidth = width;
         //Debug.Log("width: " + width);
     }
 
+    // is called on interface item when trigger enters interface item
+    public void SetTipMaterial(Material newMat)
+    {
+        if (DoNetworkDraw)
+        {
+            PV.RPC("RPC_UpdateTipColor", RpcTarget.AllBufferedViaServer, playerNr, newMat.name);
+        }
+    }
+
+    //// is called on interface item when trigger enters interface item
+    public void SetTipWidth(string tipAuswahl)
+    {
+        if (DoNetworkDraw)
+        {
+            PV.RPC("RPC_UpdateTipWidth", RpcTarget.AllBufferedViaServer, playerNr, tipAuswahl);
+        }
+    }
+
     void StartDrawing()
     {
         isDrawing = true;
         //create line
-        
+
         GameObject lineGameObject = new GameObject("Line");
         lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
         currentLine = lineGameObject.AddComponent<LineRenderer>();
@@ -140,14 +140,6 @@ public class Draw : MonoBehaviour
         currentLine.material = lineMaterial;
         //Debug.Log("LineMaterialName: " + lineMaterial.name.Replace(" (Instance)",""));
         currentLine.startWidth = lineWidth;
-        //if (playerNr == 1)
-        //{
-        //    currentLine.material = Player1_lineMaterial;
-        //}
-        //if (playerNr == 2)
-        //{
-        //    currentLine.material = Player2_lineMaterial;
-        //}
 
     }
 
@@ -168,7 +160,7 @@ public class Draw : MonoBehaviour
         if (Vector3.Distance(lastSetPosition, drawPositionSource.position) > distanceThreshold)
         {
             UpdateLine();
-            
+
         }
     }
 
@@ -176,8 +168,8 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine)
     {
-        Debug.Log("StartDrawing");
-        if (playerNumber != playerNr) { 
+
+        if (playerNumber != playerNr) {
 
             OtherisDrawing = true;
             //create line
@@ -186,10 +178,9 @@ public class Draw : MonoBehaviour
             currentLineOther = lineGameObject.AddComponent<LineRenderer>();
             currentLineOther.useWorldSpace = false;
             //currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
-            print("material: " + currentLineOther.material);
+            //print("material: " + currentLineOther.material);
 
             PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
-           
         }
     }
 
@@ -200,15 +191,14 @@ public class Draw : MonoBehaviour
         {
             //update line
             //update line position
-            if (OtherisDrawing) { 
-            currentLinePositionsOther.Add(OtherDrawPositionSource);
-            currentLineOther.positionCount = currentLinePositionsOther.Count;
-            currentLineOther.SetPositions(currentLinePositionsOther.ToArray());
+            if (OtherisDrawing) {
+                currentLinePositionsOther.Add(OtherDrawPositionSource);
+                currentLineOther.positionCount = currentLinePositionsOther.Count;
+                currentLineOther.SetPositions(currentLinePositionsOther.ToArray());
 
-            //update line visual
-            currentLineOther.material = Resources.Load<Material>("Materials/"+ ColorOfLine);
-            currentLineOther.startWidth = WidthOfLine;
-                print("is drawing");
+                //update line visual
+                currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
+                currentLineOther.startWidth = WidthOfLine;
             }
 
         }
@@ -229,7 +219,7 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine)
     {
-       if (playerNumber != playerNr)
+        if (playerNumber != playerNr)
         {
             //check if we have a line
             if (!currentLineOther || currentLinePositionsOther.Count == 0)
@@ -241,6 +231,117 @@ public class Draw : MonoBehaviour
                 PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
             }
         }
+    }
+    [PunRPC]
+    void RPC_UpdateTipColor(int playerNumber, string ColorOfTip)
+    {
+        if (playerNumber != playerNr)
+        {
+            var tipMat = Resources.Load<Material>("Materials/" + ColorOfTip);
+            if (playerNr == 1)
+            {
+                //update tip color
+                GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein").GetComponent<Renderer>().material = tipMat;
+            }
+            if (playerNr == 2)
+            {
+                //update tip color
+                GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein").GetComponent<Renderer>().material = tipMat;
+            }
+
+        }
+    }
+
+    [PunRPC]
+    void RPC_UpdateTipWidth(int playerNumber, string WidthOfTip)
+    {
+        if (playerNumber != playerNr)
+        {
+            if (playerNr == 1)
+            {
+                // find Ringe and X
+                var gross = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross");
+                var mittel = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel");
+                var klein = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein");
+                var radier = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Radierer");
+
+                //update tip width
+                if (WidthOfTip == "Gross_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = true;
+                    mittel.GetComponent<MeshRenderer>().enabled = false;
+                    klein.GetComponent<MeshRenderer>().enabled = false;
+                    radier.GetComponent<MeshRenderer>().enabled = false;
+                }
+                if (WidthOfTip == "Mittel_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = false;
+                    mittel.GetComponent<MeshRenderer>().enabled = true;
+                    klein.GetComponent<MeshRenderer>().enabled = false;
+                    radier.GetComponent<MeshRenderer>().enabled = false;
+                }
+                if (WidthOfTip == "klein_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = false;
+                    mittel.GetComponent<MeshRenderer>().enabled = false;
+                    klein.GetComponent<MeshRenderer>().enabled = true;
+                    radier.GetComponent<MeshRenderer>().enabled = false;
+                }
+                if (WidthOfTip == "Radierer_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = false;
+                    mittel.GetComponent<MeshRenderer>().enabled = false;
+                    klein.GetComponent<MeshRenderer>().enabled = false;
+                    radier.GetComponent<MeshRenderer>().enabled = true;
+                }
+            }
+            if (playerNr == 2)
+            {
+                // find Ringe and X
+                var gross = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross");
+                var mittel = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel");
+                var klein = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein");
+                var radier = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Radierer");
+
+                //update tip width
+                if (WidthOfTip == "Gross_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = true;
+                    mittel.GetComponent<MeshRenderer>().enabled = false;
+                    klein.GetComponent<MeshRenderer>().enabled = false;
+                    radier.GetComponent<MeshRenderer>().enabled = false;
+                }
+                if (WidthOfTip == "Mittel_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = false;
+                    mittel.GetComponent<MeshRenderer>().enabled = true;
+                    klein.GetComponent<MeshRenderer>().enabled = false;
+                    radier.GetComponent<MeshRenderer>().enabled = false;
+                }
+                if (WidthOfTip == "klein_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = false;
+                    mittel.GetComponent<MeshRenderer>().enabled = false;
+                    klein.GetComponent<MeshRenderer>().enabled = true;
+                    radier.GetComponent<MeshRenderer>().enabled = false;
+                }
+                if (WidthOfTip == "Radierer_Auswahl")
+                {
+                    gross.GetComponent<MeshRenderer>().enabled = false;
+                    mittel.GetComponent<MeshRenderer>().enabled = false;
+                    klein.GetComponent<MeshRenderer>().enabled = false;
+                    radier.GetComponent<MeshRenderer>().enabled = true;
+                }
+
+            }
+
+        }
+        
+    
     }
 
 }
