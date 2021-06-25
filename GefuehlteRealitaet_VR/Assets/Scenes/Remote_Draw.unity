@@ -720,7 +720,6 @@ MonoBehaviour:
   allowDraw: 0
   leftInteractorRay: {fileID: 928918689}
   rightInteractorRay: {fileID: 1362624102}
-  DoNetworkDraw: 0
 --- !u!114 &380571837
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,7 +91,7 @@ public class HeadToTxtWriter : MonoBehaviour
         }
         string jsonString = File.ReadAllText(path);
         var bytes = System.Text.Encoding.UTF8.GetBytes(jsonString);
-        PV.RPC("RPC_SendOwnHead", RpcTarget.AllBufferedViaServer, playerNr, bytes);
+        //PV.RPC("RPC_SendOwnHead", RpcTarget.AllBufferedViaServer, playerNr, bytes);
     }
 
     public void Load()
@@ -166,6 +166,7 @@ public class HeadToTxtWriter : MonoBehaviour
     void Update()
     {
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+        if (Input.GetKeyDown(KeyCode.T)) Save();
     }
 
 
@@ -173,6 +174,7 @@ public class HeadToTxtWriter : MonoBehaviour
     [PunRPC]
     void RPC_SendOwnHead(int playerNumber, byte[] headJson)
     {
+        Debug.Log("triggered the fucking rpc!");
         if (playerNumber != playerNr)
         {
             if (playerNr == 1)
@@ -186,7 +188,8 @@ public class HeadToTxtWriter : MonoBehaviour
             File.WriteAllText(path, System.Text.Encoding.UTF8.GetString(headJson));
             wroteOtherHead = true;
 
-        } else
+        }
+        else
         {
             if (playerNr == 1)
             {

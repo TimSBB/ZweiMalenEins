@@ -31,6 +31,10 @@ public void changeSceneElems()
         {
             Destroy(obj);
         }
-
+        NetworkPlayer[] networkplayers = (NetworkPlayer[])GameObject.FindObjectsOfType(typeof(NetworkPlayer));
+        foreach (NetworkPlayer networkplayerScript in networkplayers)
+        {
+            networkplayerScript.GetComponent<NetworkPlayer>().showOtherPlayer = true;
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
 public class ChangeWidth : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ChangeWidth : MonoBehaviour
     private GameObject mittel;
     private GameObject klein;
     private GameObject radier;
+    private int playerNr;
 
 
     private void OnTriggerEnter(Collider other)
@@ -53,8 +55,13 @@ public class ChangeWidth : MonoBehaviour
             }
             //change line material
             other.SendMessageUpwards("SetLineWidth", width, SendMessageOptions.DontRequireReceiver);
+            playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
-            //small vibration
+            ////change tip of networkplayer
+            //if (playerNr == 1 || playerNr == 2)
+            //{
+            //    other.SendMessageUpwards("SetTipWidth", this.gameObject.name, SendMessageOptions.DontRequireReceiver);
+            //}
 
         }
     }
