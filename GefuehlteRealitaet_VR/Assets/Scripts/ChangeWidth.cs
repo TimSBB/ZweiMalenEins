@@ -58,10 +58,10 @@ public class ChangeWidth : MonoBehaviour
             playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
             ////change tip of networkplayer
-            //if (playerNr == 1 || playerNr == 2)
-            //{
-            //    other.SendMessageUpwards("SetTipWidth", this.gameObject.name, SendMessageOptions.DontRequireReceiver);
-            //}
+            if (playerNr == 1 || playerNr == 2)
+            {
+                other.SendMessageUpwards("SetTipWidth", this.gameObject.name, SendMessageOptions.DontRequireReceiver);
+            }
 
         }
     }
