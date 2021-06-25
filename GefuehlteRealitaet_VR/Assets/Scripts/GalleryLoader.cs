@@ -5,6 +5,7 @@ using System.IO;
 using SimpleJSON;
 using System.Linq;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
 public class GalleryLoader : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class GalleryLoader : MonoBehaviour
     public string[] files;
     List<string> jsonfiles;
     public bool loadGallery = false;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -175,4 +180,5 @@ public class GalleryLoader : MonoBehaviour
 
     }
 
+   
 }

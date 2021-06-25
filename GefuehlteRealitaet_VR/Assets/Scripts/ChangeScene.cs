@@ -7,7 +7,7 @@ using System.Linq;
 public class ChangeScene : MonoBehaviour
 {
     private HeadToTxtWriter WriteHead;
-    private bool galleryEnabled = false;
+
 
     //will be called when ready button is pressed >> see onClick Event on button Game Object
 public void changeSceneElems()
@@ -43,25 +43,5 @@ public void changeSceneElems()
         //}
     }
 
-public void enableGallery()
-    {
-        var transform = GameObject.Find("GalleryDome").transform;
 
-        if (!galleryEnabled)
-        {
-            if (transform.childCount > 0)
-            {
-                foreach (Transform child in transform)
-                {
-                    child.gameObject.GetComponent<Renderer>().enabled = true;
-                    child.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-            }
-            GameObject.Find("GalleryDome").GetComponent<GalleryLoader>().enabled = true;
-            GameObject.Find("GalleryDome").GetComponent<GalleryLoader>().loadGallery = true;
-            galleryEnabled = true;
-        }
-       
-
-    }
 }
