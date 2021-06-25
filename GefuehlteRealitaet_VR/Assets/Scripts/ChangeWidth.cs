@@ -54,7 +54,8 @@ public class ChangeWidth : MonoBehaviour
             //change line material
             other.SendMessageUpwards("SetLineWidth", width, SendMessageOptions.DontRequireReceiver);
 
-            //small vibration
+            //change tip of networkplayer
+            other.SendMessageUpwards("SetTipWidth", this.gameObject.name, SendMessageOptions.DontRequireReceiver);
 
         }
     }
