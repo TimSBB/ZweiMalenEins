@@ -720,6 +720,7 @@ MonoBehaviour:
   allowDraw: 0
   leftInteractorRay: {fileID: 928918689}
   rightInteractorRay: {fileID: 1362624102}
+  DoNetworkDraw: 0
 --- !u!114 &380571837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2185,8 +2186,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 770692597}
-  - component: {fileID: 770692599}
   - component: {fileID: 770692598}
+  - component: {fileID: 770692599}
   m_Layer: 0
   m_Name: Head_TextWriter
   m_TagString: Untagged

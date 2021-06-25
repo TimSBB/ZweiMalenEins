@@ -19,33 +19,26 @@ public class HeadToTxtWriter : MonoBehaviour
     private bool wroteOtherHead;
     private Vector3 headRohlingPos;
     private PhotonView PV;
-
-    //void CreateText()
-    //{
-    //    //Path to The File
-    //    string path = Application.dataPath + "/Log.txt";
-    //    //Create File if it doesn't exist
-    //    if (!File.Exists(path))
-    //    {
-    //        File.WriteAllText(path, "Login log \n\n");
-    //    }
-    //    //Content
-    //    string content = "Login date: " + System.DateTime.Now + "\n";
-    //    //Add some text to it
-    //    File.AppendAllText(path, content);
-    //}
-
+    private List<GameObject> myLines;
 
     public void Save()
     {
-        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
+        myLines = new List<GameObject>();
+       // var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
+        var transform = GameObject.Find("Drawing").transform;
+        if (transform.childCount > 0)
+        {
+            foreach (Transform child in transform)
+            {
+                myLines.Add(child.gameObject);
+            }
+        }
         JSONObject lines = new JSONObject();
         //Debug.Log("LineCount: " + objects.Count());
-        lines.Add("LineCount",objects.Count());
+        lines.Add("LineCount", transform.childCount);
         int j = 0;
-        foreach (var gameobj in objects)
+        foreach (var gameobj in myLines)
         {
-            
             var count = gameobj.GetComponent<LineRenderer>().positionCount;
             LinePositions = new Vector3[count];
             gameobj.GetComponent<LineRenderer>().GetPositions(LinePositions);
@@ -79,19 +72,10 @@ public class HeadToTxtWriter : MonoBehaviour
             path = Application.persistentDataPath + "/Head_2_LineSave.json";
         }
         //Debug.Log(lines.ToString());
-        File.WriteAllText(path, lines.ToString());
-        //Debug.Log("path: " + path);
-        if (playerNr == 1)
-        {
-            path = Application.persistentDataPath + "/Head_1_LineSave.json";
-        }
-        if (playerNr == 2)
-        {
-            path = Application.persistentDataPath + "/Head_2_LineSave.json";
-        }
-        string jsonString = File.ReadAllText(path);
+        string jsonString = lines.ToString();
+        File.WriteAllText(path, jsonString);
         var bytes = System.Text.Encoding.UTF8.GetBytes(jsonString);
-        //PV.RPC("RPC_SendOwnHead", RpcTarget.AllBufferedViaServer, playerNr, bytes);
+        PV.RPC("RPC_SendOwnHead", RpcTarget.AllBufferedViaServer, playerNr, bytes);
     }
 
     public void Load()
@@ -157,8 +141,7 @@ public class HeadToTxtWriter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PV = GetComponent<PhotonView>();
-        // CreateText();
+        PV = this.GetComponent<PhotonView>();
         headRohlingPos = GameObject.Find("CharacterEditor_Scene").transform.Find("Head").transform.position;
     }
 
@@ -166,11 +149,10 @@ public class HeadToTxtWriter : MonoBehaviour
     void Update()
     {
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (Input.GetKeyDown(KeyCode.T)) Save();
     }
 
 
-
+    //void RPC_SendOwnHead(int playerNumber, byte[] headJson)
     [PunRPC]
     void RPC_SendOwnHead(int playerNumber, byte[] headJson)
     {
