@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
-
+using System.IO;
+using SimpleJSON;
 
 public class Draw : MonoBehaviour
 {
@@ -96,23 +97,7 @@ public class Draw : MonoBehaviour
         //Debug.Log("width: " + width);
     }
 
-    // is called on interface item when trigger enters interface item
-    public void SetTipMaterial(Material newMat)
-    {
-        if (DoNetworkDraw)
-        {
-            PV.RPC("RPC_UpdateTipColor", RpcTarget.AllBufferedViaServer, playerNr, newMat.name.Replace(" (Instance)", ""));
-        }
-    }
-
-    //// is called on interface item when trigger enters interface item
-    public void SetTipWidth(string tipAuswahl)
-    {
-        if (DoNetworkDraw)
-        {
-            PV.RPC("RPC_UpdateTipWidth", RpcTarget.AllBufferedViaServer, playerNr, tipAuswahl);
-        }
-    }
+   
 
     void StartDrawing()
     {
@@ -232,6 +217,17 @@ public class Draw : MonoBehaviour
             }
         }
     }
+
+
+    // is called on interface item when trigger enters interface item
+    public void SetTipMaterial(Material newMat)
+    {
+        if (DoNetworkDraw)
+        {
+            PV.RPC("RPC_UpdateTipColor", RpcTarget.AllBufferedViaServer, playerNr, newMat.name.Replace(" (Instance)", ""));
+        }
+    }
+
     [PunRPC]
     void RPC_UpdateTipColor(int playerNumber, string ColorOfTip)
     {
@@ -256,6 +252,15 @@ public class Draw : MonoBehaviour
         }
     }
 
+
+    //// is called on interface item when trigger enters interface item
+    public void SetTipWidth(string tipAuswahl)
+    {
+        if (DoNetworkDraw)
+        {
+            PV.RPC("RPC_UpdateTipWidth", RpcTarget.AllBufferedViaServer, playerNr, tipAuswahl);
+        }
+    }
     [PunRPC]
     void RPC_UpdateTipWidth(int playerNumber, string WidthOfTip)
     {
@@ -344,4 +349,20 @@ public class Draw : MonoBehaviour
     
     }
 
+
+
+    // is called when new galleryInterface Item is hovered with controller >> GalleryDome >> bb_..
+    public void SetGalleryItem(int loadIndex)
+    {
+        PV.RPC("RPC_SetGalleryItem", RpcTarget.AllBufferedViaServer, playerNr, loadIndex);
+    }
+    [PunRPC]
+    void RPC_SetGalleryItem(int playerNumber, int loadIndex)
+    {
+        if (playerNumber != playerNr)
+        {
+            var gL = GameObject.Find("GalleryDome").GetComponent<GalleryLoader>();
+            gL.LoadItem(loadIndex);
+        }
+    }
 }

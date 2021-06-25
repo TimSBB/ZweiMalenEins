@@ -25,7 +25,7 @@ public class ChangeGalleryItem : MonoBehaviour
     {
         if (other.gameObject.name == "PaintCapsule")
         {
-            if (this.gameObject.name.Contains("bb__0"))
+            if (this.gameObject.name.Contains("bb_0"))
             {
                 loadIndex = int.Parse(this.gameObject.name.Replace("bb_0", "")) - 1;
             }
@@ -46,7 +46,9 @@ public class ChangeGalleryItem : MonoBehaviour
             {
                 Load();
             }
-            
+
+            other.SendMessageUpwards("SetGalleryItem", loadIndex, SendMessageOptions.DontRequireReceiver);
+
         }
     }
 

@@ -22,9 +22,9 @@ public class ChangeColor : MonoBehaviour
         if (other.gameObject.name == "PaintCapsule") {
 
             //find brush tips
-            gross = GameObject.Find("Gross");
-            mittel = GameObject.Find("Mittel");
-            klein = GameObject.Find("klein");
+            gross = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Gross");
+            mittel = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Mittel");
+            klein = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/klein");
             
             //change brush tip
             gross.GetComponent<Renderer>().material = newMaterial;

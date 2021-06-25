@@ -52,6 +52,7 @@ MonoBehaviour:
   - RPC_SendOwnHead
   - RPC_UpdateTipColor
   - RPC_UpdateTipWidth
+  - RPC_SetGalleryItem
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

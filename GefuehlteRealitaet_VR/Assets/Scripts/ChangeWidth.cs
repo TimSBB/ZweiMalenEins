@@ -17,10 +17,10 @@ public class ChangeWidth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        gross = GameObject.Find("Gross");
-        mittel = GameObject.Find("Mittel");
-        klein = GameObject.Find("klein");
-        radier = GameObject.Find("Radierer");
+        gross = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Gross");
+        mittel = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Mittel");
+        klein = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/klein");
+        radier = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Radierer");
 
 
         if (other.gameObject.name == "PaintCapsule") {

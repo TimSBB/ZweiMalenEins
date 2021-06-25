@@ -89,10 +89,13 @@ public class Countdown : MonoBehaviour
     void RPC_Reset()
     {
         reset = true;
-        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
-        foreach (var gameObj in objects)
+        var transform = GameObject.Find("Drawing").transform;
+        if (transform.childCount > 0)
         {
-            Destroy(gameObj);
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
         if (playerNr == 1)
         {
