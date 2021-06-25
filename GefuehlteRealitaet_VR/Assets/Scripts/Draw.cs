@@ -247,16 +247,16 @@ public class Draw : MonoBehaviour
             if (playerNr == 1)
             {
                 //update tip color
-                GameObject.Find("Network Player 2(Clone)").transform.Find("Gross").GetComponent<Renderer>().material = tipMat;
-                GameObject.Find("Network Player 2(Clone)").transform.Find("Mittel").GetComponent<Renderer>().material = tipMat;
-                GameObject.Find("Network Player 2(Clone)").transform.Find("klein").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein").GetComponent<Renderer>().material = tipMat;
             }
             if (playerNr == 2)
             {
                 //update tip color
-                GameObject.Find("Network Player(Clone)").transform.Find("Gross").GetComponent<Renderer>().material = tipMat;
-                GameObject.Find("Network Player(Clone)").transform.Find("Mittel").GetComponent<Renderer>().material = tipMat;
-                GameObject.Find("Network Player(Clone)").transform.Find("klein").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel").GetComponent<Renderer>().material = tipMat;
+                GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein").GetComponent<Renderer>().material = tipMat;
             }
 
         }
@@ -270,10 +270,10 @@ public class Draw : MonoBehaviour
             if (playerNr == 1)
             {
                 // find Ringe and X
-                var gross = GameObject.Find("Network Player 2(Clone)").transform.Find("Gross");
-                var mittel = GameObject.Find("Network Player 2(Clone)").transform.Find("Mittel");
-                var klein = GameObject.Find("Network Player 2(Clone)").transform.Find("klein");
-                var radier = GameObject.Find("Network Player 2(Clone)").transform.Find("Radierer");
+                var gross = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross");
+                var mittel = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel");
+                var klein = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein");
+                var radier = GameObject.Find("Network Player 2(Clone)").transform.Find("Right Hand/DrawController_Prefab/Radierer");
 
                 //update tip width
                 if (WidthOfTip == "Gross_Auswahl")
@@ -308,10 +308,10 @@ public class Draw : MonoBehaviour
             if (playerNr == 2)
             {
                 // find Ringe and X
-                var gross = GameObject.Find("Network Player(Clone)").transform.Find("Gross");
-                var mittel = GameObject.Find("Network Player(Clone)").transform.Find("Mittel");
-                var klein = GameObject.Find("Network Player(Clone)").transform.Find("klein");
-                var radier = GameObject.Find("Network Player(Clone)").transform.Find("Radierer");
+                var gross = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross");
+                var mittel = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel");
+                var klein = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein");
+                var radier = GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Radierer");
 
                 //update tip width
                 if (WidthOfTip == "Gross_Auswahl")
