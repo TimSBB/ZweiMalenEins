@@ -101,7 +101,7 @@ public class Draw : MonoBehaviour
     {
         if (DoNetworkDraw)
         {
-            PV.RPC("RPC_UpdateTipColor", RpcTarget.AllBufferedViaServer, playerNr, newMat.name);
+            PV.RPC("RPC_UpdateTipColor", RpcTarget.AllBufferedViaServer, playerNr, newMat.name.Replace(" (Instance)", ""));
         }
     }
 
