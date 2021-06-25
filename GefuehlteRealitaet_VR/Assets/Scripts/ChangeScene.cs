@@ -13,6 +13,7 @@ public class ChangeScene : MonoBehaviour
 public void changeSceneElems()
     {
         //Write the drawing to your local file and in the end trigger RPC event to send via Network
+        //!!!! this is also where the players ar made visible !!!!!
         WriteHead = GameObject.Find("Head_TextWriter").GetComponent<HeadToTxtWriter>();
         WriteHead.Save();
 

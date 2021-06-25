@@ -222,10 +222,9 @@ public class Draw : MonoBehaviour
     // is called on interface item when trigger enters interface item
     public void SetTipMaterial(Material newMat)
     {
-        if (DoNetworkDraw)
-        {
+
             PV.RPC("RPC_UpdateTipColor", RpcTarget.AllBufferedViaServer, playerNr, newMat.name.Replace(" (Instance)", ""));
-        }
+
     }
 
     [PunRPC]
@@ -256,10 +255,9 @@ public class Draw : MonoBehaviour
     //// is called on interface item when trigger enters interface item
     public void SetTipWidth(string tipAuswahl)
     {
-        if (DoNetworkDraw)
-        {
+
             PV.RPC("RPC_UpdateTipWidth", RpcTarget.AllBufferedViaServer, playerNr, tipAuswahl);
-        }
+ 
     }
     [PunRPC]
     void RPC_UpdateTipWidth(int playerNumber, string WidthOfTip)
