@@ -25,7 +25,7 @@ public void changeSceneElems()
 
         var scene = GameObject.Find("CharacterEditor_Scene");
         Destroy(scene);
-        
+
         var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
         foreach (var obj in objects)
         {
