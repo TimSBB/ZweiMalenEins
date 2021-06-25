@@ -6,11 +6,6 @@ using Photon.Pun;
 public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
     private GameObject spawnedPlayerPrefab;
-    public int ColorNr;
-    public Vector3[] LinePositions;
-    private string path;
-
-
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();

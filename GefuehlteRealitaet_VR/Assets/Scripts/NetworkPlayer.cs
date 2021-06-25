@@ -30,10 +30,11 @@ public class NetworkPlayer : MonoBehaviour
         photonView = GetComponent<PhotonView>();
 
         XRRig rig = FindObjectOfType<XRRig>();
-        if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 2 && this.gameObject.name == "Network Player 2(Clone)")
         {
             rig.transform.position = SpawnPosition.position;
-            rig.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            //rig.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
+            Debug.Log("Set Spawn Position");
         }
         headRig = rig.transform.Find("Camera Offset/Main Camera");
         leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
