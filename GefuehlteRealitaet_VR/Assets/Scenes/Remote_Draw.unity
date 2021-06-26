@@ -2017,10 +2017,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Character-Editor
+  m_text: 'Character-Editor
+
+    Hier kannst du deinen Kopf anmalen du Schlingel'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3229f80a6232e5b4d85804962514c45a, type: 2}
+  m_sharedMaterial: {fileID: 5264506246642470670, guid: 3229f80a6232e5b4d85804962514c45a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
