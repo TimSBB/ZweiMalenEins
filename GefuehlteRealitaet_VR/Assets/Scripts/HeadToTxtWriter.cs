@@ -131,13 +131,15 @@ public class HeadToTxtWriter : MonoBehaviour
             currentLine.positionCount = positionCount;
             currentLine.SetPositions(LinePositions);
             currentLine.material = Resources.Load<Material>("Materials/" + ColorNr);
-            currentLine.startWidth = 0.03f;
+            currentLine.startWidth = 0.03f *0.7f;
 
            // Debug.Log(LineJson.ToString());
 
         }
-        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Sphere").transform.Rotate(0, 180, 0, Space.Self);
-        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Sphere").transform.Rotate(0, 180, 0, Space.Self);
+        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Rotate(0, 180, 0, Space.Self);
+        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Rotate(0, 180, 0, Space.Self);
+        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
+        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
     }
 
     // Start is called before the first frame update
