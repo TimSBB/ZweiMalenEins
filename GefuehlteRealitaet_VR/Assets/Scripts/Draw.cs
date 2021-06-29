@@ -21,7 +21,7 @@ public class Draw : MonoBehaviour
     private XRController controller;
     public bool isDrawing = false;
     public bool OtherisDrawing = false;
-    private bool allowDraw = true;
+    public bool allowDraw = true;
     private LineRenderer currentLine;
     private LineRenderer currentLineOther;
 
@@ -34,7 +34,8 @@ public class Draw : MonoBehaviour
     public bool DoNetworkDraw = false;
     public int publictintenstand = 300;
     private int tintenstand;
-    private bool initalDrawer = false;
+    public bool nextScene = false;
+
 
 
 
@@ -55,18 +56,23 @@ public class Draw : MonoBehaviour
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
-        if (!isDrawing && isPressed && allowDraw && !OtherisDrawing)
-        {
-            StartDrawing();
-            PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
-            if (DoNetworkDraw)
+            if (!nextScene)
             {
-                var mat = lineMaterial.name.Replace(" (Instance)", "");
-                PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+            allowDraw = true;
+            OtherisDrawing = false;
             }
-        }
-        else if (isDrawing && !isPressed)
-        {
+
+            if (!isDrawing && isPressed && allowDraw && !OtherisDrawing)
+            {
+                StartDrawing();
+                PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+                if (DoNetworkDraw)
+                {
+                    var mat = lineMaterial.name.Replace(" (Instance)", "");
+                    PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+                }
+            } else if (isDrawing && !isPressed)
+            {
             StopDrawing();
             if (DoNetworkDraw)
             {
@@ -80,7 +86,7 @@ public class Draw : MonoBehaviour
             if (DoNetworkDraw)
             {
                 var mat = lineMaterial.name.Replace(" (Instance)", "");
-                PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth, allowDraw);
+                PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
             }
         }
     }
@@ -153,16 +159,20 @@ public class Draw : MonoBehaviour
         {
             UpdateLine();
         }
-        if (tintenstand > 0)
+        if (nextScene)
         {
-            tintenstand--;
+            if (tintenstand > 0)
+            {
+                tintenstand--;
+            }
+            else
+            {
+                StopDrawing();
+                allowDraw = false;
+                PV.RPC("RPC_SetAllowDrawReset", RpcTarget.AllBufferedViaServer, playerNr);
+            }
         }
-        else
-        {
-            StopDrawing();
-            allowDraw = false;
-            PV.RPC("RPC_SetAllowDrawReset", RpcTarget.AllBufferedViaServer, playerNr);
-        }
+        
         Debug.Log("tintenstand: " + tintenstand);
     }
 
@@ -219,7 +229,7 @@ public class Draw : MonoBehaviour
 
 
     [PunRPC]
-    void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine, bool allowedToDraw)
+    void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine)
     {
         if (playerNumber != playerNr)
         {

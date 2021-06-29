@@ -17,6 +17,8 @@ public void changeSceneElems()
         WriteHead = GameObject.Find("Head_TextWriter").GetComponent<HeadToTxtWriter>();
         WriteHead.Save();
 
+        GameObject.Find("RightHand Controller").GetComponent<Draw>().nextScene = true;
+        GameObject.Find("RightHand Controller").GetComponent<Draw>().allowDraw = true;
 
         GameObject.Find("CharacterEditor_Button_Canvas").SetActive(false);
         GameObject.Find("Text_Character-Editor").SetActive(false);
