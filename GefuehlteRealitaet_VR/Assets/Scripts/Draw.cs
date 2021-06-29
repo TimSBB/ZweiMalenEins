@@ -51,41 +51,28 @@ public class Draw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("otherisdrawing" + OtherisDrawing);
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
             if (!isDrawing && isPressed)
             {
-                if (!OtherisDrawing)
-                {
-                    StartDrawing();
-                }
-                if (DoNetworkDraw)
-                {
-                    var mat = lineMaterial.name.Replace(" (Instance)", "");
-                    PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
-                }
-            } else if (isDrawing && !isPressed)
+                StartDrawing();
+                var mat = lineMaterial.name.Replace(" (Instance)", "");
+                PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+            }
+            else if (isDrawing && !isPressed)
             {
                 StopDrawing();
-                if (DoNetworkDraw)
-                {
-                    PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
-                }
+                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
             }
+
             else if (isDrawing && isPressed)
             {
-                if (!OtherisDrawing)
-                {
-                    UpdateDrawing();
-                }
-                if (DoNetworkDraw)
-                {
-                    var mat = lineMaterial.name.Replace(" (Instance)", "");
-                    PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
-                }
+                UpdateDrawing();
+                var mat = lineMaterial.name.Replace(" (Instance)", "");
+                PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
             }
     }
 
@@ -166,15 +153,18 @@ public class Draw : MonoBehaviour
 
         if (playerNumber != playerNr) {
             OtherisDrawing = true;
-            //create line
-            GameObject lineGameObject = new GameObject("Line");
-            lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
-            currentLineOther = lineGameObject.AddComponent<LineRenderer>();
-            currentLineOther.useWorldSpace = false;
-            //currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
-            //print("material: " + currentLineOther.material);
+            if (DoNetworkDraw)
+            {
+                //create line
+                GameObject lineGameObject = new GameObject("Line");
+                lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
+                currentLineOther = lineGameObject.AddComponent<LineRenderer>();
+                currentLineOther.useWorldSpace = false;
+                //currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
+                //print("material: " + currentLineOther.material);
 
-            PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
+                PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
+            }
         }
     }
 
@@ -203,9 +193,12 @@ public class Draw : MonoBehaviour
     {
         if (playerNumber != playerNr)
         {
-            OtherisDrawing = false;
+        OtherisDrawing = false;
+        if (DoNetworkDraw)
+        {
             currentLinePositionsOther.Clear();
             currentLineOther = null;
+        }
         }
     }
 
@@ -215,14 +208,17 @@ public class Draw : MonoBehaviour
     {
         if (playerNumber != playerNr)
         {
-            //check if we have a line
-            if (!currentLineOther || currentLinePositionsOther.Count == 0)
-                return;
-
-            Vector3 lastSetPosition = currentLinePositionsOther[currentLinePositionsOther.Count - 1];
-            if (Vector3.Distance(lastSetPosition, OtherDrawPositionSource) > distanceThreshold)
+            if (DoNetworkDraw)
             {
-                PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
+                //check if we have a line
+                if (!currentLineOther || currentLinePositionsOther.Count == 0)
+                    return;
+
+                Vector3 lastSetPosition = currentLinePositionsOther[currentLinePositionsOther.Count - 1];
+                if (Vector3.Distance(lastSetPosition, OtherDrawPositionSource) > distanceThreshold)
+                {
+                    PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
+                }
             }
         }
     }
