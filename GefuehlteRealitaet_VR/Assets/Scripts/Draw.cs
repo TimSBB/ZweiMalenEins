@@ -58,7 +58,10 @@ public class Draw : MonoBehaviour
 
             if (!isDrawing && isPressed)
             {
-                StartDrawing();
+                if (!OtherisDrawing)
+                {
+                    StartDrawing();
+                }
                 if (DoNetworkDraw)
                 {
                     var mat = lineMaterial.name.Replace(" (Instance)", "");
@@ -74,7 +77,10 @@ public class Draw : MonoBehaviour
             }
             else if (isDrawing && isPressed)
             {
-                UpdateDrawing();
+                if (!OtherisDrawing)
+                {
+                    UpdateDrawing();
+                }
                 if (DoNetworkDraw)
                 {
                     var mat = lineMaterial.name.Replace(" (Instance)", "");
@@ -159,7 +165,6 @@ public class Draw : MonoBehaviour
     {
 
         if (playerNumber != playerNr) {
-            allowDraw = false;
             OtherisDrawing = true;
             //create line
             GameObject lineGameObject = new GameObject("Line");
