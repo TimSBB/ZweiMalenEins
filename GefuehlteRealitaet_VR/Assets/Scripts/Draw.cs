@@ -21,7 +21,7 @@ public class Draw : MonoBehaviour
     private XRController controller;
     public bool isDrawing = false;
     public bool OtherisDrawing = false;
-    private bool allowDraw = false;
+    private bool allowDraw = true;
     private LineRenderer currentLine;
     private LineRenderer currentLineOther;
 
@@ -54,14 +54,11 @@ public class Draw : MonoBehaviour
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (isPressed && !allowDraw && !OtherisDrawing && !initalDrawer)
-        {
-            PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
-            initalDrawer = true;
-        }
+
         if (!isDrawing && isPressed && allowDraw && !OtherisDrawing)
         {
             StartDrawing();
+            PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
             if (DoNetworkDraw)
             {
                 var mat = lineMaterial.name.Replace(" (Instance)", "");
@@ -163,7 +160,8 @@ public class Draw : MonoBehaviour
         else
         {
             StopDrawing();
-            PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+            allowDraw = false;
+            PV.RPC("RPC_SetAllowDrawReset", RpcTarget.AllBufferedViaServer, playerNr);
         }
         Debug.Log("tintenstand: " + tintenstand);
     }
@@ -240,21 +238,17 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_SetAllowDraw(int playerNumber)
     {
-        if (playerNumber != playerNr && !allowDraw)
-        {
-            allowDraw = true;
-            tintenstand = publictintenstand;
-            Debug.Log("allowDraw =" + allowDraw);
-            Debug.Log("tintenstand =" + tintenstand);
-
-        }
-        else if (playerNumber == playerNr && !allowDraw && !OtherisDrawing && tintenstand > 0)
-        {
-            allowDraw = true;
-        }
-        else if (playerNumber == playerNr && !OtherisDrawing && tintenstand <= 0)
+        if (playerNumber != playerNr)
         {
             allowDraw = false;
+        }
+    }
+    [PunRPC]
+    void RPC_SetAllowDrawReset(int playerNumber)
+    {
+        if (playerNumber != playerNr)
+        {
+            allowDraw = true;
         }
     }
 
