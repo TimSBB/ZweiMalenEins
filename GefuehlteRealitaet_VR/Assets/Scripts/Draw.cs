@@ -56,16 +56,9 @@ public class Draw : MonoBehaviour
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
-            if (!nextScene)
-            {
-            allowDraw = true;
-            OtherisDrawing = false;
-            }
-
-            if (!isDrawing && isPressed && allowDraw && !OtherisDrawing)
+            if (!isDrawing && isPressed)
             {
                 StartDrawing();
-                PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
                 if (DoNetworkDraw)
                 {
                     var mat = lineMaterial.name.Replace(" (Instance)", "");
@@ -73,22 +66,21 @@ public class Draw : MonoBehaviour
                 }
             } else if (isDrawing && !isPressed)
             {
-            StopDrawing();
-            if (DoNetworkDraw)
-            {
-
-                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
+                StopDrawing();
+                if (DoNetworkDraw)
+                {
+                    PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
+                }
             }
-        }
-        else if (isDrawing && isPressed)
-        {
-            UpdateDrawing();
-            if (DoNetworkDraw)
+            else if (isDrawing && isPressed)
             {
-                var mat = lineMaterial.name.Replace(" (Instance)", "");
-                PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+                UpdateDrawing();
+                if (DoNetworkDraw)
+                {
+                    var mat = lineMaterial.name.Replace(" (Instance)", "");
+                    PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+                }
             }
-        }
     }
 
     // will be set in ChangeScene
@@ -159,21 +151,6 @@ public class Draw : MonoBehaviour
         {
             UpdateLine();
         }
-        if (nextScene)
-        {
-            if (tintenstand > 0)
-            {
-                tintenstand--;
-            }
-            else
-            {
-                StopDrawing();
-                allowDraw = false;
-                PV.RPC("RPC_SetAllowDrawReset", RpcTarget.AllBufferedViaServer, playerNr);
-            }
-        }
-        
-        Debug.Log("tintenstand: " + tintenstand);
     }
 
 
@@ -245,25 +222,7 @@ public class Draw : MonoBehaviour
         }
     }
 
-    [PunRPC]
-    void RPC_SetAllowDraw(int playerNumber)
-    {
-        if (playerNumber != playerNr)
-        {
-            allowDraw = false;
-            tintenstand = publictintenstand;
-            Debug.Log("tintentstand" + tintenstand);
-        }
 
-    }
-    [PunRPC]
-    void RPC_SetAllowDrawReset(int playerNumber)
-    {
-        if (playerNumber != playerNr)
-        {
-            allowDraw = true;
-        }
-    }
 
 
     // is called on interface item when trigger enters interface item
