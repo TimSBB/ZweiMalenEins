@@ -136,10 +136,10 @@ public class HeadToTxtWriter : MonoBehaviour
            // Debug.Log(LineJson.ToString());
 
         }
-        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 180, 0, Space.Self);
-        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 180, 0, Space.Self);
-        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.localScale *= 0.7f;
-        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.localScale *= 0.7f;
+        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 0, Space.Self);
+        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 0, Space.Self);
+        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
+        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
     }
 
     // Start is called before the first frame update
