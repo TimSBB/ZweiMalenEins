@@ -21,7 +21,7 @@ public class Draw : MonoBehaviour
     private XRController controller;
     public bool isDrawing = false;
     public bool OtherisDrawing = false;
-    private bool allowDraw = true;
+    private bool allowDraw = false;
     private LineRenderer currentLine;
     private LineRenderer currentLineOther;
 
@@ -34,6 +34,7 @@ public class Draw : MonoBehaviour
     public bool DoNetworkDraw = false;
     public int publictintenstand = 300;
     private int tintenstand;
+    private bool initalDrawer = false;
 
 
 
@@ -53,6 +54,11 @@ public class Draw : MonoBehaviour
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+        if (isPressed && !allowDraw && !OtherisDrawing && !initalDrawer)
+        {
+            PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+            initalDrawer = true;
+        }
         if (!isDrawing && isPressed && allowDraw && !OtherisDrawing)
         {
             StartDrawing();
@@ -157,7 +163,6 @@ public class Draw : MonoBehaviour
         else
         {
             StopDrawing();
-            tintenstand = publictintenstand;
             PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
         }
         Debug.Log("tintenstand: " + tintenstand);
@@ -235,7 +240,7 @@ public class Draw : MonoBehaviour
     [PunRPC]
     void RPC_SetAllowDraw(int playerNumber)
     {
-        if (playerNumber != playerNr)
+        if (playerNumber != playerNr && !allowDraw)
         {
             allowDraw = true;
             tintenstand = publictintenstand;
@@ -243,7 +248,14 @@ public class Draw : MonoBehaviour
             Debug.Log("tintenstand =" + tintenstand);
 
         }
-        else allowDraw = false;
+        else if (playerNumber == playerNr && !allowDraw && !OtherisDrawing && tintenstand > 0)
+        {
+            allowDraw = true;
+        }
+        else if (playerNumber == playerNr && !OtherisDrawing && tintenstand <= 0)
+        {
+            allowDraw = false;
+        }
     }
 
 
