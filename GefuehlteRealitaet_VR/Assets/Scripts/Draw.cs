@@ -58,7 +58,7 @@ public class Draw : MonoBehaviour
 
             if (!isDrawing && isPressed)
             {
-                if (!OtherisDrawing)
+                if (!OtherisDrawing || !nextScene)
                 {
                     StartDrawing();
                     var mat = lineMaterial.name.Replace(" (Instance)", "");
