@@ -241,7 +241,10 @@ public class Draw : MonoBehaviour
         if (playerNumber != playerNr)
         {
             allowDraw = false;
+            tintenstand = publictintenstand;
+            Debug.Log("tintentstand" + tintenstand);
         }
+
     }
     [PunRPC]
     void RPC_SetAllowDrawReset(int playerNumber)
