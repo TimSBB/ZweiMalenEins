@@ -1105,10 +1105,10 @@ MonoBehaviour:
   distanceThreshold: 0.01
   isDrawing: 0
   OtherisDrawing: 0
-  allowDraw: 0
   leftInteractorRay: {fileID: 928918689}
   rightInteractorRay: {fileID: 1362624102}
   DoNetworkDraw: 0
+  publictintenstand: 300
 --- !u!114 &380571837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3394,53 +3394,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1099801755
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1099801756}
-  - component: {fileID: 1099801757}
-  m_Layer: 0
-  m_Name: ColliderBuilder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1099801756
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099801755}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.874347, y: 0.42621726, z: 3.7348413}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1099801757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099801755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6814e9eb36978634b8e0499f0139c1fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trailObject: {fileID: 8572698195175754815, guid: 28a8f9c1a21565247b725ff7615baf03,
-    type: 3}
-  newObjectDistance: 0.1
-  sizeRatio: 0.5
 --- !u!1 &1117276824
 GameObject:
   m_ObjectHideFlags: 0

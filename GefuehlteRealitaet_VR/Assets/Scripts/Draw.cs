@@ -21,7 +21,7 @@ public class Draw : MonoBehaviour
     private XRController controller;
     public bool isDrawing = false;
     public bool OtherisDrawing = false;
-    public bool allowDraw = false;
+    private bool allowDraw = true;
     private LineRenderer currentLine;
     private LineRenderer currentLineOther;
 
@@ -32,12 +32,16 @@ public class Draw : MonoBehaviour
 
     private Vector3 lineColor;
     public bool DoNetworkDraw = false;
+    public int publictintenstand = 300;
+    private int tintenstand;
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        tintenstand = publictintenstand;
         PV = GetComponent<PhotonView>();
         controller = GetComponent<XRController>();
     }
@@ -49,7 +53,7 @@ public class Draw : MonoBehaviour
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (!isDrawing && isPressed)
+        if (!isDrawing && isPressed && allowDraw && !OtherisDrawing)
         {
             StartDrawing();
             if (DoNetworkDraw)
@@ -73,7 +77,7 @@ public class Draw : MonoBehaviour
             if (DoNetworkDraw)
             {
                 var mat = lineMaterial.name.Replace(" (Instance)", "");
-                PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+                PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth, allowDraw);
             }
         }
     }
@@ -145,8 +149,19 @@ public class Draw : MonoBehaviour
         if (Vector3.Distance(lastSetPosition, drawPositionSource.position) > distanceThreshold)
         {
             UpdateLine();
-
         }
+        if (tintenstand > 0)
+        {
+            tintenstand--;
+        }
+        else
+        {
+            StopDrawing();
+            tintenstand = publictintenstand;
+            allowDraw = false;
+            PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+        }
+        Debug.Log("tintenstand: " + tintenstand);
     }
 
 
@@ -155,7 +170,7 @@ public class Draw : MonoBehaviour
     {
 
         if (playerNumber != playerNr) {
-
+            allowDraw = false;
             OtherisDrawing = true;
             //create line
             GameObject lineGameObject = new GameObject("Line");
@@ -202,7 +217,7 @@ public class Draw : MonoBehaviour
 
 
     [PunRPC]
-    void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine)
+    void RPC_UpdateDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine, bool allowedToDraw)
     {
         if (playerNumber != playerNr)
         {
@@ -215,6 +230,16 @@ public class Draw : MonoBehaviour
             {
                 PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
             }
+        }
+    }
+
+    [PunRPC]
+    void RPC_SetAllowDraw(int playerNumber)
+    {
+        if (playerNumber != playerNr)
+        {
+            allowDraw = true;
+            tintenstand = publictintenstand;
         }
     }
 

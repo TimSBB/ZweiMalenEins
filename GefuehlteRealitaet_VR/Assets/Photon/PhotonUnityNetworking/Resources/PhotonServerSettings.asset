@@ -54,6 +54,7 @@ MonoBehaviour:
   - RPC_UpdateTipWidth
   - RPC_SetGalleryItem
   - RPC_GalleryEnable
+  - RPC_SetAllowDraw
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
