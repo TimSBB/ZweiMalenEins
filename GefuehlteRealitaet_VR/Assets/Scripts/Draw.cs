@@ -240,6 +240,9 @@ public class Draw : MonoBehaviour
         {
             allowDraw = true;
             tintenstand = publictintenstand;
+            Debug.Log("allowDraw =" + allowDraw);
+            Debug.Log("tintenstand =" + tintenstand);
+
         }
     }
 

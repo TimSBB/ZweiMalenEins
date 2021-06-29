@@ -50,7 +50,8 @@ public class HeadToTxtWriter : MonoBehaviour
 
             ColorNr = int.Parse(gameobj.GetComponent<LineRenderer>().material.name.Replace(" (Instance)", ""));
             lineJson.Add("ColorNr", ColorNr);
-
+            var widthOfLine = gameobj.GetComponent<LineRenderer>().startWidth;
+            lineJson.Add("lineWidth", widthOfLine);
             lineJson.Add("PositionCount", LinePositions.Length);
 
             for (int i = 0; i < LinePositions.Length; i++)
@@ -102,6 +103,7 @@ public class HeadToTxtWriter : MonoBehaviour
             var LineJson = lines["lineJson" + i.ToString()];
             //Set Values
             ColorNr = LineJson["ColorNr"];
+
             var positionCount = LineJson["PositionCount"];
            // Debug.Log("PositionCount"+i+":" + positionCount);
             LinePositions = new Vector3[positionCount];
@@ -131,7 +133,7 @@ public class HeadToTxtWriter : MonoBehaviour
             currentLine.positionCount = positionCount;
             currentLine.SetPositions(LinePositions);
             currentLine.material = Resources.Load<Material>("Materials/" + ColorNr);
-            currentLine.startWidth = 0.03f *0.7f;
+            currentLine.startWidth = LineJson["lineWidth"] * 0.7f;
 
            // Debug.Log(LineJson.ToString());
 
