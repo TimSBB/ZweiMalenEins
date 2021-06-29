@@ -158,7 +158,6 @@ public class Draw : MonoBehaviour
         {
             StopDrawing();
             tintenstand = publictintenstand;
-            allowDraw = false;
             PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
         }
         Debug.Log("tintenstand: " + tintenstand);
@@ -244,6 +243,7 @@ public class Draw : MonoBehaviour
             Debug.Log("tintenstand =" + tintenstand);
 
         }
+        else allowDraw = false;
     }
 
 
