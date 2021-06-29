@@ -58,7 +58,10 @@ public class Draw : MonoBehaviour
 
             if (!isDrawing && isPressed)
             {
-                StartDrawing();
+                if (!OtherisDrawing)
+                {
+                    StartDrawing();
+                }
                 var mat = lineMaterial.name.Replace(" (Instance)", "");
                 PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
             }
@@ -70,7 +73,14 @@ public class Draw : MonoBehaviour
 
             else if (isDrawing && isPressed)
             {
-                UpdateDrawing();
+                if (!OtherisDrawing)
+                {
+                    UpdateDrawing();
+                }
+                else
+                {
+                    StopDrawing();
+                }
                 var mat = lineMaterial.name.Replace(" (Instance)", "");
                 PV.RPC("RPC_UpdateDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
             }
