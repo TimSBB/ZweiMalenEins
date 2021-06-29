@@ -11,7 +11,7 @@ public class StandingOnButtonChecker : MonoBehaviour
         if (other.gameObject.name == "ReticleParent")
         {
             standingOnBottom = true;
-            Debug.Log("standing on button= " + standingOnBottom);
+           // Debug.Log("standing on button= " + standingOnBottom);
         }
     }
 
@@ -20,7 +20,7 @@ public class StandingOnButtonChecker : MonoBehaviour
         if (other.gameObject.name == "ReticleParent")
         {
             standingOnBottom = false;
-            Debug.Log("standing on button= " + standingOnBottom);
+            //Debug.Log("standing on button= " + standingOnBottom);
         }
     }
 

@@ -24,8 +24,8 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rayOrigin = GameObject.Find("Bottom_Button");
-        standingOnBottom = rayOrigin.GetComponent<StandingOnButtonChecker>().standingOnBottom;
+        //rayOrigin = GameObject.Find("Bottom_Button");
+        //standingOnBottom = rayOrigin.GetComponent<StandingOnButtonChecker>().standingOnBottom;
         Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(transform.position, transform.forward, Color.green);
         if (Physics.Raycast(ray, out hit))
@@ -33,7 +33,7 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
 
             if (hit.collider.isTrigger && hit.transform.name == "lookAtButton" && standingOnBottom)
             {
-                print("I'm looking at " + hit.transform.name);
+                //print("I'm looking at " + hit.transform.name);
                 //Do the thing
                 canvas.transform.position = hit.transform.position;
                 canvas.GetComponent<Canvas>().enabled = true;
