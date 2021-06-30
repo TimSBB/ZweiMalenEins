@@ -25,6 +25,7 @@ public class HeadToTxtWriter : MonoBehaviour
     private Vector3 headRohlingPos1;
     private Vector3 headRohlingPos2;
 
+
     private List<GameObject> myLines;
     private PhotonView PV;
     private Draw SetNetworkDraw;
@@ -123,13 +124,13 @@ public class HeadToTxtWriter : MonoBehaviour
             GameObject lineGameObject = new GameObject("Line");
             if (playerNr == 1)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1;
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1 + new Vector3(-1.7f, 0, 0);
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
                 
             }
             if (playerNr == 2)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2;
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2 + new Vector3(1.7f, 0, 0);
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
 
             }
@@ -144,8 +145,8 @@ public class HeadToTxtWriter : MonoBehaviour
            // Debug.Log(LineJson.ToString());
 
         }
-        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 180, Space.Self);
-        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 180, Space.Self);
+        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 225, Space.Self);
+        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 135, Space.Self);
         GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
         GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
     }

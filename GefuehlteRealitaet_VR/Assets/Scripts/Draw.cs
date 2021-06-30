@@ -206,13 +206,13 @@ public class Draw : MonoBehaviour
             OtherisDrawingAllowedToDraw = true;
             if (playerNr == 1)
             {
-                var anzeige = GameObject.Find("Network Player 2(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+                var anzeige = GameObject.Find("Network Player 2(Clone)/Right Hand/DrawController_Prefab/Farbanzeige");
 
                 anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", 1);
             }
             if (playerNr == 2)
             {
-                var anzeige = GameObject.Find("Network Player(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+                var anzeige = GameObject.Find("Network Player(Clone)/Right Hand/DrawController_Prefab/Farbanzeige");
 
                 anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", 1);
             }
