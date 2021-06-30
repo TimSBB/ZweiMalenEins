@@ -1250,6 +1250,7 @@ MonoBehaviour:
   DoNetworkDraw: 0
   publictintenstand: 300
   nextScene: 0
+  firstDraw: 0
   allowDraw: 1
   OtherisDrawingAllowedToDraw: 0
 --- !u!114 &380571837
@@ -6734,7 +6735,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094427766}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 2075762138}
