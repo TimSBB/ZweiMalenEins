@@ -89,6 +89,7 @@ public class Draw : MonoBehaviour
     {
         DoNetworkDraw = true;
         allowDraw = true;
+        OtherisDrawingAllowedToDraw = true;
     }
 
     // is called on interface item when trigger enters interface item
@@ -188,18 +189,30 @@ public class Draw : MonoBehaviour
 
 
     [PunRPC]
+    void RPC_SetInitalAllowDraw(int playerNumber)
+    {
+        if (playerNumber != playerNr)
+        {
+            OtherisDrawingAllowedToDraw = false;
+            allowDraw = true;
+        } else
+        {
+            OtherisDrawingAllowedToDraw = true;
+            allowDraw = false;
+        }
+    }
+
+    [PunRPC]
     void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine)
     {
 
         if (playerNumber != playerNr) {
-            if (OtherisDrawingAllowedToDraw)
-            {
                 OtherisDrawing = true;
-            }
-
+ 
             if (nextScene && OtherisDrawingAllowedToDraw)
             {
                 allowDraw = false;
+                PV.RPC("RPC_SetInitalAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
             }
             if (DoNetworkDraw)
             {
@@ -230,7 +243,7 @@ public class Draw : MonoBehaviour
         {
             //update line
             //update line position
-            if (OtherisDrawing) {
+            if (OtherisDrawing && OtherisDrawingAllowedToDraw) {
                 currentLinePositionsOther.Add(OtherDrawPositionSource);
                 currentLineOther.positionCount = currentLinePositionsOther.Count;
                 currentLineOther.SetPositions(currentLinePositionsOther.ToArray());
