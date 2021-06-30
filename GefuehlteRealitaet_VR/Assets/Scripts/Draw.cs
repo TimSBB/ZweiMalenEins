@@ -241,10 +241,13 @@ public class Draw : MonoBehaviour
             OtherisDrawing = false;
             if (allowDraw)
             {
-                if (!firstDraw)
+                if (nextScene && OtherisDrawingAllowedToDraw)
                 {
-                    firstDraw = true;
-                    PV.RPC("RPC_SetInitalAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+                    if (!firstDraw)
+                    {
+                        firstDraw = true;
+                        PV.RPC("RPC_SetInitalAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+                    }
                 }
                 StartDrawing();
             }
