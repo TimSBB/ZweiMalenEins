@@ -251,6 +251,10 @@ public class Draw : MonoBehaviour
                 }
                 StartDrawing();
             }
+            else
+            {
+                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
+            }
         }
     }
 
