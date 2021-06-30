@@ -184,8 +184,26 @@ public class Draw : MonoBehaviour
             OtherisDrawingAllowedToDraw = false;
             tintenstand = publictintenstand;
         }
-        else allowDraw = false;
-        OtherisDrawingAllowedToDraw = true;
+        else
+        {
+            allowDraw = false;
+            OtherisDrawingAllowedToDraw = true;
+        }
+    }
+    [PunRPC]
+    void RPC_SetInitalAllowDraw(int playerNumber)
+    {
+        if (playerNumber != playerNr)
+        {
+            allowDraw = false;
+            OtherisDrawingAllowedToDraw = true;
+        }
+        else
+        {
+            allowDraw = true;
+            OtherisDrawingAllowedToDraw = false;
+            tintenstand = publictintenstand;
+        }
     }
 
 
@@ -220,11 +238,14 @@ public class Draw : MonoBehaviour
         }
         else
         {
-            if (allowDraw) {
-                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
-            }
-            if (allowDraw && !OtherisDrawingAllowedToDraw)
+            OtherisDrawing = false;
+            if (allowDraw)
             {
+                if (!firstDraw)
+                {
+                    firstDraw = true;
+                    PV.RPC("RPC_SetInitalAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+                }
                 StartDrawing();
             }
         }
