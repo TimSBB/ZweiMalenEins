@@ -17,7 +17,10 @@ public class HeadToTxtWriter : MonoBehaviour
     private string path;
     private bool wroteOwnHead;
     private bool wroteOtherHead;
-    private Vector3 headRohlingPos;
+
+    private bool gotHeadPos;
+    private Vector3 headRohlingPos1;
+    private Vector3 headRohlingPos2;
 
     private List<GameObject> myLines;
     private PhotonView PV;
@@ -117,13 +120,13 @@ public class HeadToTxtWriter : MonoBehaviour
             GameObject lineGameObject = new GameObject("Line");
             if (playerNr == 1)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos;
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1;
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
                 
             }
             if (playerNr == 2)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos;
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2;
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
 
             }
@@ -148,13 +151,23 @@ public class HeadToTxtWriter : MonoBehaviour
     void Start()
     {
         PV = this.GetComponent<PhotonView>();
-        headRohlingPos = GameObject.Find("CharacterEditor_Scene").transform.Find("Head").transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+        if (playerNr == 1 && !gotHeadPos)
+        {
+            headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
+            gotHeadPos = true;
+        }
+        if (playerNr == 2 && !gotHeadPos)
+        {
+            headRohlingPos2 = GameObject.Find("CharacterEditor_Scene_player2(Clone)").transform.Find("Head").transform.position;
+            GameObject.Find("CharacterEditor_Scene_player2(Clone)").SetActive(false);
+            gotHeadPos = true;
+        }
     }
 
 
