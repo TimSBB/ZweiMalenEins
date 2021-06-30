@@ -37,6 +37,7 @@ public class Draw : MonoBehaviour
     private int tintenstand;
     public bool nextScene = false;
     public bool allowDraw = true;
+    public bool OtherisDrawingAllowedToDraw;
 
 
 
@@ -174,9 +175,11 @@ public class Draw : MonoBehaviour
         if (playerNumber != playerNr)
         {
             allowDraw = true;
+            OtherisDrawingAllowedToDraw = false;
             tintenstand = publictintenstand;
         }
         else allowDraw = false;
+        OtherisDrawingAllowedToDraw = true;
     }
 
 
@@ -186,7 +189,7 @@ public class Draw : MonoBehaviour
 
         if (playerNumber != playerNr) {
             OtherisDrawing = true;
-            if (nextScene)
+            if (nextScene && OtherisDrawingAllowedToDraw)
             {
                 allowDraw = false;
             }
