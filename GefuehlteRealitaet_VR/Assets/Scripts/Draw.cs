@@ -21,7 +21,7 @@ public class Draw : MonoBehaviour
     private XRController controller;
     public bool isDrawing = false;
     public bool OtherisDrawing = false;
-    public bool allowDraw = true;
+
     private LineRenderer currentLine;
     private LineRenderer currentLineOther;
 
@@ -35,7 +35,7 @@ public class Draw : MonoBehaviour
     public int publictintenstand = 300;
     private int tintenstand;
     public bool nextScene = false;
-
+    public bool allowDraw = true;
 
 
 
@@ -60,9 +60,12 @@ public class Draw : MonoBehaviour
             {
                 if (!OtherisDrawing || !nextScene)
                 {
-                    StartDrawing();
-                    var mat = lineMaterial.name.Replace(" (Instance)", "");
-                    PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+                    if (allowDraw)
+                    { 
+                        StartDrawing();
+                        var mat = lineMaterial.name.Replace(" (Instance)", "");
+                        PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
+                    }
                 }
 
             }
@@ -125,8 +128,19 @@ public class Draw : MonoBehaviour
 
         //update line visual
         currentLine.material = lineMaterial;
-        //Debug.Log("LineMaterialName: " + lineMaterial.name.Replace(" (Instance)",""));
         currentLine.startWidth = lineWidth;
+        if (nextScene)
+        {
+            if (tintenstand > 0)
+            {
+                tintenstand--;
+            }
+            if (tintenstand <= 0)
+            {
+                PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+            }
+        }
+       
 
     }
 
@@ -150,6 +164,16 @@ public class Draw : MonoBehaviour
         }
     }
 
+    [PunRPC]
+    void RPC_SetAllowDraw(int playerNumber)
+    {
+        if (playerNumber != playerNr)
+        {
+            allowDraw = true;
+            tintenstand = publictintenstand;
+        }
+    }
+
 
     [PunRPC]
     void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine)
@@ -157,6 +181,10 @@ public class Draw : MonoBehaviour
 
         if (playerNumber != playerNr) {
             OtherisDrawing = true;
+            if (nextScene)
+            {
+                allowDraw = false;
+            }
             if (DoNetworkDraw)
             {
                 //create line
