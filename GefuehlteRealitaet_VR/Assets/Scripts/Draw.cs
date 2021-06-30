@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
 using System.IO;
 using SimpleJSON;
+using TMPro;
 
 public class Draw : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class Draw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("otherisdrawing" + OtherisDrawing);
+        Debug.Log("allow Draw" + allowDraw);
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
@@ -60,12 +61,8 @@ public class Draw : MonoBehaviour
             {
                 if (!OtherisDrawing || !nextScene)
                 {
-                    if (allowDraw)
-                    { 
-                        StartDrawing();
                         var mat = lineMaterial.name.Replace(" (Instance)", "");
                         PV.RPC("RPC_StartDrawing", RpcTarget.AllBufferedViaServer, playerNr, drawPositionSource.position, mat, lineWidth);
-                    }
                 }
 
             }
@@ -106,15 +103,17 @@ public class Draw : MonoBehaviour
 
     void StartDrawing()
     {
-        isDrawing = true;
-        //create line
+        if (allowDraw) { 
+            isDrawing = true;
+            //create line
 
-        GameObject lineGameObject = new GameObject("Line");
-        lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
-        currentLine = lineGameObject.AddComponent<LineRenderer>();
-        currentLine.useWorldSpace = false;
+            GameObject lineGameObject = new GameObject("Line");
+            lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
+            currentLine = lineGameObject.AddComponent<LineRenderer>();
+            currentLine.useWorldSpace = false;
 
-        UpdateLine();
+            UpdateLine();
+        }
     }
 
     void UpdateLine()
@@ -131,6 +130,7 @@ public class Draw : MonoBehaviour
         currentLine.startWidth = lineWidth;
         if (nextScene)
         {
+           
             if (tintenstand > 0)
             {
                 tintenstand--;
@@ -138,7 +138,11 @@ public class Draw : MonoBehaviour
             if (tintenstand <= 0)
             {
                 PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+                StopDrawing();
+                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
             }
+            TextMeshProUGUI textmeshPro = GameObject.Find("tintenstandzahl").GetComponent<TextMeshProUGUI>();
+            textmeshPro.SetText(tintenstand.ToString());
         }
        
 
@@ -172,6 +176,7 @@ public class Draw : MonoBehaviour
             allowDraw = true;
             tintenstand = publictintenstand;
         }
+        else allowDraw = false;
     }
 
 
@@ -197,6 +202,10 @@ public class Draw : MonoBehaviour
 
                 PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
             }
+        }
+        else
+        {
+            StartDrawing();
         }
     }
 
