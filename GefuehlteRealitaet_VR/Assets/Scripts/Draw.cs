@@ -207,12 +207,13 @@ public class Draw : MonoBehaviour
     {
 
         if (playerNumber != playerNr) {
-                OtherisDrawing = true;
+            OtherisDrawing = true;
  
             if (nextScene && OtherisDrawingAllowedToDraw)
             {
                 allowDraw = false;
                 PV.RPC("RPC_SetInitalAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
             }
             if (DoNetworkDraw)
             {
