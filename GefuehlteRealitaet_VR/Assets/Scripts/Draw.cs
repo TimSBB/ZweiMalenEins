@@ -108,7 +108,6 @@ public class Draw : MonoBehaviour
 
     void StartDrawing()
     {
-        if (allowDraw) { 
             isDrawing = true;
             //create line
 
@@ -118,7 +117,6 @@ public class Draw : MonoBehaviour
             currentLine.useWorldSpace = false;
 
             UpdateLine();
-        }
     }
 
     void UpdateLine()
@@ -161,14 +159,17 @@ public class Draw : MonoBehaviour
 
     void UpdateDrawing()
     {
-        //check if we have a line
-        if (!currentLine || currentLinePositions.Count == 0)
-            return;
-
-        Vector3 lastSetPosition = currentLinePositions[currentLinePositions.Count - 1];
-        if (Vector3.Distance(lastSetPosition, drawPositionSource.position) > distanceThreshold)
+        if (allowDraw)
         {
-            UpdateLine();
+            //check if we have a line
+            if (!currentLine || currentLinePositions.Count == 0)
+                return;
+
+            Vector3 lastSetPosition = currentLinePositions[currentLinePositions.Count - 1];
+            if (Vector3.Distance(lastSetPosition, drawPositionSource.position) > distanceThreshold)
+            {
+                UpdateLine();
+            }
         }
     }
 
@@ -191,8 +192,12 @@ public class Draw : MonoBehaviour
     {
 
         if (playerNumber != playerNr) {
-            OtherisDrawing = true;
-            if (nextScene)
+            if (OtherisDrawingAllowedToDraw)
+            {
+                OtherisDrawing = true;
+            }
+
+            if (nextScene && OtherisDrawingAllowedToDraw)
             {
                 allowDraw = false;
             }
