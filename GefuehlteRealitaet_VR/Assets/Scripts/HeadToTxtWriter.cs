@@ -18,7 +18,10 @@ public class HeadToTxtWriter : MonoBehaviour
     private bool wroteOwnHead;
     private bool wroteOtherHead;
 
-    private bool gotHeadPos;
+    private bool gotHeadPos1;
+    private bool gotHeadPos2;
+    private bool scene2Set;
+    public resetPos resetPosScript; 
     private Vector3 headRohlingPos1;
     private Vector3 headRohlingPos2;
 
@@ -151,22 +154,23 @@ public class HeadToTxtWriter : MonoBehaviour
     void Start()
     {
         PV = this.GetComponent<PhotonView>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        scene2Set = resetPosScript.scene2Set;
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (playerNr == 1 && !gotHeadPos)
+        if (playerNr == 1 && !gotHeadPos1)
         {
             headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
-            gotHeadPos = true;
+            gotHeadPos1 = true;
         }
-        if (playerNr == 2 && !gotHeadPos)
+        if (playerNr == 2 && !gotHeadPos2 && scene2Set)
         {
             headRohlingPos2 = GameObject.Find("CharacterEditor_Scene_player2(Clone)").transform.Find("Head").transform.position;
-            GameObject.Find("CharacterEditor_Scene_player2(Clone)").SetActive(false);
-            gotHeadPos = true;
+            gotHeadPos2 = true;
         }
     }
 

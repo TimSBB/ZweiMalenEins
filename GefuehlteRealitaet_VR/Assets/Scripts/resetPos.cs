@@ -7,6 +7,7 @@ public class resetPos : MonoBehaviour
 {
     private int playerNr;
     private bool sceneSet;
+    public bool scene2Set;
     public GameObject CharacterEditor_Scene_player1;
     public GameObject CharacterEditor_Scene_player2;
     // Start is called before the first frame update
@@ -29,14 +30,17 @@ public class resetPos : MonoBehaviour
             LoadingOverlay overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
             overlay.FadeOut();
         }
-        if (playerNr == 2 && !sceneSet)
+        if (playerNr == 2)
         {
-            // this.transform.position = new Vector3(-1.7f, this.transform.position.y, 0);
-            this.transform.position = new Vector3(-1.7f, this.transform.position.y, 0);
-            Instantiate(CharacterEditor_Scene_player2);
-            sceneSet = true;
-            LoadingOverlay overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
-            overlay.FadeOut();
+            if (!scene2Set)
+           {
+                LoadingOverlay overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
+                Destroy(GameObject.Find("CharacterEditor_Scene_player1(Clone)"));
+                this.transform.position = new Vector3(+1.7f, this.transform.position.y, 0);
+                Instantiate(CharacterEditor_Scene_player2);
+                scene2Set = true;
+                overlay.FadeOut();
+            }
         }
     }
 }

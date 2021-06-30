@@ -2292,6 +2292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorNr: 0
   LinePositions: []
+  resetPosScript: {fileID: 874580471}
 --- !u!1 &775516530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,6 +2426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d95d7e6dd327e429aeafe150595316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene2Set: 0
   CharacterEditor_Scene_player1: {fileID: 1387574235520712600, guid: 28f774011029afb4ba6a87bc7c6cef76,
     type: 3}
   CharacterEditor_Scene_player2: {fileID: 4915888581817067882, guid: 3c10bcf815e6a594dbb76fa6e9f220fb,
