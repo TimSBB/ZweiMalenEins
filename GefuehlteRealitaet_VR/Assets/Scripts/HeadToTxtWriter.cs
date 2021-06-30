@@ -124,13 +124,13 @@ public class HeadToTxtWriter : MonoBehaviour
             GameObject lineGameObject = new GameObject("Line");
             if (playerNr == 1)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1 + new Vector3(-2, 0, 0);
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1 + new Vector3(-2f, 0, 0);
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
                 
             }
             if (playerNr == 2)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2 + new Vector3(2, 0, 0);
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2 + new Vector3(2f, 0, 0);
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
 
             }
@@ -147,6 +147,8 @@ public class HeadToTxtWriter : MonoBehaviour
         }
         GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 225, Space.Self);
         GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.Rotate(0, 0, 135, Space.Self);
+        GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.localScale *= 1.05f;
+        GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder").transform.localScale *= 1.05f;
         GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
         GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
     }
@@ -163,15 +165,16 @@ public class HeadToTxtWriter : MonoBehaviour
     {
         scene2Set = resetPosScript.scene2Set;
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (playerNr == 1 && !gotHeadPos1)
-        {
-            headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
-            gotHeadPos1 = true;
-        }
+        
         if (playerNr == 2 && !gotHeadPos2 && scene2Set)
         {
             headRohlingPos2 = GameObject.Find("CharacterEditor_Scene_player2(Clone)").transform.Find("Head").transform.position;
             gotHeadPos2 = true;
+        }
+        if (playerNr == 1 && !gotHeadPos1  && !resetPosScript.killedInstance)
+        {
+            headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
+            gotHeadPos1 = true;
         }
     }
 

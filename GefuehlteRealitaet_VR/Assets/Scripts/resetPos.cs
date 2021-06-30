@@ -8,6 +8,7 @@ public class resetPos : MonoBehaviour
     private int playerNr;
     private bool sceneSet;
     public bool scene2Set;
+    public bool killedInstance = false;
     public GameObject CharacterEditor_Scene_player1;
     public GameObject CharacterEditor_Scene_player2;
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class resetPos : MonoBehaviour
                 this.transform.position = new Vector3(+1.7f, this.transform.position.y, 0);
                 Instantiate(CharacterEditor_Scene_player2);
                 scene2Set = true;
+                killedInstance = true;
                 overlay.FadeOut();
             }
         }
