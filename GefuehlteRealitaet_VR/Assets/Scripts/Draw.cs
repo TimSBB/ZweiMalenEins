@@ -33,14 +33,14 @@ public class Draw : MonoBehaviour
 
     private Vector3 lineColor;
     public bool DoNetworkDraw = false;
-    public int publictintenstand = 300;
+    public int publictintenstand = 200;
     private int tintenstand;
     public bool nextScene = false;
     public bool firstDraw = false;
     public bool allowDraw = true;
     public bool OtherisDrawingAllowedToDraw;
 
-
+    public GameObject anzeige;
 
 
     // Start is called before the first frame update
@@ -49,6 +49,7 @@ public class Draw : MonoBehaviour
         tintenstand = publictintenstand;
         PV = GetComponent<PhotonView>();
         controller = GetComponent<XRController>();
+        anzeige = GameObject.Find("XR Rig/Camera Offset/RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Farbanzeige");
     }
 
     // Update is called once per frame
@@ -57,7 +58,7 @@ public class Draw : MonoBehaviour
         TextMeshProUGUI textmeshPro = GameObject.Find("tintenstandzahl").GetComponent<TextMeshProUGUI>();
         var debustring = "tintentsatnd: " + tintenstand.ToString() + "\n" + "allowdraw: " + allowDraw + "\n" + "otherisdrawing: " + OtherisDrawing +"\n" + "OtherisDrawingAllowedToDraw: " + OtherisDrawingAllowedToDraw;
         textmeshPro.SetText(debustring);
-        Debug.Log("allow Draw" + allowDraw);
+       // Debug.Log("allow Draw" + allowDraw);
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
@@ -146,7 +147,8 @@ public class Draw : MonoBehaviour
                 StopDrawing();
                 PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
             }
-
+            var floattinte = (float)tintenstand;
+            anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", floattinte.Remap(0, publictintenstand, -1, 1));
         }
        
 
@@ -183,11 +185,37 @@ public class Draw : MonoBehaviour
             allowDraw = true;
             OtherisDrawingAllowedToDraw = false;
             tintenstand = publictintenstand;
+            var floattinte = (float)tintenstand;
+            anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", floattinte.Remap(0, publictintenstand, -1, 1));
+            if (playerNr == 1)
+            {
+                var anzeige = GameObject.Find("Network Player 2(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+
+                anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", -1);
+            }
+            if (playerNr == 2)
+            {
+                var anzeige = GameObject.Find("Network Player(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+
+                anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", -1);
+            }
         }
         else
         {
             allowDraw = false;
             OtherisDrawingAllowedToDraw = true;
+            if (playerNr == 1)
+            {
+                var anzeige = GameObject.Find("Network Player 2(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+
+                anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", 1);
+            }
+            if (playerNr == 2)
+            {
+                var anzeige = GameObject.Find("Network Player(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+
+                anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", 1);
+            }
         }
     }
     [PunRPC]
@@ -343,6 +371,37 @@ public class Draw : MonoBehaviour
                 GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Gross").GetComponent<Renderer>().material = tipMat;
                 GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/Mittel").GetComponent<Renderer>().material = tipMat;
                 GameObject.Find("Network Player(Clone)").transform.Find("Right Hand/DrawController_Prefab/klein").GetComponent<Renderer>().material = tipMat;
+            }
+
+        }
+    }
+
+    // is called on interface item when trigger enters interface item
+    public void SetFarbanzeigeMaterial(Material newMat)
+    {
+
+        PV.RPC("RPC_FarbanzeigeMaterial", RpcTarget.AllBufferedViaServer, playerNr, newMat.name.Replace(" (Instance)", ""));
+
+    }
+
+    [PunRPC]
+    void RPC_FarbanzeigeMaterialr(int playerNumber, string ColorOfTip)
+    {
+        if (playerNumber != playerNr)
+        {
+
+            var anzeigeMat = Resources.Load<Material>("Materials/" + ColorOfTip);
+            if (playerNr == 1)
+            {
+                var anzeige = GameObject.Find("Network Player 2(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+
+                anzeige.GetComponent<Renderer>().material.SetColor("Color_4FC6FC3B", anzeigeMat.GetColor("Color_DCFC887F"));
+            }
+            if (playerNr == 2)
+            {
+                var anzeige = GameObject.Find("Network Player(Clone)/Right Hand/DrawController_Prefab(Clone)/Farbanzeige");
+
+                anzeige.GetComponent<Renderer>().material.SetColor("Color_4FC6FC3B", anzeigeMat.GetColor("Color_DCFC887F"));
             }
 
         }

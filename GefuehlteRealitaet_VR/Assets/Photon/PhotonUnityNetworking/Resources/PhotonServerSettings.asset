@@ -58,6 +58,7 @@ MonoBehaviour:
   - RPC_checkIfBothNotAllowed
   - RPC_SetAllowDrawReset
   - RPC_SetInitalAllowDraw
+  - RPC_FarbanzeigeMaterialr
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

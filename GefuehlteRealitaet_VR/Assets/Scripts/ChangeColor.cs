@@ -9,6 +9,7 @@ public class ChangeColor : MonoBehaviour
     private GameObject gross;
     private GameObject mittel;
     private GameObject klein;
+    public GameObject anzeige;
     private int playerNr;
 
     private void Start()
@@ -25,16 +26,22 @@ public class ChangeColor : MonoBehaviour
             gross = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Gross");
             mittel = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Mittel");
             klein = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/klein");
-            
+
+            anzeige = GameObject.Find("XR Rig/Camera Offset/RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Farbanzeige");
+
             //change brush tip
             gross.GetComponent<Renderer>().material = newMaterial;
             mittel.GetComponent<Renderer>().material = newMaterial;
             klein.GetComponent<Renderer>().material = newMaterial;
 
+            anzeige.GetComponent<Renderer>().material.SetColor("Color_4FC6FC3B", newMaterial.GetColor("Color_DCFC887F")); 
+
+
             //change line material
             playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
             other.SendMessageUpwards("SetLineMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
             other.SendMessageUpwards("SetTipMaterial", newMaterial, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("SetFarbanzeigeMateria", newMaterial, SendMessageOptions.DontRequireReceiver);
         }
     }
     
