@@ -36,6 +36,7 @@ public class Draw : MonoBehaviour
     public int publictintenstand = 300;
     private int tintenstand;
     public bool nextScene = false;
+    public bool firstDraw = false;
     public bool allowDraw = true;
     public bool OtherisDrawingAllowedToDraw;
 
@@ -189,34 +190,23 @@ public class Draw : MonoBehaviour
 
 
     [PunRPC]
-    void RPC_SetInitalAllowDraw(int playerNumber)
-    {
-        if (playerNumber != playerNr)
-        {
-            OtherisDrawingAllowedToDraw = false;
-            allowDraw = true;
-        } else
-        {
-            OtherisDrawingAllowedToDraw = true;
-            allowDraw = false;
-        }
-    }
-
-    [PunRPC]
     void RPC_StartDrawing(int playerNumber, Vector3 OtherDrawPositionSource, string ColorOfLine, float WidthOfLine)
     {
 
         if (playerNumber != playerNr) {
             OtherisDrawing = true;
  
-            if (nextScene && OtherisDrawingAllowedToDraw)
-            {
-                allowDraw = false;
-                PV.RPC("RPC_SetInitalAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
-                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
-            }
             if (DoNetworkDraw)
             {
+                if (nextScene && OtherisDrawingAllowedToDraw)
+                {
+                    allowDraw = false;
+                    if (!firstDraw)
+                    {
+                        firstDraw = true;
+                        PV.RPC("RPC_SetAllowDraw", RpcTarget.AllBufferedViaServer, playerNr);
+                    }
+                }
                 //create line
                 GameObject lineGameObject = new GameObject("Line");
                 lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
@@ -230,6 +220,9 @@ public class Draw : MonoBehaviour
         }
         else
         {
+            if (allowDraw) {
+                PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
+            }
             if (allowDraw && !OtherisDrawingAllowedToDraw)
             {
                 StartDrawing();
@@ -262,12 +255,12 @@ public class Draw : MonoBehaviour
     {
         if (playerNumber != playerNr)
         {
-        OtherisDrawing = false;
-        if (DoNetworkDraw)
-        {
-            currentLinePositionsOther.Clear();
-            currentLineOther = null;
-        }
+            OtherisDrawing = false;
+            if (DoNetworkDraw)
+            {
+                currentLinePositionsOther.Clear();
+                currentLineOther = null;
+            }
         }
     }
 
