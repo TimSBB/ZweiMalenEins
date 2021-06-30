@@ -53,6 +53,9 @@ public class Draw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TextMeshProUGUI textmeshPro = GameObject.Find("tintenstandzahl").GetComponent<TextMeshProUGUI>();
+        var debustring = "tintentsatnd: " + tintenstand.ToString() + "\n" + "allowdraw: " + allowDraw + "\n" + "otherisdrawing: " + OtherisDrawing +"\n" + "OtherisDrawingAllowedToDraw: " + OtherisDrawingAllowedToDraw;
+        textmeshPro.SetText(debustring);
         Debug.Log("allow Draw" + allowDraw);
         //Check if input down
         InputHelpers.IsPressed(controller.inputDevice, drawInput, out bool isPressed);
@@ -85,6 +88,7 @@ public class Draw : MonoBehaviour
     public void SetNetworkDrawing()
     {
         DoNetworkDraw = true;
+        allowDraw = true;
     }
 
     // is called on interface item when trigger enters interface item
@@ -142,8 +146,7 @@ public class Draw : MonoBehaviour
                 StopDrawing();
                 PV.RPC("RPC_StopDrawing", RpcTarget.AllBufferedViaServer, playerNr);
             }
-            TextMeshProUGUI textmeshPro = GameObject.Find("tintenstandzahl").GetComponent<TextMeshProUGUI>();
-            textmeshPro.SetText(tintenstand.ToString());
+
         }
        
 
@@ -189,7 +192,7 @@ public class Draw : MonoBehaviour
 
         if (playerNumber != playerNr) {
             OtherisDrawing = true;
-            if (nextScene && OtherisDrawingAllowedToDraw)
+            if (nextScene)
             {
                 allowDraw = false;
             }
@@ -208,7 +211,10 @@ public class Draw : MonoBehaviour
         }
         else
         {
-            StartDrawing();
+            if (allowDraw && !OtherisDrawingAllowedToDraw)
+            {
+                StartDrawing();
+            }
         }
     }
 

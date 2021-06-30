@@ -18,7 +18,7 @@ public void changeSceneElems()
         WriteHead.Save();
 
         GameObject.Find("RightHand Controller").GetComponent<Draw>().nextScene = true;
-        GameObject.Find("RightHand Controller").GetComponent<Draw>().allowDraw = true;
+        GameObject.Find("RightHand Controller").GetComponent<Draw>().allowDraw = false;
 
         GameObject.Find("CharacterEditor_Button_Canvas").SetActive(false);
         GameObject.Find("Text_Character-Editor").SetActive(false);
