@@ -49,7 +49,7 @@ public class Draw : MonoBehaviour
         tintenstand = publictintenstand;
         PV = GetComponent<PhotonView>();
         controller = GetComponent<XRController>();
-        anzeige = GameObject.Find("XR Rig/Camera Offset/RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Farbanzeige");
+       
     }
 
     // Update is called once per frame
@@ -112,8 +112,8 @@ public class Draw : MonoBehaviour
     void StartDrawing()
     {
             isDrawing = true;
-            //create line
-
+        //create line
+            anzeige = GameObject.Find("XR Rig/Camera Offset/RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Farbanzeige");
             GameObject lineGameObject = new GameObject("Line");
             lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
             currentLine = lineGameObject.AddComponent<LineRenderer>();
