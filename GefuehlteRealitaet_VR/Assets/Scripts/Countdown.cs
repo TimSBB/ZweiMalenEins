@@ -32,6 +32,7 @@ public class Countdown : MonoBehaviour
     public GameObject gallery;
     public GameObject gallerySchrift;
     private PhotonView PV;
+    private bool triggeredGallery;
 
     private void Start()
     {
@@ -95,7 +96,12 @@ public class Countdown : MonoBehaviour
 
                     timeRemaining = 0;
                     timerIsRunning = false;
-                    PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer);
+                    if (!triggeredGallery)
+                    {
+                        PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer);
+                        triggeredGallery = true;
+                    }
+
                 }
             }
         }
