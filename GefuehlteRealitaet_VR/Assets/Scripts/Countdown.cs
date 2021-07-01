@@ -95,7 +95,7 @@ public class Countdown : MonoBehaviour
 
                     timeRemaining = 0;
                     timerIsRunning = false;
-                    PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer, playerNr);
+                    PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer);
                 }
             }
         }
@@ -141,35 +141,35 @@ public class Countdown : MonoBehaviour
         textmeshPro.SetText(word);
     }
 
-    [PunRPC]
-    void RPC_TimesUp(int playerNumber)
-    {
+    //[PunRPC]
+    //void RPC_TimesUp(int playerNumber)
+    //{
 
 
 
 
-        if (playerNumber != playerNr)
-        {
-            otherstimesUp = true;
-        }
-        else
-        {
-            mytimesUp = true;
-        }
-        if (mytimesUp || otherstimesUp)
-        {
-            var transform = GameObject.Find("Drawing").transform;
-            if (transform.childCount > 0)
-            {
-                foreach (Transform child in transform)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-            Instantiate(gallery);
-            Instantiate(gallerySchrift);
-        }
-        //Destroy(GameObject.Find("AnweisungWortStatusbar(Clone)"));
-    }
+    //    if (playerNumber != playerNr)
+    //    {
+    //        otherstimesUp = true;
+    //    }
+    //    else
+    //    {
+    //        mytimesUp = true;
+    //    }
+    //    if (mytimesUp || otherstimesUp)
+    //    {
+    //        var transform = GameObject.Find("Drawing").transform;
+    //        if (transform.childCount > 0)
+    //        {
+    //            foreach (Transform child in transform)
+    //            {
+    //                Destroy(child.gameObject);
+    //            }
+    //        }
+    //        Instantiate(gallery);
+    //        Instantiate(gallerySchrift);
+    //    }
+    //    //Destroy(GameObject.Find("AnweisungWortStatusbar(Clone)"));
+    //}
 
 }
