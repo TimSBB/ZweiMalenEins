@@ -112,16 +112,17 @@ public class GalleryLoader : MonoBehaviour
 
             GameObject lineGameObject = new GameObject("Line");
             
-            lineGameObject.transform.localScale *= 0.05f;
+            lineGameObject.transform.localScale *= 0.03f;
             lineGameObject.transform.position = BoundingBoxes[loadIndex].transform.position;
-            lineGameObject.transform.position += new Vector3(-0.2f * 0.05f, -1.5f*0.05f, -0.2f * 0.05f);
+            //lineGameObject.transform.position += new Vector3(-0.2f * 0.03f, -1.5f*0.03f, -0.2f * 0.03f);
+            lineGameObject.transform.position += new Vector3(+1f * 0.03f, -0.02f, 1f * 0.03f);
             lineGameObject.transform.SetParent(BoundingBoxes[loadIndex].transform);
             var currentLine = lineGameObject.AddComponent<LineRenderer>();
             currentLine.useWorldSpace = false;
             currentLine.positionCount = positionCount;
             currentLine.SetPositions(LinePositions);
             currentLine.material = Resources.Load<Material>("Materials/" + ColorNr);
-            currentLine.startWidth = width * 0.05f;
+            currentLine.startWidth = width * 0.03f;
             // Debug.Log(LineJson.ToString());
         }
 
