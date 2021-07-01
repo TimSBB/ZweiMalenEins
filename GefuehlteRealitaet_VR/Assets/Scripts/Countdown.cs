@@ -94,7 +94,7 @@ public class Countdown : MonoBehaviour
 
                     timeRemaining = 0;
                     timerIsRunning = false;
-                    PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer, playerNr);
+                    //PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer, playerNr);
                 }
             }
         }

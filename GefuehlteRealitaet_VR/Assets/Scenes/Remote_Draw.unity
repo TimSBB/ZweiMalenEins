@@ -1574,6 +1574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 728146876}
+  - component: {fileID: 728146877}
   m_Layer: 0
   m_Name: GallerySpawner
   m_TagString: Untagged
@@ -1595,6 +1596,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &728146877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728146875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e80b16bbb2c0542b5333f21ad9c85e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gallery: {fileID: 6031603806741288280, guid: 6f75eab7066819c4790654aa72001d54, type: 3}
+  gallerySchrift: {fileID: 3299509297160329073, guid: f61be7a39303f6f418d9ad068b6f75be,
+    type: 3}
 --- !u!1 &770692596
 GameObject:
   m_ObjectHideFlags: 0
