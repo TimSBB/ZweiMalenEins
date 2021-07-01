@@ -387,6 +387,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Head
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 32b5f4d758b7c9e40bf52f760354c267,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b5f4d758b7c9e40bf52f760354c267, type: 3}
 --- !u!4 &6806375082765460191 stripped
@@ -462,6 +467,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6332055611016684907, guid: e5cb83f297cdac34080f45cb98e1b54e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aba2d42d4e5dde243a9e30f84259d9fd, type: 2}
     - target: {fileID: 8039971489102868812, guid: e5cb83f297cdac34080f45cb98e1b54e,
         type: 3}
       propertyPath: m_CullingMode
@@ -503,6 +513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Custom Left Hand Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}

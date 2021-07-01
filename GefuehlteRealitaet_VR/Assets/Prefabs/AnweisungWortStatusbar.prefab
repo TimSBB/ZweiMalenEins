@@ -165,7 +165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wort
+  m_text: Baum
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3229f80a6232e5b4d85804962514c45a, type: 2}
   m_sharedMaterial: {fileID: 5264506246642470670, guid: 3229f80a6232e5b4d85804962514c45a,

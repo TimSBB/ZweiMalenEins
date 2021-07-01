@@ -19,10 +19,10 @@ public class RandomWord : MonoBehaviour
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        //index = Random.Range(0, words.Length);
-        //currentWord = words[index];
-        //TextMeshProUGUI textmeshPro = wordText.GetComponent<TextMeshProUGUI>();
-        //textmeshPro.SetText(currentWord);
+        index = Random.Range(0, words.Length);
+        currentWord = words[index];
+        TextMeshProUGUI textmeshPro = wordText.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText(currentWord);
     }
 
     // Update is called once per frame
@@ -45,13 +45,14 @@ public class RandomWord : MonoBehaviour
     public void newWord()
     {
 
-        //newWordString = currentWord;
-        //while (newWordString == currentWord) { 
-        //    index = Random.Range(0, words.Length);
-        //    newWordString = words[index];
-        //}
-        //TextMeshProUGUI textmeshPro = wordText.GetComponent<TextMeshProUGUI>();
-        //textmeshPro.SetText(newWordString);
+        newWordString = currentWord;
+        while (newWordString == currentWord)
+        {
+            index = Random.Range(0, words.Length);
+            newWordString = words[index];
+        }
+        TextMeshProUGUI textmeshPro = wordText.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText(newWordString);
     }
 
 
