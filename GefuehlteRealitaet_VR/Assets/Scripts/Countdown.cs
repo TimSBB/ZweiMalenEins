@@ -18,7 +18,6 @@ public class Countdown : MonoBehaviour
     private HeadToTxtWriter headwriter;
     public RandomWord randomWordScript;
 
-    private PhotonView PV;
     private int playerNr;
 
     private int index;
@@ -32,14 +31,16 @@ public class Countdown : MonoBehaviour
     private bool otherstimesUp;
     public GameObject gallery;
     public GameObject gallerySchrift;
+    private PhotonView PV;
 
     private void Start()
     {
-        PV = GetComponent<PhotonView>();
         timerIsRunning = false;
         initalRemaining = timeRemaining;
         statusBar = GameObject.Find("UIStatusBar").GetComponent<Image>();
         var color = statusBar.color;
+
+        PV = GameObject.Find("GallerySpawner").GetComponent<PhotonView>();
 
         Color.RGBToHSV(statusBar.color, out H, out S, out V);
         hue = H;
@@ -94,7 +95,7 @@ public class Countdown : MonoBehaviour
 
                     timeRemaining = 0;
                     timerIsRunning = false;
-                    //PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer, playerNr);
+                    PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer, playerNr);
                 }
             }
         }

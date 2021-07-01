@@ -56,6 +56,7 @@ public class debugGallery : MonoBehaviour
             Instantiate(gallerySchrift);
 
         Destroy(GameObject.Find("AnweisungWortStatusbar(Clone)"));
+        Destroy(GameObject.Find("Colorpicker(Clone)"));
     }
 
 }
