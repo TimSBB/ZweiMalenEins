@@ -144,7 +144,7 @@ public class Countdown : MonoBehaviour
     void RPC_TimesUp(int playerNumber)
     {
 
-       
+
 
 
         if (playerNumber != playerNr)
@@ -155,7 +155,7 @@ public class Countdown : MonoBehaviour
         {
             mytimesUp = true;
         }
-        if (mytimesUp && otherstimesUp)
+        if (mytimesUp || otherstimesUp)
         {
             var transform = GameObject.Find("Drawing").transform;
             if (transform.childCount > 0)
@@ -168,7 +168,7 @@ public class Countdown : MonoBehaviour
             Instantiate(gallery);
             Instantiate(gallerySchrift);
         }
-        Destroy(GameObject.Find("AnweisungWortStatusbar(Clone)"));
+        //Destroy(GameObject.Find("AnweisungWortStatusbar(Clone)"));
     }
 
 }
