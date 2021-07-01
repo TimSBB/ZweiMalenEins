@@ -515,7 +515,7 @@ public class Draw : MonoBehaviour
     {
         if (playerNumber != playerNr)
         {
-            var gL = GameObject.Find("GalleryDome(Clone)").GetComponent<GalleryLoader>();
+            var gL = GameObject.Find("GalleryDome_Prefab(Clone)").GetComponent<GalleryLoader>();
             gL.LoadItem(loadIndex);
         }
     }

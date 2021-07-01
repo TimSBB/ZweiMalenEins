@@ -44,14 +44,14 @@ public class debugGallery : MonoBehaviour
     [PunRPC]
     void RPC_TimesUp()
     {
-            var transform = GameObject.Find("Drawing").transform;
-            if (transform.childCount > 0)
-            {
-                foreach (Transform child in transform)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
+            //var transform = GameObject.Find("Drawing").transform;
+            //if (transform.childCount > 0)
+            //{
+            //    foreach (Transform child in transform)
+            //    {
+            //        Destroy(child.gameObject);
+            //    }
+            //}
             Instantiate(gallery);
             Instantiate(gallerySchrift);
 
