@@ -14,8 +14,7 @@ public class Countdown : MonoBehaviour
     private bool reset = false;
     private float blockTimer = 1;
     
-    public GameObject timeText;
-    public Draw drawScript;
+    private Draw drawScript;
     public RandomWord randomWordScript;
 
     private PhotonView PV;
@@ -24,11 +23,15 @@ public class Countdown : MonoBehaviour
     private int index;
     public GameObject wordText;
 
+    private Image statusBar;
+
     private void Start()
     {
         PV = GetComponent<PhotonView>();
         timerIsRunning = false;
         initalRemaining = timeRemaining;
+        statusBar = GameObject.Find("UIStatusBar").GetComponent<Image>();
+        drawScript = GameObject.Find("RightHand Controller").GetComponent<Draw>();
     }
 
     void Update()
@@ -37,7 +40,7 @@ public class Countdown : MonoBehaviour
         if (reset)
         {
             timeRemaining = initalRemaining;
-            DisplayTime(timeRemaining);
+            //DisplayTime(timeRemaining);
             reset = false;
             timerIsRunning = false;
             blockTimer = 1;
@@ -47,8 +50,10 @@ public class Countdown : MonoBehaviour
         {
             blockTimer -= 1 * Time.deltaTime;
         }
-        if (blockTimer <= 0) { 
-            if(drawScript.isDrawing || drawScript.OtherisDrawing)
+        //if (blockTimer <= 0 && drawScript.nextScene) {
+            if (blockTimer <= 0)
+            {
+                if (drawScript.isDrawing || drawScript.OtherisDrawing)
             {
                 timerIsRunning = true;
             }
@@ -62,7 +67,8 @@ public class Countdown : MonoBehaviour
                 {
                     timeRemaining -= 1 * Time.deltaTime;
                     //print(timeRemaining);
-                    DisplayTime(timeRemaining);
+                    statusBar.fillAmount = timeRemaining.Remap(0, initalRemaining, 0, 1);
+                    //DisplayTime(timeRemaining);
                 }
                 else
                 {
@@ -74,11 +80,11 @@ public class Countdown : MonoBehaviour
         }
     }
 
-    void DisplayTime(float timeToDisplay)
-    {
-        TextMeshProUGUI textmeshPro = timeText.GetComponent<TextMeshProUGUI>();
-        textmeshPro.SetText(string.Format("{0:N2}", timeToDisplay));
-    }
+    //void DisplayTime(float timeToDisplay)
+    //{
+    //    TextMeshProUGUI textmeshPro = timeText.GetComponent<TextMeshProUGUI>();
+    //    textmeshPro.SetText(string.Format("{0:N2}", timeToDisplay));
+    //}
 
     public void ResetTimer()
     {

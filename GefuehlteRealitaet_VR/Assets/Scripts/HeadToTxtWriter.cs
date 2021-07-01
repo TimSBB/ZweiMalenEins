@@ -166,16 +166,18 @@ public class HeadToTxtWriter : MonoBehaviour
         scene2Set = resetPosScript.scene2Set;
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
         
-        if (playerNr == 2 && !gotHeadPos2 && scene2Set)
-        {
-            headRohlingPos2 = GameObject.Find("CharacterEditor_Scene_player2(Clone)").transform.Find("Head").transform.position;
-            gotHeadPos2 = true;
-        }
-        if (playerNr == 1 && !gotHeadPos1  && !resetPosScript.killedInstance)
-        {
-            headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
-            gotHeadPos1 = true;
-        }
+        
+            if (playerNr == 2 && !gotHeadPos2 && scene2Set)
+            {
+                headRohlingPos2 = GameObject.Find("CharacterEditor_Scene_player2(Clone)").transform.Find("Head").transform.position;
+                gotHeadPos2 = true;
+            }
+            if (playerNr == 1 && !gotHeadPos1  && !resetPosScript.killedInstance && resetPosScript.sceneSet)
+            {
+                headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
+                gotHeadPos1 = true;
+            }
+
     }
 
 

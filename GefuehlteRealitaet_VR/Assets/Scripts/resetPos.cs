@@ -6,7 +6,7 @@ using Photon.Pun;
 public class resetPos : MonoBehaviour
 {
     private int playerNr;
-    private bool sceneSet;
+    public bool sceneSet;
     public bool scene2Set;
     public bool killedInstance = false;
     public GameObject CharacterEditor_Scene_player1;

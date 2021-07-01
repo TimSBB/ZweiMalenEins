@@ -10,6 +10,7 @@ public class ChangeScene : MonoBehaviour
     private HeadToTxtWriter WriteHead;
     private int playerNr;
     public GameObject ColorPicker;
+    public GameObject AnweisungWortStatusbar;
 
     //will be called when ready button is pressed >> see onClick Event on button Game Object
     public void changeSceneElems()
@@ -34,11 +35,9 @@ public class ChangeScene : MonoBehaviour
         {
             GameObject.Find("CharacterEditor_Scene_player2(Clone)").SetActive(false);
         }
-        GameObject.Find("Button_Canvas").GetComponent<Canvas>().enabled = true;
-        GameObject.Find("Text_Countdown").GetComponent<TextMeshProUGUI>().enabled = true;
-        GameObject.Find("Text_Wort").GetComponent<TextMeshProUGUI>().enabled = true;
-        GameObject.Find("Text_Wort").GetComponent<RandomWord>().enabled = true;
+
         Instantiate(ColorPicker);
+        Instantiate(AnweisungWortStatusbar);
 
         //var scene = GameObject.Find("CharacterEditor_Scene");
         //Destroy(scene);
