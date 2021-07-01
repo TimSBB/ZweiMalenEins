@@ -321,8 +321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeRemaining: 30
   timerIsRunning: 0
-  timeText: {fileID: 0}
-  drawScript: {fileID: 0}
   randomWordScript: {fileID: 0}
   wordText: {fileID: 0}
 --- !u!114 &8337085545158672879
@@ -344,7 +342,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents: []
-  viewIdField: 3
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &8337085545596980059
@@ -763,6 +761,6 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents: []
-  viewIdField: 7
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

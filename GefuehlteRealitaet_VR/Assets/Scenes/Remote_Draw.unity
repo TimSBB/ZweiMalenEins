@@ -1737,6 +1737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorNr: 0
   LinePositions: []
+  wroteOwnHead: 0
+  wroteOtherHead: 0
   resetPosScript: {fileID: 874580471}
 --- !u!1 &775516530
 GameObject:

@@ -15,8 +15,8 @@ public class HeadToTxtWriter : MonoBehaviour
     private int PositionCount;
     private int playerNr;
     private string path;
-    private bool wroteOwnHead;
-    private bool wroteOtherHead;
+    public bool wroteOwnHead;
+    public bool wroteOtherHead;
 
     private bool gotHeadPos1;
     private bool gotHeadPos2;

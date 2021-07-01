@@ -15,6 +15,7 @@ public class Countdown : MonoBehaviour
     private float blockTimer = 1;
     
     private Draw drawScript;
+    private HeadToTxtWriter headwriter;
     public RandomWord randomWordScript;
 
     private PhotonView PV;
@@ -24,6 +25,8 @@ public class Countdown : MonoBehaviour
     public GameObject wordText;
 
     private Image statusBar;
+    private float hue;
+    private float H, S, V;
 
     private void Start()
     {
@@ -31,7 +34,14 @@ public class Countdown : MonoBehaviour
         timerIsRunning = false;
         initalRemaining = timeRemaining;
         statusBar = GameObject.Find("UIStatusBar").GetComponent<Image>();
+        var color = statusBar.color;
+
+        Color.RGBToHSV(statusBar.color, out H, out S, out V);
+        hue = H;
+        
         drawScript = GameObject.Find("RightHand Controller").GetComponent<Draw>();
+        headwriter = GameObject.Find("Head_TextWriter").GetComponent<HeadToTxtWriter>();
+
     }
 
     void Update()
@@ -46,14 +56,13 @@ public class Countdown : MonoBehaviour
             blockTimer = 1;
         }
 
-        if (blockTimer > 0)
+        if (blockTimer > 0 && headwriter.wroteOtherHead && headwriter.wroteOwnHead)
         {
             blockTimer -= 1 * Time.deltaTime;
         }
-        //if (blockTimer <= 0 && drawScript.nextScene) {
-            if (blockTimer <= 0)
+            if (blockTimer <= 0 )
             {
-                if (drawScript.isDrawing || drawScript.OtherisDrawing)
+                if ((drawScript.isDrawing && drawScript.allowDraw) || (drawScript.OtherisDrawing && drawScript.OtherisDrawingAllowedToDraw))
             {
                 timerIsRunning = true;
             }
@@ -68,6 +77,8 @@ public class Countdown : MonoBehaviour
                     timeRemaining -= 1 * Time.deltaTime;
                     //print(timeRemaining);
                     statusBar.fillAmount = timeRemaining.Remap(0, initalRemaining, 0, 1);
+                    H = hue.Remap(0, initalRemaining, 0.3464253f, 0.005555556f);
+                    statusBar.color = Color.HSVToRGB(H, S, V);    
                     //DisplayTime(timeRemaining);
                 }
                 else
