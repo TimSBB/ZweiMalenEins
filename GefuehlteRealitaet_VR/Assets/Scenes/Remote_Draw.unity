@@ -1575,6 +1575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 728146876}
   - component: {fileID: 728146877}
+  - component: {fileID: 728146878}
   m_Layer: 0
   m_Name: GallerySpawner
   m_TagString: Untagged
@@ -1611,6 +1612,28 @@ MonoBehaviour:
   gallery: {fileID: 6031603806741288280, guid: 6f75eab7066819c4790654aa72001d54, type: 3}
   gallerySchrift: {fileID: 3299509297160329073, guid: f61be7a39303f6f418d9ad068b6f75be,
     type: 3}
+--- !u!114 &728146878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728146875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &770692596
 GameObject:
   m_ObjectHideFlags: 0
