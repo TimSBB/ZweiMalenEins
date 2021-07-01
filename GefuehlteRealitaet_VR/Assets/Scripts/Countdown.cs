@@ -57,12 +57,14 @@ public class Countdown : MonoBehaviour
         }
 
         if (blockTimer > 0 && headwriter.wroteOtherHead && headwriter.wroteOwnHead)
+        //if (blockTimer > 0)
         {
             blockTimer -= 1 * Time.deltaTime;
         }
-            if (blockTimer <= 0 )
-            {
-                if ((drawScript.isDrawing && drawScript.allowDraw) || (drawScript.OtherisDrawing && drawScript.OtherisDrawingAllowedToDraw))
+        if (blockTimer <= 0 )
+        {
+            if ((drawScript.isDrawing && drawScript.allowDraw) || (drawScript.OtherisDrawing && drawScript.OtherisDrawingAllowedToDraw))
+            //if (drawScript.isDrawing  || drawScript.OtherisDrawing)
             {
                 timerIsRunning = true;
             }
@@ -77,7 +79,7 @@ public class Countdown : MonoBehaviour
                     timeRemaining -= 1 * Time.deltaTime;
                     //print(timeRemaining);
                     statusBar.fillAmount = timeRemaining.Remap(0, initalRemaining, 0, 1);
-                    H = hue.Remap(0, initalRemaining, 0.3464253f, 0.005555556f);
+                    H = timeRemaining.Remap(0, initalRemaining,  0.005555556f, 0.3464253f);
                     statusBar.color = Color.HSVToRGB(H, S, V);    
                     //DisplayTime(timeRemaining);
                 }

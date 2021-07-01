@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Required when Using UI elements.
+using Photon.Pun;
 
 public class ChangeSceneOnRaycastHit : MonoBehaviour
 {
@@ -13,22 +14,41 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
     private GameObject rayOrigin;
     private ChangeScene changescene;
 
+    private int playerNr;
+    private bool scene2Set;
+    private bool gotRadial1;
+    private bool gotRadial2;
+    private resetPos resetPosScript;
+    private bool nextScentriggered;
+
     // Start is called before the first frame update
     void Start()
     {
-        loadingFeedback = GameObject.Find("UIRadialImage").GetComponent<Image>();
         canvas = GameObject.Find("CanvasObject");
         changescene = GameObject.Find("ChangeScene").GetComponent<ChangeScene>();
+        resetPosScript = GameObject.Find("Camera Offset").GetComponent<resetPos>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        scene2Set = resetPosScript.scene2Set;
+        playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+
+
+        if (playerNr == 2 && !gotRadial2 && scene2Set && !nextScentriggered)
+        {
+            loadingFeedback = GameObject.Find("UIRadialImage").GetComponent<Image>();
+        }
+        if (playerNr == 1 && !gotRadial1 && !resetPosScript.killedInstance && resetPosScript.sceneSet && !nextScentriggered)
+        {
+            loadingFeedback = GameObject.Find("UIRadialImage").GetComponent<Image>();
+        }
         //rayOrigin = GameObject.Find("Bottom_Button");
         //standingOnBottom = rayOrigin.GetComponent<StandingOnButtonChecker>().standingOnBottom;
         Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(transform.position, transform.forward, Color.green);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && !nextScentriggered && loadingFeedback != null)
         {
 
             if (hit.collider.isTrigger && hit.transform.name == "lookAtButton" && standingOnBottom)
@@ -42,6 +62,7 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
                 {
                     loadingStatus = 0;
                     changescene.changeSceneElems();
+                    nextScentriggered = true;
                 }
                 loadingFeedback.fillAmount = loadingStatus;
             }
@@ -49,6 +70,7 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
             {
                 canvas.GetComponent<Canvas>().enabled = false;
                 loadingStatus = 0;
+                loadingFeedback.fillAmount = loadingStatus;
             }
         }
         else
