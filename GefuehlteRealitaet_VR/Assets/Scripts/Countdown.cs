@@ -28,6 +28,11 @@ public class Countdown : MonoBehaviour
     private float hue;
     private float H, S, V;
 
+    private bool mytimesUp;
+    private bool otherstimesUp;
+    public GameObject gallery;
+    public GameObject gallerySchrift;
+
     private void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -86,8 +91,10 @@ public class Countdown : MonoBehaviour
                 else
                 {
                     //Debug.Log("Time has run out!");
+
                     timeRemaining = 0;
                     timerIsRunning = false;
+                    PV.RPC("RPC_TimesUp", RpcTarget.AllBufferedViaServer, playerNr);
                 }
             }
         }
@@ -133,5 +140,35 @@ public class Countdown : MonoBehaviour
         textmeshPro.SetText(word);
     }
 
+    [PunRPC]
+    void RPC_TimesUp(int playerNumber)
+    {
+
+       
+
+
+        if (playerNumber != playerNr)
+        {
+            otherstimesUp = true;
+        }
+        else
+        {
+            mytimesUp = true;
+        }
+        if (mytimesUp && otherstimesUp)
+        {
+            var transform = GameObject.Find("Drawing").transform;
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+            Instantiate(gallery);
+            Instantiate(gallerySchrift);
+        }
+        Destroy(GameObject.Find("AnweisungWortStatusbar(Clone)"));
+    }
 
 }

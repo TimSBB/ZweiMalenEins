@@ -474,6 +474,9 @@ MonoBehaviour:
   timerIsRunning: 0
   randomWordScript: {fileID: 9175372689695425341}
   wordText: {fileID: 9175372689695425315}
+  gallery: {fileID: 6031603806741288280, guid: 6f75eab7066819c4790654aa72001d54, type: 3}
+  gallerySchrift: {fileID: 3299509297160329073, guid: f61be7a39303f6f418d9ad068b6f75be,
+    type: 3}
 --- !u!1 &9175372690228463298
 GameObject:
   m_ObjectHideFlags: 0
