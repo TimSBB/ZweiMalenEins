@@ -37,7 +37,8 @@ public class ChangeScene : MonoBehaviour
         }
 
         Instantiate(ColorPicker);
-        Instantiate(AnweisungWortStatusbar);
+        PhotonNetwork.Instantiate("AnweisungWortStatusbar", new Vector3(0, 2.217f, 1.5f), Quaternion.identity);
+
 
         //var scene = GameObject.Find("CharacterEditor_Scene");
         //Destroy(scene);

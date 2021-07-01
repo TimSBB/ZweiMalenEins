@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 9175372689916185342}
   - component: {fileID: 9175372689916185341}
   - component: {fileID: 9175372689916185336}
-  - component: {fileID: 8232912602628381918}
+  - component: {fileID: 7256294860317322860}
   m_Layer: 9
   m_Name: Countdown_Anzeige
   m_TagString: Untagged
@@ -478,7 +478,7 @@ MonoBehaviour:
   gallery: {fileID: 6031603806741288280, guid: 6f75eab7066819c4790654aa72001d54, type: 3}
   gallerySchrift: {fileID: 3299509297160329073, guid: f61be7a39303f6f418d9ad068b6f75be,
     type: 3}
---- !u!114 &8232912602628381918
+--- !u!114 &7256294860317322860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
