@@ -124,13 +124,13 @@ public class HeadToTxtWriter : MonoBehaviour
             GameObject lineGameObject = new GameObject("Line");
             if (playerNr == 1)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1 + new Vector3(-2f, 0, 0);
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1 + new Vector3(-2.0f, 0, 0);
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player 2(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
                 
             }
             if (playerNr == 2)
             {
-                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2 + new Vector3(2f, 0, 0);
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2 + new Vector3(2.0f, 0, 0);
                 lineGameObject.transform.SetParent(GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.Find("drawingHolder"));
 
             }

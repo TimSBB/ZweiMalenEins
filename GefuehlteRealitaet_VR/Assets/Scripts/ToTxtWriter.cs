@@ -204,6 +204,17 @@ public class ToTxtWriter : MonoBehaviour
             }
             //Debug.Log(controller);
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            var transform = GameObject.Find("Drawing").transform;
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
+            }
+        }
 
 
     }
