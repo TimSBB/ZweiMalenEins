@@ -14,8 +14,10 @@ public class resetPos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.transform.eulerAngles = new Vector3(0, 180, 0);
         var pos = GameObject.Find("Main Camera").transform.position;
         this.transform.position = new Vector3(-pos.x, this.transform.position.y, -pos.z);
+
     }
 
     // Update is called once per frame
@@ -24,8 +26,8 @@ public class resetPos : MonoBehaviour
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
         if (playerNr == 1 && !sceneSet)
         {
-            // this.transform.position = new Vector3(-1.7f, this.transform.position.y, 0);
-            this.transform.position = new Vector3(-1.7f, this.transform.position.y, 0);
+            this.transform.position = new Vector3(-1.7f*0, this.transform.position.y, 0);
+            //this.transform.position = new Vector3(-1.7f, this.transform.position.y, 0);
             Instantiate(CharacterEditor_Scene_player1);
             sceneSet = true;
             LoadingOverlay overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
@@ -37,7 +39,8 @@ public class resetPos : MonoBehaviour
            {
                 LoadingOverlay overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
                 Destroy(GameObject.Find("CharacterEditor_Scene_player1(Clone)"));
-                this.transform.position = new Vector3(+1.7f, this.transform.position.y, 0);
+                this.transform.position = new Vector3(+1.7f*0, this.transform.position.y, 0);
+                //this.transform.position = new Vector3(+1.7f, this.transform.position.y, 0);
                 Instantiate(CharacterEditor_Scene_player2);
                 scene2Set = true;
                 killedInstance = true;
