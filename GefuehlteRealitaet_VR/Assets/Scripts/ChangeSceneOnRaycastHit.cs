@@ -32,6 +32,12 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            changescene.changeSceneElems();
+            nextScentriggered = true;
+            loadingStatus = 0;
+        }
         scene2Set = resetPosScript.scene2Set;
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
@@ -96,5 +102,9 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
             //Debug.Log("standing on button= " + standingOnBottom);
         }
     }
+
+
+
+
 
 }
