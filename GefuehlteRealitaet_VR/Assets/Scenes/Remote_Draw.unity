@@ -618,6 +618,10 @@ MonoBehaviour:
   allowDraw: 1
   OtherisDrawingAllowedToDraw: 0
   anzeige: {fileID: 0}
+  trailObject: {fileID: 8572698195175754815, guid: 28a8f9c1a21565247b725ff7615baf03,
+    type: 3}
+  newObjectDistance: 0.1
+  sizeRatio: 0.5
 --- !u!114 &380571837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &477743230
 BoxCollider:
   m_ObjectHideFlags: 0

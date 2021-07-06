@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(MeshFilter))]
 public class LoadingOverlay : MonoBehaviour {
-    private bool fading;
+    public bool fading;
     private float fade_timer;
 
     public float in_alpha = 1.0f;
@@ -53,6 +53,7 @@ public class LoadingOverlay : MonoBehaviour {
             this.fading = true;
         }
     }
+
 
     public static void ReverseNormals(GameObject gameObject){
         // Renders interior of the overlay instead of exterior.

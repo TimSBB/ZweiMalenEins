@@ -11,54 +11,61 @@ public class ChangeScene : MonoBehaviour
     private int playerNr;
     public GameObject ColorPicker;
     public GameObject AnweisungWortStatusbar;
+    private bool triggeredFade;
+    private LoadingOverlay overlay;
 
     //will be called when ready button is pressed >> see onClick Event on button Game Object
     public void changeSceneElems()
     {
-        LoadingOverlay overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
-       // overlay.FadeOut();
+        overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
+        overlay.FadeIn();
         //Write the drawing to your local file and in the end trigger RPC event to send via Network
         //!!!! this is also where the players ar made visible !!!!!
         WriteHead = GameObject.Find("Head_TextWriter").GetComponent<HeadToTxtWriter>();
         WriteHead.Save();
 
-        GameObject.Find("RightHand Controller").GetComponent<Draw>().nextScene = true;
-        GameObject.Find("RightHand Controller").GetComponent<Draw>().allowDraw = false;
+       
+        triggeredFade = true;
+    }
 
-        playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
+    public void Start()
+    {
+        overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
+    }
 
-        if (playerNr == 1)
+    public void Update()
+    {
+        if (!overlay.fading && triggeredFade)
         {
-            GameObject.Find("CharacterEditor_Scene_player1(Clone)").SetActive(false);
-        }
-        if (playerNr == 2)
-        {
-            GameObject.Find("CharacterEditor_Scene_player2(Clone)").SetActive(false);
-        }
+            Debug.Log("should fade in now");
+            triggeredFade = false;
+            GameObject.Find("RightHand Controller").GetComponent<Draw>().nextScene = true;
+            GameObject.Find("RightHand Controller").GetComponent<Draw>().allowDraw = false;
 
-        Instantiate(ColorPicker);
-        Instantiate(AnweisungWortStatusbar);
-        //PhotonNetwork.Instantiate("AnweisungWortStatusbar", new Vector3(0, 2.217f, 1.5f), Quaternion.identity);
+            playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
-
-        //var scene = GameObject.Find("CharacterEditor_Scene");
-        //Destroy(scene);
-
-        var transform = GameObject.Find("Drawing").transform;
-        if (transform.childCount > 0)
-        {
-            foreach (Transform child in transform)
+            if (playerNr == 1)
             {
-                Destroy(child.gameObject);
+                GameObject.Find("CharacterEditor_Scene_player1(Clone)").SetActive(false);
             }
+            if (playerNr == 2)
+            {
+                GameObject.Find("CharacterEditor_Scene_player2(Clone)").SetActive(false);
+            }
+
+            Instantiate(ColorPicker);
+            Instantiate(AnweisungWortStatusbar);
+
+
+            var transform = GameObject.Find("Drawing").transform;
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+            overlay.FadeOut();
         }
-
-        //var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Line");
-        //foreach (var obj in objects)
-        //{
-        //    Destroy(obj);
-        //}
-
-       // overlay.FadeIn();
     }
 }

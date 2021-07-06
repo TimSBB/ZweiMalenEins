@@ -17,6 +17,8 @@ public class Draw : MonoBehaviour
     public Material Player2_lineMaterial;
     public float distanceThreshold = 0.05f;
 
+    private GameObject lineGameObject;
+
     private List<Vector3> currentLinePositions = new List<Vector3>();
     private List<Vector3> currentLinePositionsOther = new List<Vector3>();
     private XRController controller;
@@ -42,6 +44,12 @@ public class Draw : MonoBehaviour
 
     public GameObject anzeige;
 
+    public GameObject trailObject;
+    public float newObjectDistance = 0.1f;
+    public float sizeRatio = 0.5f;
+    private Vector3 currentObjectStartPosition;
+    private GameObject currentObject;
+    private int index = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -114,12 +122,15 @@ public class Draw : MonoBehaviour
             isDrawing = true;
         //create line
             anzeige = GameObject.Find("XR Rig/Camera Offset/RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Farbanzeige");
-            GameObject lineGameObject = new GameObject("Line");
+            if (lineGameObject == null) {
+            lineGameObject = new GameObject("Line");
             lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
+
+
             currentLine = lineGameObject.AddComponent<LineRenderer>();
             currentLine.useWorldSpace = false;
-
-            UpdateLine();
+            }
+        UpdateLine();
     }
 
     void UpdateLine()
@@ -150,15 +161,52 @@ public class Draw : MonoBehaviour
             var floattinte = (float)tintenstand;
             anzeige.GetComponent<Renderer>().material.SetFloat("Vector1_19547DA5", floattinte.Remap(0, publictintenstand, -1, 1));
         }
-       
 
     }
 
     void StopDrawing()
     {
         isDrawing = false;
+ 
+            for (int i = 0; i < currentLinePositions.Count -1; i++)
+            {
+                
+                //Debug.Log("LinePositions.Length " + LinePositions.Length);
+                if (currentObject == null)
+                {
+                    currentObject = Instantiate(trailObject, currentLinePositions[i], Quaternion.identity) as GameObject;
+                    currentObject.transform.parent = currentLine.transform;
+                    currentObjectStartPosition = currentLinePositions[i];
+                }
+                else
+                {
+
+                    Vector3 toTransformVector = currentLinePositions[i] - currentObjectStartPosition;
+
+                    currentObject.transform.rotation = Quaternion.LookRotation(toTransformVector);
+
+                    Vector3 newScale = currentObject.transform.localScale;
+                    float distance = toTransformVector.magnitude;
+                    newScale.z = distance * sizeRatio;
+                    currentObject.transform.localScale = newScale;
+
+                    if (distance >= newObjectDistance)
+                    {
+                        currentObject = Instantiate(trailObject, currentLinePositions[i], Quaternion.identity) as GameObject;
+                        currentObject.transform.parent = currentLine.transform;
+                        currentObjectStartPosition = currentLinePositions[i];
+                    }
+                }
+            
+        }
+
+
+
+
         currentLinePositions.Clear();
+        currentObject = null;
         currentLine = null;
+        lineGameObject = null;
     }
 
     void UpdateDrawing()

@@ -22,10 +22,7 @@ public class resetPos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.eulerAngles = new Vector3(0, 180, 0);
         cam = GameObject.Find("Main Camera");
-        var pos = cam.transform.position;
-        this.transform.position = new Vector3(-pos.x, this.transform.position.y, -pos.z);
         rightHand = GameObject.Find("RightHand Controller");
         controller = rightHand.GetComponent<XRController>();
     }
@@ -60,9 +57,10 @@ public class resetPos : MonoBehaviour
         }
         if (isPressed)
         {
-            if (!resetOrigin) { 
-            this.transform.RotateAround(cam.transform.position, Vector3.up, -rightHand.transform.eulerAngles.y);
-            this.transform.position = new Vector3(rightHand.transform.position.x, this.transform.position.y, rightHand.transform.position.z);
+            if (!resetOrigin) {
+                this.transform.position = new Vector3(-rightHand.transform.position.x, this.transform.position.y, -rightHand.transform.position.z);
+                this.transform.RotateAround(rightHand.transform.position, Vector3.up, -rightHand.transform.eulerAngles.y);
+
                 resetOrigin = true;
             }
 
