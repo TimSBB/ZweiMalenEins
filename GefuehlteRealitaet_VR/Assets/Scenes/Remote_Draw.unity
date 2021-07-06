@@ -1845,6 +1845,7 @@ MonoBehaviour:
     type: 3}
   CharacterEditor_Scene_player2: {fileID: 4915888581817067882, guid: 3c10bcf815e6a594dbb76fa6e9f220fb,
     type: 3}
+  resetButton: 3
 --- !u!1 &878265392
 GameObject:
   m_ObjectHideFlags: 0
