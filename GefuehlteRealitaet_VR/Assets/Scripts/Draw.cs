@@ -198,7 +198,7 @@ public class Draw : MonoBehaviour
                     }
                 }
             
-        }
+            }
 
 
 
@@ -362,8 +362,48 @@ public class Draw : MonoBehaviour
             OtherisDrawing = false;
             if (DoNetworkDraw)
             {
+
+                for (int i = 0; i < currentLinePositionsOther.Count - 1; i++)
+                {
+
+                    //Debug.Log("LinePositions.Length " + LinePositions.Length);
+                    if (currentObject == null)
+                    {
+                        currentObject = Instantiate(trailObject, currentLinePositionsOther[i], Quaternion.identity) as GameObject;
+                        currentObject.transform.parent = currentLineOther.transform;
+                        currentObjectStartPosition = currentLinePositionsOther[i];
+                    }
+                    else
+                    {
+
+                        Vector3 toTransformVector = currentLinePositionsOther[i] - currentObjectStartPosition;
+
+                        currentObject.transform.rotation = Quaternion.LookRotation(toTransformVector);
+
+                        Vector3 newScale = currentObject.transform.localScale;
+                        float distance = toTransformVector.magnitude;
+                        newScale.z = distance * sizeRatio;
+                        currentObject.transform.localScale = newScale;
+
+                        if (distance >= newObjectDistance)
+                        {
+                            currentObject = Instantiate(trailObject, currentLinePositionsOther[i], Quaternion.identity) as GameObject;
+                            currentObject.transform.parent = currentLineOther.transform;
+                            currentObjectStartPosition = currentLinePositionsOther[i];
+                        }
+                    }
+
+                }
+
+
+
+
                 currentLinePositionsOther.Clear();
                 currentLineOther = null;
+
+                currentObject = null;
+                lineGameObject = null;
+
             }
         }
     }
