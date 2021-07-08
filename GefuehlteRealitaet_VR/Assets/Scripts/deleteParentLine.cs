@@ -16,18 +16,6 @@ public class deleteParentLine : MonoBehaviour
     {
         if (other.gameObject.name == "PaintCapsule")
         {
-   
-                radierer = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Radierer");
-
-                if (radierer.GetComponent<MeshRenderer>().enabled == true)
-                {
-                    Destroy(this.transform.parent.gameObject.transform.parent.gameObject);
-                }
-            
-
-        }
-        if (other.gameObject.name == "PaintCapsuleNet")
-        {
             if (other.transform.parent.Find("DrawController_Prefab(Clone)/Radierer") != null)
             {
                 var enabled = other.transform.parent.Find("DrawController_Prefab(Clone)/Radierer").GetComponent<MeshRenderer>().enabled;
@@ -35,8 +23,15 @@ public class deleteParentLine : MonoBehaviour
                 {
                     Destroy(this.transform.parent.gameObject.transform.parent.gameObject);
                 }
-            }
+            } else
+            {
+                radierer = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Radierer");
 
+                if (radierer.GetComponent<MeshRenderer>().enabled == true)
+                {
+                    Destroy(this.transform.parent.gameObject.transform.parent.gameObject);
+                }
+            }
 
         }
     }

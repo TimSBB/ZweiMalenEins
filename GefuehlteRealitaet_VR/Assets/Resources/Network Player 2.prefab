@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 6233748766612140979}
   - component: {fileID: 3048561296419899239}
   m_Layer: 9
-  m_Name: PaintCapsuleNet
+  m_Name: PaintCapsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

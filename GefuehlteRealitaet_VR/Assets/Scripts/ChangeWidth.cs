@@ -23,7 +23,7 @@ public class ChangeWidth : MonoBehaviour
         radier = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Radierer");
 
 
-        if (other.gameObject.name == "PaintCapsule") {
+        if (other.gameObject.name == "PaintCapsule" && other.gameObject.transform.parent.name == "PaintBrush") {
             //change brush tip
             if (this.gameObject.name == "Gross_Auswahl") 
             {

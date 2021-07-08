@@ -20,7 +20,7 @@ public class ChangeColor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "PaintCapsule") {
+        if (other.gameObject.name == "PaintCapsule" && other.gameObject.transform.parent.name == "PaintBrush") {
 
             //find brush tips
             gross = GameObject.Find("RightHand Controller/Right Hand Presence/DrawController_Prefab(Clone)/Gross");
