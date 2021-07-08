@@ -18,6 +18,7 @@ public class Draw : MonoBehaviour
     public float distanceThreshold = 0.05f;
 
     private GameObject lineGameObject;
+    private GameObject otherlineGameObject;
 
     private List<Vector3> currentLinePositions = new List<Vector3>();
     private List<Vector3> currentLinePositionsOther = new List<Vector3>();
@@ -301,13 +302,15 @@ public class Draw : MonoBehaviour
                     }
                 }
                 //create line
-                GameObject lineGameObject = new GameObject("Line");
-                lineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
-                currentLineOther = lineGameObject.AddComponent<LineRenderer>();
-                currentLineOther.useWorldSpace = false;
-                //currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
-                //print("material: " + currentLineOther.material);
-
+                if (otherlineGameObject == null)
+                {
+                    otherlineGameObject = new GameObject("Line");
+                    otherlineGameObject.transform.SetParent(GameObject.Find("Drawing").transform);
+                    currentLineOther = otherlineGameObject.AddComponent<LineRenderer>();
+                    currentLineOther.useWorldSpace = false;
+                    //currentLineOther.material = Resources.Load<Material>("Materials/" + ColorOfLine);
+                    //print("material: " + currentLineOther.material);
+                }
                 PV.RPC("RPC_UpdateLine", RpcTarget.AllBufferedViaServer, playerNumber, OtherDrawPositionSource, ColorOfLine, WidthOfLine);
             }
         }
@@ -401,7 +404,7 @@ public class Draw : MonoBehaviour
                 currentLineOther = null;
 
                 currentObject = null;
-                lineGameObject = null;
+                otherlineGameObject = null;
 
             }
         }
