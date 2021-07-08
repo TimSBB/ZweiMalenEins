@@ -20,7 +20,6 @@ public class ChangeColor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.name == "PaintCapsule" && other.gameObject.transform.parent.name == "PaintBrush") {
         if (other.gameObject.name == "PaintCapsule")
         {
 
