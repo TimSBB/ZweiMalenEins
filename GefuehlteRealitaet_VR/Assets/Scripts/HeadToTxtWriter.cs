@@ -153,6 +153,87 @@ public class HeadToTxtWriter : MonoBehaviour
         GameObject.Find("Network Player(Clone)").transform.Find("Head").transform.Find("Head").transform.localScale *= 0.7f;
     }
 
+    public void loadOwnHead()
+    {
+        //Load Values
+        if (playerNr == 1)
+        {
+            path = Application.persistentDataPath + "/Head_1_LineSave.json";
+        }
+        if (playerNr == 2)
+        {
+            path = Application.persistentDataPath + "/Head_2_LineSave.json";
+        }
+        string jsonString = File.ReadAllText(path);
+        JSONObject lines = (JSONObject)JSON.Parse(jsonString);
+        int LineCount = lines["LineCount"];
+        //Debug.Log("linecount to load: " + LineCount);
+        for (int i = 0; i < LineCount; i++)
+        {
+
+
+            var LineJson = lines["lineJson" + i.ToString()];
+            //Set Values
+            ColorNr = LineJson["ColorNr"];
+
+            var positionCount = LineJson["PositionCount"];
+            // Debug.Log("PositionCount"+i+":" + positionCount);
+            LinePositions = new Vector3[positionCount];
+            for (int j = 0; j < positionCount; j++)
+            {
+                //Debug.Log("iteration"+j);
+                LinePositions[j] = new Vector3(LineJson["Position" + j.ToString()].AsArray[0], LineJson["Position" + j.ToString()].AsArray[1], LineJson["Position" + j.ToString()].AsArray[2]);
+                // Debug.Log("Position"+j+"  " +LinePositions[j]);
+            }
+
+            GameObject lineGameObject = new GameObject("Line");
+            if (playerNr == 1)
+            {
+             
+                headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos1;
+                lineGameObject.transform.SetParent(GameObject.Find("drawingHolder").transform);
+
+            }
+            if (playerNr == 2)
+            {
+                headRohlingPos2 = GameObject.Find("CharacterEditor_Scene_player2(Clone)").transform.Find("Head").transform.position;
+                lineGameObject.transform.position = lineGameObject.transform.position - headRohlingPos2;
+                lineGameObject.transform.SetParent(GameObject.Find("drawingHolder").transform);
+
+            }
+
+            var currentLine = lineGameObject.AddComponent<LineRenderer>();
+            currentLine.useWorldSpace = false;
+            currentLine.positionCount = positionCount;
+            currentLine.SetPositions(LinePositions);
+            currentLine.material = Resources.Load<Material>("Materials/" + ColorNr);
+            currentLine.startWidth = LineJson["lineWidth"] * 0.7f;
+
+            // Debug.Log(LineJson.ToString());
+
+        }
+        if (playerNr == 1)
+        {
+            GameObject.Find("drawingHolder").transform.rotation = GameObject.Find("Main Camera").transform.rotation;
+            GameObject.Find("drawingHolder").transform.Rotate(0, 180 - 45,0);
+            GameObject.Find("drawingHolder").transform.position = GameObject.Find("Main Camera").transform.position;
+
+            GameObject.Find("drawingHolder").transform.SetParent(GameObject.Find("Main Camera/Head").transform);
+
+        }
+        if (playerNr == 2)
+        {
+            GameObject.Find("drawingHolder").transform.rotation = GameObject.Find("Main Camera").transform.rotation;
+            GameObject.Find("drawingHolder").transform.Rotate(0, 180 + 45, 0);
+            GameObject.Find("drawingHolder").transform.position = GameObject.Find("Main Camera").transform.position;
+
+            GameObject.Find("drawingHolder").transform.SetParent(GameObject.Find("Main Camera/Head").transform);
+        }
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {

@@ -13,6 +13,7 @@ public class ChangeScene : MonoBehaviour
     public GameObject AnweisungWortStatusbar;
     private bool triggeredFade;
     private LoadingOverlay overlay;
+    private HeadToTxtWriter headWriter;
 
     //will be called when ready button is pressed >> see onClick Event on button Game Object
     public void changeSceneElems()
@@ -23,7 +24,7 @@ public class ChangeScene : MonoBehaviour
         //!!!! this is also where the players ar made visible !!!!!
         WriteHead = GameObject.Find("Head_TextWriter").GetComponent<HeadToTxtWriter>();
         WriteHead.Save();
-
+        headWriter.loadOwnHead();
        
         triggeredFade = true;
     }
@@ -31,6 +32,7 @@ public class ChangeScene : MonoBehaviour
     public void Start()
     {
         overlay = GameObject.Find("LoadingOverlay").gameObject.GetComponent<LoadingOverlay>();
+        headWriter = GameObject.Find("Head_TextWriter").GetComponent<HeadToTxtWriter>();
     }
 
     public void Update()
