@@ -49,7 +49,6 @@ public class Draw : MonoBehaviour
     public float sizeRatio = 0.5f;
     private Vector3 currentObjectStartPosition;
     private GameObject currentObject;
-    private int index = 0;
 
     // Start is called before the first frame update
     void Start()

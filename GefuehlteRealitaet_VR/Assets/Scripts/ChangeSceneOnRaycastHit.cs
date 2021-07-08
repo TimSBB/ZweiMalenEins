@@ -16,8 +16,6 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
 
     private int playerNr;
     private bool scene2Set;
-    private bool gotRadial1;
-    private bool gotRadial2;
     private resetPos resetPosScript;
     private bool nextScentriggered;
 
@@ -42,11 +40,11 @@ public class ChangeSceneOnRaycastHit : MonoBehaviour
         playerNr = PhotonNetwork.LocalPlayer.ActorNumber;
 
 
-        if (playerNr == 2 && !gotRadial2 && scene2Set && !nextScentriggered)
+        if (playerNr == 2  && scene2Set && !nextScentriggered)
         {
             loadingFeedback = GameObject.Find("UIRadialImage").GetComponent<Image>();
         }
-        if (playerNr == 1 && !gotRadial1 && !resetPosScript.killedInstance && resetPosScript.sceneSet && !nextScentriggered)
+        if (playerNr == 1  && !resetPosScript.killedInstance && resetPosScript.sceneSet && !nextScentriggered)
         {
             loadingFeedback = GameObject.Find("UIRadialImage").GetComponent<Image>();
         }
