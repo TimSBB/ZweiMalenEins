@@ -30,6 +30,10 @@ public class HeadToTxtWriter : MonoBehaviour
     private PhotonView PV;
     private Draw SetNetworkDraw;
 
+    private bool followHead;
+    private GameObject drawingHolder;
+    private GameObject mainHead;
+
     public void Save()
     {
         myLines = new List<GameObject>();
@@ -202,7 +206,7 @@ public class HeadToTxtWriter : MonoBehaviour
                 lineGameObject.transform.SetParent(GameObject.Find("drawingHolder").transform);
 
             }
-
+            lineGameObject.layer = 11;
             var currentLine = lineGameObject.AddComponent<LineRenderer>();
             currentLine.useWorldSpace = false;
             currentLine.positionCount = positionCount;
@@ -215,21 +219,22 @@ public class HeadToTxtWriter : MonoBehaviour
         }
         if (playerNr == 1)
         {
-            GameObject.Find("drawingHolder").transform.rotation = GameObject.Find("Main Camera").transform.rotation;
-            GameObject.Find("drawingHolder").transform.Rotate(0, 180 - 45,0);
-            GameObject.Find("drawingHolder").transform.position = GameObject.Find("Main Camera").transform.position;
+            drawingHolder.transform.rotation = GameObject.Find("Main Camera").transform.rotation;
+            drawingHolder.transform.Rotate(0, 180 - 45,0);
+            drawingHolder.transform.position = GameObject.Find("Main Camera").transform.position;
 
-            GameObject.Find("drawingHolder").transform.SetParent(GameObject.Find("Main Camera/Head").transform);
+            //GameObject.Find("drawingHolder").transform.SetParent(GameObject.Find("Main Camera/Head").transform);
 
         }
         if (playerNr == 2)
         {
-            GameObject.Find("drawingHolder").transform.rotation = GameObject.Find("Main Camera").transform.rotation;
-            GameObject.Find("drawingHolder").transform.Rotate(0, 180 + 45, 0);
-            GameObject.Find("drawingHolder").transform.position = GameObject.Find("Main Camera").transform.position;
+            drawingHolder.transform.rotation = GameObject.Find("Main Camera").transform.rotation;
+            drawingHolder.transform.Rotate(0, 180 + 45, 0);
+            drawingHolder.transform.position = GameObject.Find("Main Camera").transform.position;
 
-            GameObject.Find("drawingHolder").transform.SetParent(GameObject.Find("Main Camera/Head").transform);
+            //GameObject.Find("drawingHolder").transform.SetParent(GameObject.Find("Main Camera/Head").transform);
         }
+        followHead = true;
     }
 
 
@@ -238,6 +243,8 @@ public class HeadToTxtWriter : MonoBehaviour
     void Start()
     {
         PV = this.GetComponent<PhotonView>();
+        drawingHolder = GameObject.Find("drawingHolder");
+        mainHead = GameObject.Find("Main Camera");
 
     }
 
@@ -258,6 +265,14 @@ public class HeadToTxtWriter : MonoBehaviour
                 headRohlingPos1 = GameObject.Find("CharacterEditor_Scene_player1(Clone)").transform.Find("Head").transform.position;
                 gotHeadPos1 = true;
             }
+
+        if (followHead)
+        {
+
+            drawingHolder.transform.rotation = mainHead.transform.rotation;
+            drawingHolder.transform.Rotate(0, 90 + 45, 0);
+            drawingHolder.transform.position = mainHead.transform.position;
+        }
 
     }
 
