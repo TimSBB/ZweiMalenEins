@@ -32,7 +32,7 @@ public class Countdown : MonoBehaviour
     public GameObject gallery;
     public GameObject gallerySchrift;
     private PhotonView PV;
-    private bool triggeredGallery;
+    public bool triggeredGallery;
 
     private void Start()
     {
