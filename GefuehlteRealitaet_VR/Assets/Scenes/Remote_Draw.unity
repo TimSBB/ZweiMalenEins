@@ -3233,6 +3233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camerswitchButton: 11
+  toggle: 0
 --- !u!1 &1479934703
 GameObject:
   m_ObjectHideFlags: 0

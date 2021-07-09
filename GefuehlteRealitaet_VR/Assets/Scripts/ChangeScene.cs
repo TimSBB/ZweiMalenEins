@@ -14,6 +14,7 @@ public class ChangeScene : MonoBehaviour
     private bool triggeredFade;
     private LoadingOverlay overlay;
     private HeadToTxtWriter headWriter;
+    private cameraSwitcher camSwitch;
 
     //will be called when ready button is pressed >> see onClick Event on button Game Object
     public void changeSceneElems()
@@ -27,6 +28,7 @@ public class ChangeScene : MonoBehaviour
         headWriter.loadOwnHead();
        
         triggeredFade = true;
+        GameObject.Find("Camera").gameObject.GetComponent<cameraSwitcher>().toggle = false;
     }
 
     public void Start()

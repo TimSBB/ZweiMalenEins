@@ -271,7 +271,7 @@ public class HeadToTxtWriter : MonoBehaviour
 
             drawingHolder.transform.rotation = mainHead.transform.rotation;
            if (playerNr ==1) drawingHolder.transform.Rotate(0, 90 + 45, 0);
-           if (playerNr == 2) drawingHolder.transform.Rotate(0, 90 - 45, 0);
+           if (playerNr == 2) drawingHolder.transform.Rotate(0, 180 + 90 - 45, 0);
             drawingHolder.transform.position = mainHead.transform.position;
         }
 

@@ -8,7 +8,7 @@ public class cameraSwitcher : MonoBehaviour
 {
     private XRController controller;
     public InputHelpers.Button camerswitchButton;
-    private bool toggle;
+    public bool toggle;
     private float timer = 0;
 
     private int playerNr;
@@ -54,7 +54,6 @@ public class cameraSwitcher : MonoBehaviour
                
                 if (nextScene)
                 {
-
                     this.transform.position = GameObject.Find("camera1_scene2").transform.position;
                     this.transform.rotation = GameObject.Find("camera1_scene2").transform.rotation;
                 }
